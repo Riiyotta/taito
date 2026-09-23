@@ -1,0 +1,24 @@
+{
+  "measuredFrom": "tailwind.config.js:75-77 (screens); CLONE_SPEC.md:60-61 (§1.4 breakpoints)",
+  "viewport": {
+    "sm": { "value": "640px" },
+    "md": { "value": "768px" },
+    "lg": { "value": "1024px" },
+    "xl": { "value": "1280px" },
+    "2xl": { "value": "1536px" },
+    "nav": { "value": "1200px", "custom": true, "usedFor": "desktop nav vs. hamburger switch (Tailwind v4 original's min-[1200px])", "measuredFrom": "tailwind.config.js:76" }
+  },
+  "containerQuery": {
+    "$comment": "Measured on a container's own inline size via @tailwindcss/container-queries (tailwind.config.js:1,131), not viewport — applied to .u-container / .@container wrappers. Hero, card grids and footer columns use these.",
+    "md": { "value": "28rem / 448px" },
+    "lg": { "value": "32rem / 512px" },
+    "2xl": { "value": "42rem / 672px" },
+    "4xl": { "value": "56rem / 896px", "usedFor": "section header switches to split (horizontal) layout at this container width" },
+    "measuredFrom": "CLONE_SPEC.md:61"
+  },
+  "measuredAtWidths": {
+    "$comment": "The three real viewport widths every value in this design-repo's token/section files was actually measured at.",
+    "widths": [1440, 1280, 390]
+  },
+  "containerMaxWidth": { "value": "1500px", "measuredFrom": "tailwind.config.js:129-131 (maxWidth.container); CLONE_SPEC.md:65" }
+}

@@ -1,0 +1,15 @@
+{
+  "id": "sections.features.mcp-value-columns",
+  "category": "FEATURES",
+  "description": "3-column feature-list block explaining the value proposition of MCP-based automation, on the mcp-use-cases index.",
+  "scope": "Present only on /mcp-use-cases (1 route).",
+  "implementedBy": "src/pages/McpIndex.jsx (FeatureColumns)",
+  "measuredFrom": "src/content/mcp-tools.js (mcpIndex.value)",
+  "composes": ["components.section-header"],
+  "content": {
+    "header": { "variant": "default" },
+    "columns": { "type": "array", "minItems": 3, "maxItems": 3, "items": { "title": { "maxWords": 6 }, "body": { "maxWords": 26 } } }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — no animation" }
+}

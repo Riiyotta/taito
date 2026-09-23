@@ -1,0 +1,11 @@
+{
+  "id": "components.feature-list-item",
+  "description": "One row of an icon+title+body feature list: icon tile + H3 + paragraph, optionally a hairline divider above/below. The repeated unit inside features.split-media, features.pain-columns' sibling feature lists, and features.people-ops-grid cells.",
+  "measuredFrom": "CLONE_SPEC.md §5 (People ops feature grid item), §6 (People agents feature list item)",
+  "composes": ["components.feature-icon-tile"],
+  "content": {
+    "title": { "type": "string", "maxWords": 6 },
+    "body": { "type": "string", "maxWords": 32 },
+    "titleIsLink": { "type": "boolean", "default": false, "note": "people-leaders persona page's time-back feature grid uses linked titles" }
+  }
+}

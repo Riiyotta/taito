@@ -1,0 +1,8 @@
+{
+  "id": "primitives.link",
+  "description": "Inline text link with underline decoration, distinct from a button. Used inside body copy and FAQ answers.",
+  "measuredFrom": "CLONE_SPEC.md §1.5 .inline-link; src/index.css:139-150",
+  "props": { "label": { "type": "string" }, "href": { "type": "string" } },
+  "style": { "color": "text.primary", "weight": 500, "textDecoration": "underline", "decorationColor": "border.default", "underlineOffset": "3px" },
+  "motion": { "hover": "inline-hover-color (decoration color -> text.muted, 0.1s linear)", "reducedMotionFallback": "instant color swap" }
+}

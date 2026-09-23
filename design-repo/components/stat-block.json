@@ -1,0 +1,11 @@
+{
+  "id": "components.stat-block",
+  "description": "A single dt/dd row: a claim sentence with an info-tooltip trigger, and a big right-aligned number. The repeated unit inside proof.math-stats.",
+  "measuredFrom": "CLONE_SPEC.md §12 (Math stats)",
+  "content": {
+    "claim": { "type": "string", "maxWords": 16 },
+    "value": { "type": "string", "maxWords": 3 },
+    "sourceTooltip": { "type": "string", "maxWords": 10, "note": "citation shown on tooltip hover, e.g. 'McKinsey, \"Human Resources in the Age of Automation\"'" }
+  },
+  "motion": { "tooltip": "toggled by display, no animation", "reducedMotionFallback": "same, no animation exists to fall back from" }
+}

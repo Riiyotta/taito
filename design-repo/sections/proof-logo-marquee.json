@@ -1,0 +1,20 @@
+{
+  "id": "sections.proof.logo-marquee",
+  "category": "PROOF",
+  "description": "Infinite-scroll (60s linear) horizontal strip of 7 customer wordmarks, all rendered pure black via CSS filter, doubled in the DOM for seamless looping.",
+  "scope": "Present on the homepage (inside hero.marketing) and again standalone on /pricing.",
+  "implementedBy": "src/components/Hero.jsx (home) + src/pages/Pricing.jsx",
+  "measuredFrom": "CLONE_SPEC.md:74-79 (§3.1 Logo marquee strip)",
+  "content": {
+    "logos": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 9,
+      "items": { "name": { "type": "string" }, "assetRole": { "const": "logo.customer-social-proof" } },
+      "example": ["Faculty", "Huuva", "Strise", "Shook", "Clock&Cloud", "Way", "Zero"]
+    }
+  },
+  "constraints": { "maxPerPage": 1 },
+  "motion": { "pattern": "logo-marquee-scroll", "reducedMotionFallback": "static single row, no scroll animation" },
+  "assetRoles": ["logo.customer-social-proof"]
+}

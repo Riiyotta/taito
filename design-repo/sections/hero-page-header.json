@@ -1,0 +1,16 @@
+{
+  "id": "sections.hero.page-header",
+  "category": "HERO",
+  "description": "Non-split page header (no right-hand media): eyebrow + H1 (cols 1-6) + description (cols 7-12), used for pages whose 'hero' is really a title band above tabular/listing content. Pricing adds a two-column price comparison beneath it; security adds an 'Explore trust center' CTA row.",
+  "scope": "Present on pricing, security, tools-index, tools-detail, compliance-index, compliance-country, compliance-calendar (7 route shapes).",
+  "implementedBy": "src/components/product/Sections.jsx (PageHeader, pricing/security) + src/components/compliance-legal/shared.jsx (PageHeader, tools/compliance/calendar)",
+  "measuredFrom": "specs/SPEC_product.md §7 (PageHeader)",
+  "content": {
+    "eyebrow": { "type": "string", "maxWords": 4 },
+    "title": { "type": "string", "maxWords": 10 },
+    "description": { "type": "string", "maxWords": 40 },
+    "actionCta": { "type": "object", "required": false, "note": "security-only: 'Explore trust center' primary large button to https://trust.taito.ai", "label": { "maxWords": 4 } }
+  },
+  "constraints": { "mustBeFirst": true, "onePerPage": true },
+  "motion": { "pattern": "hero-fade-stagger", "reducedMotionFallback": "everything visible immediately" }
+}

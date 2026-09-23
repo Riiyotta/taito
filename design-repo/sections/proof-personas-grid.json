@@ -1,0 +1,21 @@
+{
+  "id": "sections.proof.personas-grid",
+  "category": "PROOF",
+  "description": "3-card dark-mode grid ('Built for') linking to the founders/operators/people-leaders persona pages: full-bleed photo, gradient overlay, kicker/H3/description, hover zoom + indicator icon flip.",
+  "scope": "Present on the homepage and again on /waitlist (2 route occurrences).",
+  "implementedBy": "src/components/Personas.jsx",
+  "measuredFrom": "CLONE_SPEC.md:176-192 (§8 Personas)",
+  "themeScope": "dark-scope (per-card, see tokens/themes/dark-scope.json)",
+  "content": {
+    "header": { "eyebrow": { "const": "Built for" }, "title": { "const": "Different roles. Same product." }, "hasDescription": false },
+    "cards": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "kicker": { "maxWords": 4 }, "title": { "maxWords": 4 }, "description": { "maxWords": 20 }, "href": { "enum": ["/founders", "/people-leaders", "/operators"] }, "mediaAssetRole": { "const": "photo.hero-editorial" } }
+    }
+  },
+  "constraints": { "maxPerPage": 1 },
+  "motion": { "pattern": "persona-card-hover", "reducedMotionFallback": "no scale/rotate on hover, instant color change only" },
+  "assetRoles": ["photo.hero-editorial", "icon.lucide"]
+}

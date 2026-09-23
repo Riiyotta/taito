@@ -1,0 +1,208 @@
+{
+  "$comment": "One real, complete, passing example instance for template.home, using real copy from CLONE_SPEC.md. Must validate with zero errors against both pagespec.schema.json and semantic_validate.py.",
+  "pageSpecVersion": "1.0.0",
+  "route": "/",
+  "template": "template.home",
+  "nodes": [
+    {
+      "section": "shell.navbar",
+      "content": {
+        "logoLabel": "Taito.ai",
+        "navItems": [
+          { "label": "Product", "href": "#", "hasDropdown": true },
+          { "label": "Solutions", "href": "#", "hasDropdown": true },
+          { "label": "Pricing", "href": "/pricing", "hasDropdown": false },
+          { "label": "Blog", "href": "/blog", "hasDropdown": false },
+          { "label": "Company", "href": "/company", "hasDropdown": false }
+        ],
+        "ctaLabels": { "login": "Log in", "primary": "Join waitlist" },
+        "megaMenuItems": [
+          { "title": "People directory", "description": "A single source of truth for every person in the company.", "icon": "users" },
+          { "title": "Time-off and attendance", "description": "Policies, balances, approvals, handled automatically.", "icon": "plane-takeoff" }
+        ]
+      },
+      "motion": { "pattern": "mega-menu-open-close", "trigger": "hover", "reducedMotionFallback": "dropdown appears/disappears instantly, no height-morph or crossfade" }
+    },
+    {
+      "section": "hero.marketing",
+      "content": {
+        "eyebrowLink": "How Zero built people ops ahead of a $10M seed round",
+        "title": "Run people ops on autopilot",
+        "lede": "Employee records, time-off and attendance, contracts, pre-payroll, and performance, automated. The people operations platform for teams building an exceptional workplace — without slowing down.",
+        "ctaLabel": "Join waitlist",
+        "mediaAssetRole": "photo.hero-editorial",
+        "appWindowMock": { "assistantGroupLabel": "Assistant", "activeRow": "New chat" }
+      },
+      "motion": {
+        "pattern": ["hero-eyebrow-fade", "hero-title-word-reveal", "hero-fade-stagger", "hero-figure-rise", "hero-complete-reveal", "prompt-typewriter", "caret-blink"],
+        "trigger": "load",
+        "reducedMotionFallback": "everything visible immediately, first prompt shown statically, no caret"
+      }
+    },
+    {
+      "section": "proof.logo-marquee",
+      "content": { "logos": [{ "name": "Faculty" }, { "name": "Huuva" }, { "name": "Strise" }, { "name": "Shook" }, { "name": "Clock&Cloud" }, { "name": "Way" }, { "name": "Zero" }] },
+      "motion": { "pattern": "logo-marquee-scroll", "trigger": "always", "reducedMotionFallback": "static single row, no scroll animation" }
+    },
+    {
+      "section": "features.why-taito",
+      "content": {
+        "header": { "eyebrow": "Why Taito.ai?", "title": "Grow your team, not your people ops overhead", "description": "Between 30 and 300 headcount, the operational workload doubles before the budget does. Taito.ai handles the operational work automatically, so you can focus on building your company, not managing spreadsheets." },
+        "cards": [
+          { "title": "One product for all things people", "body": "Employee records, time off, attendance, documents, pre-payroll, and performance run from one place, automatically. No more copying between systems manually.", "overlayMockVariant": "icon-grid" },
+          { "title": "Works where your team already does", "body": "Access everything and take action from Slack, Claude, or any tool in your stack. Your people data is always one message away.", "overlayMockVariant": "slack-card" },
+          { "title": "Regional compliance, no workarounds", "body": "Local leave rules, contract templates, and attendance policies automated from day one. No manual fixes, no annual corrections. Just correct by default.", "overlayMockVariant": "flag-list" }
+        ]
+      },
+      "motion": { "reducedMotionFallback": "n/a — static content, no scroll reveal" }
+    },
+    {
+      "section": "features.people-ops-grid",
+      "content": {
+        "header": { "eyebrow": "People ops", "title": "From zero to payroll, no manual steps", "description": "Time-off requests, attendance, contracts, and payroll prep run automatically. Your team never has to chase it." },
+        "cells": [
+          { "icon": "users", "title": "People directory", "body": "Customizable employee records and an org chart that handles dotted lines, secondary connections, and group ownership." },
+          { "icon": "plane-takeoff", "title": "Time off", "body": "Slack-native requests and approvals with regional policies built in. Balances and accruals sync to payroll automatically." },
+          { "icon": "clock", "title": "Attendance", "body": "Clock-in, clock-out, and shift tracking with regional rules built in. Records flow straight to payroll." },
+          { "icon": "signature", "title": "Docs and eSign", "body": "Generate contracts from employee data, send for signing, and file automatically. Minutes, not days." },
+          { "icon": "key-round", "title": "Granular permissions", "body": "Field-level access control, role-based visibility, and an activity log of changes." },
+          { "icon": "chart-no-axes-column", "title": "Pre-payroll reporting", "body": "Hours, leave balances, and variable pay computed and formatted for your payroll provider." }
+        ]
+      },
+      "motion": { "reducedMotionFallback": "n/a — no hover state on these cells" }
+    },
+    {
+      "section": "features.split-media",
+      "content": {
+        "header": { "eyebrow": "People agents", "title": "Set it up once. Run forever." },
+        "mediaPosition": "right",
+        "featureItems": [
+          { "icon": "workflow", "title": "Employee lifecycle", "body": "Onboarding, probation, and offboarding run end-to-end as no-code workflows." },
+          { "icon": "wallet", "title": "Payroll handoff", "body": "Approved leave, hours, and deductions packaged for your provider every cycle." },
+          { "icon": "messages-square", "title": "People assistant", "body": "Employees ask about policies, time off, and contracts — grounded in your company's handbook." }
+        ],
+        "mediaMockVariant": "agent-stepper-card"
+      },
+      "motion": { "pattern": "agent-stepper-advance", "trigger": "scroll-intersection", "reducedMotionFallback": "final state shown immediately, no stagger" }
+    },
+    {
+      "section": "features.split-media",
+      "content": {
+        "header": { "eyebrow": "Performance", "title": "Continuous performance, not annual surprises" },
+        "mediaPosition": "left",
+        "featureItems": [
+          { "icon": "refresh-cw", "title": "Automate structure and schedule", "body": "Reviews run on your cadence: at hire, after probation, mid-year." },
+          { "icon": "blocks", "title": "Data from any source", "body": "MCP pulls signals from tools your team already uses." },
+          { "icon": "mouse-pointer-2", "title": "Agentic review", "body": "Agents draft reviews from feedback, flag biases, and surface edge cases." }
+        ],
+        "mediaMockVariant": "review-card-shimmer"
+      },
+      "motion": { "pattern": "shimmer-sweep", "trigger": "always", "reducedMotionFallback": "static text, no shimmer sweep" }
+    },
+    {
+      "section": "proof.personas-grid",
+      "content": {
+        "header": { "eyebrow": "Built for", "title": "Different roles. Same product." },
+        "cards": [
+          { "kicker": "Lean growth for", "title": "Founders and CEOs", "description": "Scale people ops without scaling headcount.", "href": "/founders", "mediaAssetRole": "photo.hero-editorial" },
+          { "kicker": "Strategic focus for", "title": "People leaders", "description": "Hours of approvals handled automatically.", "href": "/people-leaders", "mediaAssetRole": "photo.hero-editorial" },
+          { "kicker": "Best practices for", "title": "Operators", "description": "Build the structure that scales the company.", "href": "/operators", "mediaAssetRole": "photo.hero-editorial" }
+        ]
+      },
+      "motion": { "pattern": "persona-card-hover", "trigger": "hover", "reducedMotionFallback": "no scale/rotate on hover, instant color change only" }
+    },
+    {
+      "section": "proof.testimonial",
+      "content": {
+        "quote": "I kept HR in spreadsheets because I didn't have time to onboard yet another HR system. Taito.ai made the whole process feel modern and effortless.",
+        "name": "Juho Hyytiäinen",
+        "role": "Co-founder & CEO, Way",
+        "logoAssetRole": "logo.customer-social-proof"
+      },
+      "motion": { "reducedMotionFallback": "n/a — no animation" }
+    },
+    {
+      "section": "trust.security-badges",
+      "content": {
+        "header": { "eyebrow": "Security", "title": "Enterprise-grade security, by default" },
+        "badges": [
+          { "icon": "award", "label": "ISO 27001<br>certified" },
+          { "icon": "shield-check", "label": "GDPR<br>compliant" },
+          { "icon": "lock", "label": "Field-level<br>permissions", "hiddenBelow768": true },
+          { "icon": "globe", "label": "EU data<br>residency" }
+        ]
+      },
+      "motion": { "reducedMotionFallback": "n/a — no animation" }
+    },
+    {
+      "section": "trust.integrations-grid",
+      "content": {
+        "header": { "eyebrow": "Integrations", "title": "Works where your team already does" },
+        "cards": [
+          { "title": "Slack agent", "body": "A personal people partner for every employee, right in Slack.", "mediaAssetRole": "photo.hero-editorial", "overlayVariant": "slack-mock" },
+          { "title": "MCP interface", "body": "Connect Taito.ai to Claude web, Claude Code, or any MCP-compatible host.", "mediaAssetRole": "photo.hero-editorial", "overlayVariant": "mcp-prompt-mock" },
+          { "title": "Platform integrations", "body": "Sync with Google Workspace, your ATS, and payroll providers.", "mediaAssetRole": "photo.hero-editorial", "overlayVariant": "integration-icon-grid" }
+        ],
+        "integrationLogos": [{ "assetRole": "logo.integration-partner" }, { "assetRole": "logo.integration-partner" }]
+      },
+      "motion": { "reducedMotionFallback": "n/a — no animation" }
+    },
+    {
+      "section": "proof.math-stats",
+      "content": {
+        "header": { "eyebrow": "By the numbers", "title": "The math behind the product" },
+        "rows": [
+          { "claim": "Of hire-to-retire HR tasks are automatable today", "value": "56%", "sourceTooltip": "McKinsey, \"Human Resources in the Age of Automation\"" },
+          { "claim": "Saved on leave management alone with automation", "value": "16 hrs/mo", "sourceTooltip": "EY 2025 Cost Update Study" },
+          { "claim": "Annual cost of manual HR processes for a 100-person company", "value": "$25k+", "sourceTooltip": "EY 2025 HR Benchmarking" },
+          { "claim": "Fully loaded cost of a people ops hire, year one", "value": "$100k+", "sourceTooltip": "BLS ECEC Q4 2025, Glassdoor 2026" }
+        ]
+      },
+      "motion": { "reducedMotionFallback": "n/a — tooltip toggled by display only" }
+    },
+    {
+      "section": "content.faq",
+      "content": {
+        "hasEyebrow": true,
+        "title": "Frequently asked questions",
+        "items": [
+          { "question": "What is a people operations system?", "answer": "A people operations system runs the day-to-day plumbing of an employer — employee records, time off and attendance, contracts and documents, performance reviews, and the reporting that flows out to payroll and finance." },
+          { "question": "How is Taito.ai different from an HRIS?", "answer": "A traditional HRIS is a digital filing cabinet — it stores employee records, generates contracts, and tracks time off, but every workflow still needs a person to push it forward." },
+          { "question": "How much does Taito.ai cost?", "answer": "€10 per seat per month on monthly billing, €8 per seat per month on annual billing. One tier. Everything inside." }
+        ]
+      },
+      "motion": { "pattern": "faq-accordion-toggle", "trigger": "click", "reducedMotionFallback": "instant height/opacity swap, no icon rotate transition" }
+    },
+    {
+      "section": "shell.footer",
+      "content": {
+        "ctaHeadline": "See what autopilot looks like.",
+        "ctaBody": "The operational half of people ops, handled. You focus on the half that needs you.",
+        "ctaButtonLabel": "Join waitlist",
+        "linkColumns": [
+          { "heading": "Product", "links": [{ "label": "People directory", "href": "/people-directory" }, { "label": "Performance", "href": "/performance" }] },
+          { "heading": "Solutions", "links": [{ "label": "For founders", "href": "/founders" }] },
+          { "heading": "Resources", "links": [{ "label": "Pricing", "href": "/pricing" }, { "label": "Blog", "href": "/blog" }] },
+          { "heading": "Legal", "links": [{ "label": "Privacy", "href": "/privacy" }, { "label": "Terms", "href": "/terms" }] }
+        ],
+        "copyrightLine": "© 2026 Taito.ai. Run people ops on autopilot.",
+        "socialLinks": [{ "platform": "LinkedIn", "href": "https://www.linkedin.com/company/taito-ai" }, { "platform": "YouTube", "href": "https://www.youtube.com/@taito_ai" }]
+      },
+      "motion": { "pattern": "footer-link-dim", "trigger": "hover", "reducedMotionFallback": "sibling links do not dim, instant color swap on hover only" }
+    },
+    {
+      "section": "shell.cookie-banner",
+      "content": {
+        "title": "We value your privacy",
+        "body": "We use cookies to understand how visitors use our site and to measure our advertising. They are only set if you agree.",
+        "buttonLabels": { "accept": "Accept all", "reject": "Reject all", "customize": "Customize" },
+        "customizeCategories": [
+          { "label": "Necessary", "description": "Required for the site to work.", "lockedOn": true },
+          { "label": "Analytics", "description": "Helps us understand how visitors use the site.", "lockedOn": false },
+          { "label": "Advertising", "description": "Lets us measure how our ad campaigns perform.", "lockedOn": false }
+        ]
+      },
+      "motion": { "pattern": "cookie-banner-enter-exit", "trigger": "load", "reducedMotionFallback": "instant appear/disappear, no translateY" }
+    }
+  ]
+}

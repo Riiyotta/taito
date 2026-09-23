@@ -1,0 +1,21 @@
+{
+  "$comment": "Citation ledger for external evidence sources this design-repo was built from. These are NOT entryPoints in registry.manifest.json (which must only list files inside design-repo/) — this file is the correct home for citations to the sibling source project. Degrades gracefully: verify_all.py warns (does not fail) if these sibling files are absent, e.g. when design-repo/ is copied/zipped standalone.",
+  "siblingSourceTree": {
+    "note": "This design-repo was built from a sibling project folder that will NOT exist if this design-repo is unzipped/copied standalone. Every citation below is a build-time provenance record, not a runtime dependency.",
+    "citedFiles": [
+      { "path": "../CLONE_SPEC.md", "role": "Primary measured spec for the homepage: colors, type scale, spacing, motion, all homepage section geometry." },
+      { "path": "../specs/SPEC_persona_company.md", "role": "Measured spec for founders/operators/people-leaders/company/customers pages." },
+      { "path": "../specs/SPEC_product.md", "role": "Measured spec for agents/performance/time-off/people-directory/documents/pricing/security/waitlist pages." },
+      { "path": "../ASSET_MANIFEST.md", "role": "Homepage asset-to-source-URL mapping." },
+      { "path": "../specs/ASSETS_product.md", "role": "Product-page asset-to-source-URL mapping." },
+      { "path": "../specs/ASSETS_persona_company.md", "role": "Persona/company-page asset-to-source-URL mapping, including real team member names/photos." },
+      { "path": "../tailwind.config.js", "role": "Real, running token source of truth — colors, type scale, spacing, radius, shadows, easings, animations." },
+      { "path": "../src/index.css", "role": "Real primitive-level utility class implementations (.btn, .glass-border, .gradient-border, .marquee, .shimmer, etc.)." },
+      { "path": "../ia.json", "role": "This project's own validated information architecture (202 routes, 20 templates, 44 sections) — the primary source for templates/templates.json's node sequences and sections/*.json's ids/descriptions/scopes." },
+      { "path": "../src/content/blog-posts.js", "role": "Real blog post metadata (143 entries); confirmed via direct inspection that 0 real bodies are present (grep -c '\"body\":' returns 0)." },
+      { "path": "../src/content/mcp-tools.js", "role": "Real MCP use-case content (8 entries) and real statutory calculator field/formula definitions (5 entries)." },
+      { "path": "../src/content/compliance-legal.js", "role": "Real compliance country guide content (11 keyed pages), real calendar content (4 keys only — confirmed netherlands/estonia absent), real legal docs (3 keys)." },
+      { "path": "../src/components/mcp-tools/calcs.js", "role": "Real statute-accurate calculator formulas (holidayPay, ssp, feriepenger, semesterdagar, vuosiloma)." }
+    ]
+  }
+}

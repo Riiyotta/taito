@@ -1,0 +1,20 @@
+{
+  "$comment": "Semantic color roles resolve to foundation tokens by intent, not raw value. A generator should reference these (e.g. color.text.primary), never a raw hex or a foundation token id directly.",
+  "resolvesFrom": "../00-foundation/color.json",
+  "roles": {
+    "surface.page": { "foundation": "surface", "usedFor": "page background, light theme default" },
+    "surface.raised": { "foundation": "surface-secondary", "usedFor": "icon tiles, mock UI backgrounds, hover states" },
+    "border.default": { "foundation": "surface-tertiary", "usedFor": "all hairline borders/dividers site-wide", "measuredFrom": "CLONE_SPEC.md:47 (--color-surface-tertiary — all hairlines/borders)" },
+    "text.primary": { "foundation": "primary-foreground", "usedFor": "headings, primary button background (dark-on-light), body text default color" },
+    "text.secondary": { "foundation": "secondary-foreground", "usedFor": "body copy, descriptions, lede paragraphs" },
+    "text.muted": { "foundation": "muted-foreground", "usedFor": "tooltips, timestamps, secondary metadata" },
+    "action.primary.bg": { "foundation": "ink", "usedFor": "primary button background" },
+    "action.primary.bg.hover": { "foundation": "ink-hover", "usedFor": "primary button hover background" },
+    "action.primary.fg": { "foundation": "surface", "usedFor": "primary button text" }
+  },
+  "darkModeContext": {
+    "$comment": "Applied via a literal .dark class scoped to the footer and persona cards — NOT a page-level theme toggle and NOT prefers-color-scheme. Every role above re-resolves against the dark foundation palette inside a .dark-scoped subtree.",
+    "scope": ["shell.footer", "proof.personas-grid card"],
+    "measuredFrom": "CLONE_SPEC.md:20 (\"a .dark class re-maps tokens locally (footer + persona cards). No prefers-color-scheme page switch.\")"
+  }
+}

@@ -1,0 +1,233 @@
+/*
+ * Compliance + Legal long-form typography (scoped — see specs/SPEC_compliance_legal.md §5).
+ * .prose-taito  → country guides (original: Tailwind Typography `prose prose-lg` re-themed to site tokens)
+ * .prose-legal  → privacy / terms / DPA (original: stock `prose prose-sm sm:prose-base`, gray palette)
+ */
+
+/* ---------- country guide prose (prose-lg, 18px / 32px at every width) ---------- */
+.prose-taito {
+  font-size: 18px;
+  line-height: 32px;
+  color: rgb(var(--color-secondary-foreground));
+}
+.prose-taito > :first-child {
+  margin-top: 0;
+}
+.prose-taito > :last-child {
+  margin-bottom: 0;
+}
+.prose-taito p {
+  margin-block: 24px;
+}
+.prose-taito h2 {
+  font-size: 30px;
+  line-height: 40px;
+  font-weight: 400;
+  color: rgb(var(--color-ink));
+  margin-top: 60px;
+  margin-bottom: 30px;
+  scroll-margin-top: theme('spacing.space-l');
+}
+.prose-taito h3 {
+  font-size: 24px;
+  line-height: 36px;
+  font-weight: 400;
+  color: rgb(var(--color-ink));
+  margin-top: 36px;
+  margin-bottom: 18px;
+  scroll-margin-top: theme('spacing.space-l');
+}
+.prose-taito h2 + *,
+.prose-taito h3 + * {
+  margin-top: 0;
+}
+.prose-taito strong {
+  font-weight: 600;
+  color: rgb(var(--color-ink));
+}
+.prose-taito a,
+.prose-legal a {
+  color: rgb(var(--color-primary-foreground));
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: rgb(var(--color-surface-tertiary));
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.1s linear;
+}
+.prose-taito a:hover,
+.prose-legal a:hover {
+  text-decoration-color: rgb(var(--color-muted-foreground));
+}
+.prose-taito ul {
+  list-style: disc;
+  margin-block: 24px;
+  padding-left: 27px;
+}
+.prose-taito li {
+  margin-block: 12px;
+  padding-left: 8px;
+}
+.prose-taito li::marker {
+  color: #d1d5dc; /* oklch(0.872 0.01 258.338) */
+}
+.prose-taito .table-scroll {
+  margin-block: 36px;
+  overflow-x: auto;
+}
+.prose-taito table {
+  width: 100%;
+  border-collapse: collapse;
+  table-layout: auto;
+  text-align: left;
+  font-size: 15.75px; /* 0.875em */
+  line-height: 1.5;
+}
+.prose-taito thead {
+  border-bottom: 1px solid rgb(var(--color-surface-tertiary));
+}
+.prose-taito th {
+  font-weight: 500;
+  color: rgb(var(--color-ink));
+  vertical-align: bottom;
+}
+.prose-taito td {
+  vertical-align: top;
+  border-bottom: 1px solid rgb(var(--color-surface-tertiary));
+}
+.prose-taito th,
+.prose-taito td {
+  padding: theme('spacing.space-2xs') theme('spacing.space-xs');
+}
+.prose-taito th:first-child,
+.prose-taito td:first-child {
+  padding-left: 0;
+}
+.prose-taito th:last-child,
+.prose-taito td:last-child {
+  padding-right: 0;
+}
+
+/* ---------- legal prose (prose-sm → sm:prose-base) ---------- */
+.prose-legal {
+  --legal-body: #364153; /* oklch(0.373 0.034 259.733) gray-700 */
+  --legal-heading: #101828; /* oklch(0.21 0.034 264.665) gray-900 */
+  font-size: 14px;
+  line-height: 1.7142857;
+  color: var(--legal-body);
+}
+.prose-legal > :first-child {
+  margin-top: 0;
+}
+.prose-legal > :last-child {
+  margin-bottom: 0;
+}
+.prose-legal h1,
+.prose-legal h2,
+.prose-legal h3 {
+  color: var(--legal-heading);
+  font-weight: 500;
+}
+.prose-legal h1 {
+  font-size: 30px;
+  line-height: 36px;
+  margin-top: 0;
+  margin-bottom: 24px;
+}
+.prose-legal h2 {
+  font-size: 20px;
+  line-height: 28px;
+  margin-top: 32px;
+  margin-bottom: 16px;
+}
+.prose-legal h3 {
+  font-size: 18px;
+  line-height: 28px;
+  margin-top: 28px;
+  margin-bottom: 8px;
+}
+.prose-legal h2 + *,
+.prose-legal h3 + *,
+.prose-legal hr + * {
+  margin-top: 0;
+}
+.prose-legal p {
+  margin-block: 16px;
+}
+.prose-legal strong {
+  font-weight: 600;
+  color: var(--legal-heading);
+}
+.prose-legal ul,
+.prose-legal ol {
+  margin-block: 16px;
+  padding-left: 22px;
+}
+.prose-legal ul {
+  list-style: disc;
+}
+.prose-legal ol {
+  list-style: decimal;
+}
+.prose-legal li {
+  margin-block: 4px;
+  padding-left: 6px;
+}
+.prose-legal ul > li::marker {
+  color: #d1d5dc;
+}
+.prose-legal ol > li::marker {
+  color: #6a7282; /* oklch(0.551 0.027 264.364) */
+  font-weight: 400;
+}
+.prose-legal hr {
+  border: 0;
+  border-top: 1px solid #e5e7eb;
+  margin-block: 40px;
+}
+@media (min-width: 640px) {
+  .prose-legal {
+    font-size: 16px;
+    line-height: 1.75;
+  }
+  .prose-legal h1 {
+    font-size: 36px;
+    line-height: 40px;
+    margin-bottom: 32px;
+  }
+  .prose-legal h2 {
+    font-size: 24px;
+    line-height: 32px;
+    margin-top: 48px;
+    margin-bottom: 24px;
+  }
+  .prose-legal h3 {
+    font-size: 20px;
+    line-height: 32px;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+  .prose-legal p {
+    margin-block: 20px;
+  }
+  .prose-legal ul,
+  .prose-legal ol {
+    margin-block: 20px;
+    padding-left: 26px;
+  }
+  .prose-legal li {
+    margin-block: 8px;
+  }
+  .prose-legal hr {
+    margin-block: 48px;
+  }
+}
+
+/* ---------- calendar item dividers ---------- */
+.cl-item + .cl-item {
+  border-top: 1px solid rgb(var(--color-surface-tertiary));
+}
+
+/* TOC scrollspy (clone addition — original has no active state) */
+.cl-toc a[aria-current='true'] {
+  color: rgb(var(--color-primary-foreground));
+}

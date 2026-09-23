@@ -1,0 +1,11 @@
+{
+  "id": "components.section-header",
+  "description": "Every section's opening header: eyebrow + H2 + optional description. Two layout variants — 'default' (title full-width, description below on its own row) and 'horizontal' (title cols 1-5, description cols 7-12 on the same row, switching at the @4xl container breakpoint).",
+  "measuredFrom": "CLONE_SPEC.md §4 (horizontal variant), §5 (default variant); src/components/ui.jsx SectionHeader",
+  "props": { "variant": { "type": "enum", "values": ["default", "horizontal"] }, "hasDescription": { "type": "boolean" } },
+  "content": {
+    "eyebrow": { "type": "string", "maxWords": 4 },
+    "title": { "type": "string", "maxWords": 8 },
+    "description": { "type": "string", "maxWords": 40, "required": false }
+  }
+}

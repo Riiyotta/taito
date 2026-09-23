@@ -1,0 +1,8 @@
+{
+  "measuredFrom": "CLONE_SPEC.md:61 (FeatureIcon)",
+  "sizes": {
+    "large": { "container": "58.56px (space-l-xl)", "icon": "19.78px (space-s)", "usedFor": "people-ops grid, feature-grid cells" },
+    "small": { "container": "39.58px (space-l)", "icon": "16px", "usedFor": "split-media feature-list rows, agent-step-media" }
+  },
+  "style": { "background": "surface.raised", "radius": "radius.md (6px)", "iconColor": "text.primary", "iconStroke": 2 }
+}

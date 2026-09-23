@@ -1,0 +1,26 @@
+{
+  "id": "sections.features.why-taito",
+  "category": "FEATURES",
+  "description": "Homepage-only 3-card feature grid ('One product for all things people' / 'Works where your team already does' / 'Regional compliance, no workarounds'), each card a 4:3 photo tile with an overlaid mock (icon grid, Slack card, or flag list) plus H3+body text below.",
+  "scope": "Present only on the homepage (1 route).",
+  "implementedBy": "src/components/WhyTaito.jsx",
+  "measuredFrom": "CLONE_SPEC.md:100-120 (§4 Why Taito.ai)",
+  "composes": ["components.section-header", "components.card-base"],
+  "content": {
+    "header": { "variant": "horizontal" },
+    "cards": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": {
+        "title": { "maxWords": 8 },
+        "body": { "maxWords": 30 },
+        "mediaAssetRole": { "const": "photo.hero-editorial" },
+        "overlayMockVariant": { "enum": ["icon-grid", "slack-card", "flag-list"] }
+      }
+    }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — static content, no scroll reveal (site has none)" },
+  "assetRoles": ["photo.hero-editorial", "icon.lucide", "flag.country"]
+}

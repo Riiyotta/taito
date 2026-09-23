@@ -1,0 +1,18 @@
+{
+  "$comment": "NOT a page-level theme. This is a locally-scoped token remap applied via a literal .dark class to exactly two real subtrees on the site: the footer, and each persona card in proof.personas-grid. There is no prefers-color-scheme switch and no user-facing theme toggle anywhere on the real site.",
+  "id": "dark-scope",
+  "isDefault": false,
+  "appliesToScope": ["shell.footer", "proof.personas-grid (per-card)"],
+  "resolves": {
+    "surface.page": "#0f0e0d",
+    "surface.raised": "#1f1d1a",
+    "border.default": "#33312c",
+    "text.primary": "#fafaf9",
+    "text.secondary": "#cccac6",
+    "text.muted": "#8f8b85",
+    "action.primary.bg": "#fafaf9",
+    "action.primary.bg.hover": "#e5e5e3",
+    "action.primary.fg": "#0f0e0d"
+  },
+  "measuredFrom": "tokens/00-foundation/color.json (dark palette); CLONE_SPEC.md:20"
+}

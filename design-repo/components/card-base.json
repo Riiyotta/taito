@@ -1,0 +1,8 @@
+{
+  "id": "components.card-base",
+  "description": "The generic '.card' shape used across all mock-UI illustrations site-wide: bordered header, optional glass-border frame, grid body.",
+  "measuredFrom": "CLONE_SPEC.md §1.5 (mock 'card')",
+  "composes": ["primitives.icon"],
+  "tokens": ["20-component/card.json"],
+  "props": { "headerTitle": { "type": "string", "maxWords": 4 }, "size": { "type": "enum", "values": ["small", "default"] } }
+}

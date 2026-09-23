@@ -1,0 +1,8 @@
+{
+  "id": "components.faq-item",
+  "description": "One accordion FAQ row: question summary + expandable answer. Two independent real implementations of this exact shape exist in the source (src/components/blog/Article.jsx FaqItem and src/components/compliance-legal/shared.jsx FaqItem) — documented as a single component contract here since they are visually and behaviorally identical, but flagged as a real duplication in the source worth consolidating.",
+  "measuredFrom": "CLONE_SPEC.md §13 (FAQ); src/components/blog/Article.jsx:86-140; src/components/compliance-legal/shared.jsx:94-142",
+  "content": { "question": { "type": "string", "maxWords": 16 }, "answer": { "type": "string", "maxWords": 220 } },
+  "motion": { "toggle": "faq-accordion-toggle", "reducedMotionFallback": "instant height/opacity swap, no icon rotate transition" },
+  "knownSourceDuplication": "src/components/blog/Article.jsx:86-140 vs src/components/compliance-legal/shared.jsx:94-142 — same easing [.23,1,.32,1], same animate() calls, not consolidated in the real codebase."
+}

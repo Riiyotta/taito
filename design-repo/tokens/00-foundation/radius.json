@@ -1,0 +1,10 @@
+{
+  "measuredFrom": "tailwind.config.js:117-122 (borderRadius)",
+  "scale": {
+    "md": { "value": "6px", "usedFor": "small buttons, icon tiles, nav items", "measuredFrom": "tailwind.config.js:118" },
+    "lg": { "value": "8px", "usedFor": "large buttons, cards, media tiles", "measuredFrom": "tailwind.config.js:119" },
+    "xl": { "value": "12px", "usedFor": "persona cards, cookie banner dialog", "measuredFrom": "tailwind.config.js:120" },
+    "2xl": { "value": "16px", "usedFor": "hero prompt box, MCP prompt card", "measuredFrom": "tailwind.config.js:121" }
+  },
+  "fullRound": { "value": "9999px", "usedFor": ".glass-border on circular avatars/pills, badge pills", "measuredFrom": "CLONE_SPEC.md:58 (--glass-border-radius 9999px)" }
+}

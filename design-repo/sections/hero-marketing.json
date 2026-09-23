@@ -1,0 +1,22 @@
+{
+  "id": "sections.hero.marketing",
+  "category": "HERO",
+  "description": "Homepage-only hero: eyebrow LINK (case-study teaser), H1 'Run people ops on autopilot', lede, primary CTA, right-hand photo + fake AI-chat app-window mock, plus a logo marquee strip beneath it.",
+  "scope": "Present only on the homepage (1 route).",
+  "implementedBy": "src/components/Hero.jsx",
+  "measuredFrom": "CLONE_SPEC.md:35-95 (§3 Hero, §3.1 Logo marquee, §3.2 Hero motion)",
+  "content": {
+    "eyebrowLink": { "type": "string", "maxWords": 12, "href": "/blog/zero-case-study", "note": "unlike hero.persona/hero.product, this eyebrow IS a link with a trailing arrow icon" },
+    "title": { "type": "string", "maxWords": 5, "example": "Run people ops on autopilot" },
+    "lede": { "type": "string", "maxWords": 34 },
+    "ctaLabel": { "const": "Join waitlist" },
+    "mediaAssetRole": { "const": "photo.hero-editorial" },
+    "appWindowMock": { "type": "object", "note": "fake AI-chat app window with sidebar nav groups and a typewriter prompt-cycling input; see components/card-base.json for shape" }
+  },
+  "constraints": { "mustBeFirst": true, "onePerPage": true, "requiresSection": "proof.logo-marquee must immediately follow this section — real DOM has the marquee strip inside the same <section> as the hero, but templates/templates.json models it as its own adjacent node (position 2, right after hero.marketing at position 1 on template.home) since it has its own content contract" },
+  "motion": {
+    "pattern": ["hero-eyebrow-fade", "hero-title-word-reveal", "hero-fade-stagger", "hero-figure-rise", "hero-complete-reveal", "prompt-typewriter", "caret-blink"],
+    "reducedMotionFallback": "everything visible immediately, first prompt shown statically, no caret"
+  },
+  "assetRoles": ["photo.hero-editorial", "icon.lucide"]
+}

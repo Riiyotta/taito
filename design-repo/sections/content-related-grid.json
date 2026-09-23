@@ -1,0 +1,20 @@
+{
+  "id": "sections.content.related-grid",
+  "category": "CONTENT",
+  "description": "Bordered 3-up (or fewer) grid of link cards pointing to sibling content: 'Built to work together / Keep exploring' on product pages, related-use-case grid (3 items) on mcp-detail, resources grid on compliance-country. Three separate implementations share this shape, not one component.",
+  "scope": "Present on all 5 product-hero routes, all 8 mcp-detail routes, and all 11 compliance-country routes — 24 route occurrences.",
+  "implementedBy": "src/components/product/Sections.jsx (Related) + src/components/mcp-tools/shared.jsx (UseCaseGrid, 3-item variant) + src/pages/ComplianceCountry.jsx (inline Block/SectionTitle grid)",
+  "measuredFrom": "specs/SPEC_product.md §5 (Related)",
+  "content": {
+    "header": { "title": { "maxWords": 5 } },
+    "cards": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 3,
+      "items": { "icon": { "assetRole": "icon.lucide" }, "title": { "maxWords": 5 }, "body": { "maxWords": 20 }, "href": { "type": "string" } }
+    }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "pattern": "related-cell-hover", "note": "on cell hover bg -> ink, text -> surface, 0.15s", "reducedMotionFallback": "instant color swap, no transition" },
+  "assetRoles": ["icon.lucide"]
+}

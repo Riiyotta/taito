@@ -1,0 +1,28 @@
+{
+  "id": "sections.shell.navbar",
+  "category": "SHELL",
+  "description": "Fixed-position-looking (actually position:relative, scrolls away) header: logo + mega-menu desktop nav (Product/Solutions dropdowns, Pricing/Blog/Company links) + Log in/Join waitlist CTAs; collapses to a full-screen hamburger overlay below 1200px.",
+  "scope": "Present identically on all 202 routes.",
+  "implementedBy": "src/components/Navbar.jsx",
+  "measuredFrom": "CLONE_SPEC.md:96-119 (§2 Header/navigation, §2.1 Mega-menu, §2.2 Mobile menu overlay)",
+  "content": {
+    "logoLabel": { "type": "string", "const": "Taito.ai", "maxWords": 1 },
+    "navItems": {
+      "type": "array",
+      "maxItems": 5,
+      "items": { "label": { "maxWords": 2 }, "href": { "type": "string" }, "hasDropdown": { "type": "boolean" } }
+    },
+    "ctaLabels": { "login": { "const": "Log in" }, "primary": { "const": "Join waitlist" } },
+    "megaMenuItems": {
+      "type": "array",
+      "maxItems": 6,
+      "items": { "title": { "maxWords": 4 }, "description": { "maxWords": 14 }, "icon": { "assetRole": "icon.lucide" } }
+    }
+  },
+  "constraints": { "mustBeFirst": true, "onePerPage": true },
+  "motion": {
+    "pattern": "mega-menu-open-close",
+    "reducedMotionFallback": "dropdown appears/disappears instantly, no height-morph or crossfade"
+  },
+  "assetRoles": ["brand.logo", "icon.lucide"]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "sections.features.mcp-how-it-works",
+  "category": "FEATURES",
+  "description": "Split block on each MCP use-case detail page: a feature list on the left, and a prompt-snippet mock with a copy button and integration-brand chips on the right.",
+  "scope": "Present on all 8 mcp-detail routes.",
+  "implementedBy": "src/components/mcp-tools/HowItWorks.jsx",
+  "measuredFrom": "src/components/mcp-tools/HowItWorks.jsx:47-101; src/content/mcp-tools.js (mcpUseCases[*].how)",
+  "composes": ["components.feature-list-item"],
+  "content": {
+    "featureItems": { "type": "array", "minItems": 2, "maxItems": 4, "items": { "title": { "maxWords": 6 }, "body": { "maxWords": 26 } } },
+    "promptSnippet": { "type": "string", "maxWords": 30 },
+    "integrationChips": { "type": "array", "minItems": 1, "maxItems": 5, "items": { "assetRole": { "const": "logo.integration-partner" } } }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — no animation beyond a copy-button micro-interaction" },
+  "assetRoles": ["logo.integration-partner"]
+}

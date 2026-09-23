@@ -1,0 +1,35 @@
+{
+  "$comment": "Fluid Utopia-style spacing scale, real clamp() formulas from tailwind.config.js, resolved px values at 1440/1280/390 from CLONE_SPEC.md measurements.",
+  "measuredFrom": "tailwind.config.js:47-68 (fluidSpace); CLONE_SPEC.md:63-83 (§1.4 Spacing tokens)",
+  "scale": {
+    "space-3xs": { "clamp": "clamp(0.25rem, 0.2331rem + 0.0847vw, 0.3125rem)", "px1440": 4.95, "px1280": 4.81, "px390": 4.06 },
+    "space-2xs": { "clamp": "clamp(0.5rem, 0.4661rem + 0.1695vw, 0.625rem)", "px1440": 9.90, "px1280": 9.63, "px390": 8.12 },
+    "space-xs": { "clamp": "clamp(0.75rem, 0.6991rem + 0.2542vw, 0.9375rem)", "px1440": 14.85, "px1280": 14.44, "px390": 12.18 },
+    "space-s": { "clamp": "clamp(1rem, 0.9322rem + 0.339vw, 1.25rem)", "px1440": 19.80, "px1280": 19.25, "px390": 16.24 },
+    "space-m": { "clamp": "clamp(1.5rem, 1.3983rem + 0.5085vw, 1.875rem)", "px1440": 29.70, "px1280": 28.88, "px390": 24.36 },
+    "space-l": { "clamp": "clamp(2rem, 1.8644rem + 0.678vw, 2.5rem)", "px1440": 39.59, "px1280": 38.51, "px390": 32.47 },
+    "space-xl": { "clamp": "clamp(3rem, 2.7966rem + 1.0169vw, 3.75rem)", "px1440": 59.39, "px1280": 57.76, "px390": 48.71 },
+    "space-2xl": { "clamp": "clamp(4rem, 3.7288rem + 1.3559vw, 5rem)", "px1440": 79.19, "px1280": 77.02, "px390": 64.95 },
+    "space-3xl": { "clamp": "clamp(6rem, 5.5932rem + 2.0339vw, 7.5rem)", "px1440": 118.78, "px1280": 115.53, "px390": 97.42 }
+  },
+  "compoundRanges": {
+    "$comment": "Two-token-name ranges (e.g. space-s-m) interpolate between two named steps at a different rate than the base scale — used for section-level rhythm, not component-level spacing.",
+    "space-3xs-2xs": { "clamp": "clamp(0.25rem, 0.1483rem + 0.5085vw, 0.625rem)" },
+    "space-2xs-xs": { "clamp": "clamp(0.5rem, 0.3814rem + 0.5932vw, 0.9375rem)" },
+    "space-xs-s": { "clamp": "clamp(0.75rem, 0.6144rem + 0.678vw, 1.25rem)" },
+    "space-s-m": { "clamp": "clamp(1rem, 0.7627rem + 1.1864vw, 1.875rem)", "px1440": 29.29, "px1280": 27.39, "px390": 16.83 },
+    "space-m-l": { "clamp": "clamp(1.5rem, 1.2288rem + 1.3559vw, 2.5rem)", "px1440": 39.19, "px1280": 37.02, "px390": 24.95 },
+    "space-l-xl": { "clamp": "clamp(2rem, 1.5254rem + 2.3729vw, 3.75rem)", "px1440": 58.58, "px1280": 54.78, "px390": 33.66 },
+    "space-xl-2xl": { "clamp": "clamp(3rem, 2.4576rem + 2.7119vw, 5rem)", "px1440": 78.37, "px1280": 74.03, "px390": 49.90 },
+    "space-2xl-3xl": { "clamp": "clamp(4rem, 3.0509rem + 4.7458vw, 7.5rem)", "px1440": 117.15, "px1280": 109.56, "px390": 67.32, "usedFor": "the universal content-section vertical padding-block rhythm" },
+    "space-m-2xl": { "clamp": "clamp(1.5rem, 0.5509rem + 4.7458vw, 5rem)" },
+    "space-s-l": { "clamp": "clamp(1rem, 0.5932rem + 2.0339vw, 2.5rem)", "px1440": 38.78, "px1280": 35.53, "px390": 17.42, "alias": "grid-gutter", "usedFor": "container side padding and grid column-gap" }
+  },
+  "measuredFrom_tailwindConfigLines": {
+    "space-3xs": 49, "space-2xs": 50, "space-xs": 51, "space-s": 52, "space-m": 53,
+    "space-l": 54, "space-xl": 55, "space-2xl": 56, "space-3xl": 57,
+    "space-3xs-2xs": 58, "space-2xs-xs": 59, "space-xs-s": 60, "space-s-m": 61,
+    "space-m-l": 62, "space-l-xl": 63, "space-xl-2xl": 64, "space-2xl-3xl": 65,
+    "space-m-2xl": 66, "space-s-l (gutter)": 67
+  }
+}

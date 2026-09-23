@@ -1,0 +1,25 @@
+{
+  "$comment": "Semantic layout constants — the universal section rhythm and grid rules every content section on the site follows. Real, measured, applies site-wide with zero known exceptions.",
+  "measuredFrom": "CLONE_SPEC.md:65-67 (§1.4 .u-container, .u-grid, Section rhythm)",
+  "container": {
+    "class": ".u-container",
+    "maxWidth": "1500px",
+    "paddingInline": "space-s-l (grid-gutter)",
+    "marginInline": "auto",
+    "containerType": "inline-size"
+  },
+  "grid": {
+    "class": ".u-grid",
+    "columns": 12,
+    "columnGap": "space-s-l (grid-gutter)",
+    "rowGap": "space-xl",
+    "childDefault": "grid-column: 1 / -1"
+  },
+  "sectionRhythm": {
+    "$comment": "Every content <section> on the site follows this rule with zero known exceptions — background, top border, and vertical padding.",
+    "background": "surface.page",
+    "borderTop": "1px solid border.default",
+    "paddingBlock": "space-2xl-3xl",
+    "exception": "pricing/security/waitlist's first section has border-top: 0 (specs/SPEC_product.md §0)"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "components.feature-icon-tile",
+  "description": "Icon-in-a-tile block: a square background tile with a centered lucide icon. The atomic unit of every feature list/grid site-wide.",
+  "measuredFrom": "CLONE_SPEC.md §1.5 (FeatureIcon)",
+  "composes": ["primitives.icon"],
+  "tokens": ["20-component/icon-tile.json"],
+  "props": { "icon": { "type": "string" }, "size": { "type": "enum", "values": ["small", "large"] } }
+}

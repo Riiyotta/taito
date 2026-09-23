@@ -1,0 +1,16 @@
+{
+  "id": "sections.proof.testimonial",
+  "category": "PROOF",
+  "description": "Centered single-quote block: customer logo, blockquote with curly-quote pseudo-elements, name + title figcaption. Content (logo, quote, name, role) varies per route.",
+  "scope": "Present on the homepage, all 3 persona pages, and 2 product-hero pages (performance, waitlist) — 6 route occurrences, one shared component.",
+  "implementedBy": "src/components/Testimonial.jsx (home) + src/components/persona-company/Sections.jsx (PcTestimonial) + src/components/product/Sections.jsx (product testimonial)",
+  "measuredFrom": "CLONE_SPEC.md:195-201 (§9 Testimonial)",
+  "composes": ["components.quote-block"],
+  "content": {
+    "tallVariant": { "type": "boolean", "default": true, "note": "founders/operators/people-leaders and performance use min-height clamp(600px,100vh-1.5rem,45rem) centered variant; waitlist uses tall:false" }
+  },
+  "constraints": { "maxPerPage": 1 },
+  "motion": { "reducedMotionFallback": "n/a — no animation" },
+  "assetRoles": ["logo.customer-social-proof", "photo.customer-avatar"],
+  "licensingNote": "REAL, NAMED customers and their quotes (Way/Juho Hyytiäinen, Huuva/Martta Jämsén, Faculty/Vicki Marchington, Faculty/Andy Brookes). See tokens/llm/asset-roles.json photo.customer-avatar: must-not-fabricate."
+}

@@ -1,0 +1,14 @@
+{
+  "$comment": "What's machine-enforced vs. convention-only. Category keys match token-catalog.json's real keys exactly.",
+  "resolutionOrder": ["foundation", "theme-mode override (light default / dark-scope for footer+persona-card)", "semantic alias", "component token", "permitted local override (none currently defined — see overrides below)", "responsive/breakpoint override"],
+  "enforcement": {
+    "color": "enforced — semantic_validate.py rejects a raw hex value in a PageSpec's content fields; only semantic role ids are accepted",
+    "fontSize": "enforced — only the 8 step ids are accepted",
+    "spacing": "enforced — only catalog spacing ids are accepted",
+    "motion": "enforced — motion.pattern must be one of tokens/00-foundation/motion.json's siteWideInventory ids; additionalProperties: false on the motion object closes it to reducedMotionFallback + pattern + trigger only"
+  },
+  "overrides": {
+    "$comment": "Per-instance style/token-override mechanism at the PageSpec level. This design-repo's schema.pagespec.schema.json does NOT define a per-node style-override field — styling is fully owned by each section/component contract, not by a generated instance. This is a real gap relative to a more permissive design-repo shape, documented here per MASTER-GUIDE.md §3.21 rather than inventing a field just to have something to validate.",
+    "rawValueRestrictions": "not applicable — no raw-value override field exists in this schema to restrict"
+  }
+}

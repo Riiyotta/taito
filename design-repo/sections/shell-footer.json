@@ -1,0 +1,25 @@
+{
+  "id": "sections.shell.footer",
+  "category": "SHELL",
+  "description": "Dark footer: closing CTA row (H2 'See what autopilot looks like.' + Join-waitlist button — fixed copy, load-bearing for conversion), 4-column link nav (Product/Solutions/Resources/Legal), bottom bar with copyright + social icons.",
+  "scope": "Present identically on all 202 routes.",
+  "implementedBy": "src/components/Footer.jsx",
+  "measuredFrom": "CLONE_SPEC.md:262-275 (§14 Footer)",
+  "themeScope": "dark-scope (see tokens/themes/dark-scope.json)",
+  "content": {
+    "ctaHeadline": { "type": "string", "maxWords": 6, "example": "See what autopilot looks like." },
+    "ctaBody": { "type": "string", "maxWords": 16 },
+    "ctaButtonLabel": { "const": "Join waitlist" },
+    "linkColumns": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "heading": { "maxWords": 2 }, "links": { "type": "array", "maxItems": 7, "items": { "label": { "maxWords": 4 }, "href": { "type": "string" } } } }
+    },
+    "copyrightLine": { "type": "string", "maxWords": 8 },
+    "socialLinks": { "type": "array", "maxItems": 2, "items": { "platform": { "enum": ["LinkedIn", "YouTube"] }, "href": { "type": "string" } } }
+  },
+  "constraints": { "mustBeLast": true, "onePerPage": true },
+  "motion": { "pattern": "footer-link-dim", "reducedMotionFallback": "sibling links do not dim, instant color swap on hover only" },
+  "assetRoles": ["icon.lucide"]
+}

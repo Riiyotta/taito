@@ -1,0 +1,161 @@
+/*
+ * MCP use-case + Tools pages (/mcp-use-cases, /mcp-use-cases/:slug, /tools, /tools/:slug).
+ * specs/SPEC_mcp_tools.md is missing: values are CLONE_SPEC.md §1 tokens; anything marked
+ * "inferred" was read off reference/*.png screenshots. Every selector is prefixed `mt-`.
+ */
+
+:root {
+  /* status pills — inferred from reference/mcp-custom-people-apps-lovable-1440.png, mcp-payroll-prep-1440.png */
+  --mt-positive-bg: #d3edd7;
+  --mt-positive-fg: #085023;
+  --mt-warning-bg: #ffe7c7;
+  --mt-warning-fg: #6c3a00;
+}
+
+/* ---- hero mock stage: fixed 28rem card, scaled down to fit narrow panels (inferred ≈0.6 @390) ---- */
+.mt-stage {
+  container-type: inline-size;
+}
+.mt-mock {
+  width: 28rem;
+  flex-shrink: 0;
+  transform-origin: center;
+  scale: min(1, tan(atan2(100cqw - 5.25rem, 28rem)));
+}
+
+/* ---- MCP logo grid (index hero): 96px tiles, 128px hub, 32px gaps — inferred ---- */
+.mt-logo-grid {
+  flex-shrink: 0;
+  transform-origin: center;
+  scale: min(1, tan(atan2(100cqw + 1rem, 36rem)));
+  -webkit-mask-image: radial-gradient(ellipse at center, #000 40%, transparent 95%);
+  mask-image: radial-gradient(ellipse at center, #000 40%, transparent 95%);
+}
+.mt-logo-tile {
+  width: 6rem;
+  height: 6rem;
+}
+.mt-logo-hub {
+  width: 8rem;
+  height: 8rem;
+}
+
+/* ---- status pills ---- */
+.mt-pill-positive {
+  background-color: var(--mt-positive-bg);
+  color: var(--mt-positive-fg);
+}
+.mt-pill-warning {
+  background-color: var(--mt-warning-bg);
+  color: var(--mt-warning-fg);
+}
+
+/* ---- review card body fade (CLONE_SPEC §7 review card) ---- */
+.mt-fade-out {
+  -webkit-mask-image: linear-gradient(#000 55%, transparent 100%);
+  mask-image: linear-gradient(#000 55%, transparent 100%);
+}
+
+/* ---- rich HTML from content (dangerouslySetInnerHTML) ----
+ * Arbitrary-variant classes in the HTML strings are HTML-escaped (`[&amp;_ul]`), so Tailwind
+ * cannot match them; their intent (list-disc, pl-space-m, li mt-space-3xs) is restored here. */
+.mt-rich ul:not([class]) {
+  list-style: disc;
+  padding-left: theme('spacing.space-m');
+}
+.mt-rich ul:not([class]) > li {
+  margin-top: theme('spacing.space-3xs');
+}
+.mt-rich strong {
+  font-weight: 500;
+  color: rgb(var(--color-primary-foreground));
+}
+.mt-rich code {
+  font-family: theme('fontFamily.mono');
+  font-size: 0.95em;
+}
+
+/* source tooltip (same pattern as CLONE_SPEC §12 stat tooltips) */
+.mt-rich .source-tooltip-wrap {
+  position: relative;
+  display: inline;
+}
+.mt-rich .source-tooltip-trigger {
+  margin-left: 0.35em;
+  color: rgb(var(--color-muted-foreground));
+  transition: color 0.15s;
+}
+.mt-rich .source-tooltip-trigger:hover,
+.mt-rich .source-tooltip-trigger:focus-visible {
+  color: rgb(var(--color-secondary-foreground));
+}
+.mt-rich .source-tooltip {
+  display: none;
+  position: absolute;
+  bottom: calc(100% + 0.5em);
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  width: max-content;
+  max-width: 18rem;
+  padding: 0.4em 0.7em;
+  border-radius: 6px;
+  background: rgb(var(--color-surface-tertiary));
+  color: rgb(var(--color-primary-foreground));
+  font-size: theme('fontSize.step--2');
+  line-height: 1.5;
+  font-weight: 400;
+}
+.mt-rich .source-tooltip-wrap:hover .source-tooltip,
+.mt-rich .source-tooltip-wrap:focus-within .source-tooltip {
+  display: block;
+}
+
+/* ---- calculator form controls (inferred from reference/tool-*-1440.png) ---- */
+.mt-input {
+  width: 100%;
+  min-height: calc(theme('spacing.space-2xs') * 4.5);
+  padding: theme('spacing.space-2xs') theme('spacing.space-xs');
+  border: 1px solid rgb(var(--color-surface-tertiary));
+  border-radius: 6px;
+  background-color: rgb(var(--color-surface));
+  color: rgb(var(--color-primary-foreground));
+  font-size: theme('fontSize.step--1');
+  line-height: 1.5;
+  transition: border-color 0.15s;
+}
+.mt-input:hover {
+  border-color: rgb(var(--color-muted-foreground) / 0.5);
+}
+.mt-input:focus-visible {
+  outline: 2px solid rgb(var(--color-ink));
+  outline-offset: 0;
+}
+.mt-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.mt-input::placeholder {
+  color: rgb(var(--color-muted-foreground));
+}
+.mt-select {
+  appearance: none;
+  padding-right: calc(theme('spacing.space-xs') * 2 + 1rem);
+  background-image: url('/assets/pages/mcp-tools/svg/lucide-chevron-down.svg');
+  background-repeat: no-repeat;
+  background-position: right theme('spacing.space-xs') center;
+  background-size: 1rem;
+}
+.mt-checkbox {
+  width: 1rem;
+  height: 1rem;
+  flex-shrink: 0;
+  accent-color: rgb(var(--color-ink));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mt-input,
+  .mt-rich .source-tooltip-trigger {
+    transition: none;
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "primitives.input",
+  "description": "Text/email/select/textarea form field, used in the waitlist form and calculator tool fields.",
+  "measuredFrom": "specs/SPEC_product.md §9 (waitlist form); src/components/product/WaitlistIntro.jsx; src/components/mcp-tools/Calculator.jsx",
+  "props": {
+    "type": { "type": "enum", "values": ["text", "email", "select", "textarea", "number"] },
+    "label": { "type": "string", "maxWords": 4 },
+    "required": { "type": "boolean" }
+  },
+  "style": { "radius": "radius.lg (8px)", "border": "1px solid border.default", "focusRing": "2px solid text.primary" }
+}

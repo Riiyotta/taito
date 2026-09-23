@@ -1,0 +1,30 @@
+{
+  "measuredFrom": "CLONE_SPEC.md:57 (\"Mock card\" .card); src/index.css .glass-border, .gradient-border rules",
+  "base": {
+    "background": "surface.page",
+    "radius": "radius.lg (8px), or 8px 0 0 0 when bleeding off a media tile",
+    "shadow": "elevation.shadows.xs",
+    "display": "grid"
+  },
+  "header": {
+    "small": { "padding": "9.9px 19.8px" },
+    "default": { "padding": "19.8px 29.7px" },
+    "borderBottom": "1px solid border.default",
+    "title": { "step": ["step--2", "step--1"], "weight": 500, "color": "text.primary" }
+  },
+  "glassBorder": {
+    "$comment": "Frosted-frame pseudo-element pattern wrapping mock UI cards. Real CSS custom-property-driven, not a flat border.",
+    "borderWidth": "8px",
+    "beforeRule": "8px solid rgba(255,255,255,0.25) at inset -8px",
+    "afterRule": "1px solid #fff, mask-image linear-gradient(90deg, #fff, transparent) at inset -8px",
+    "radiusFormula": "calc(var(--glass-border-radius, .5rem) + 8px)",
+    "measuredFrom": "CLONE_SPEC.md:58; src/index.css:152-172"
+  },
+  "gradientBorder": {
+    "$comment": "Used on 4:3 media tiles (why-taito, integrations). Two masked pseudo-elements creating a 1px ring with a diagonal light/dark gradient sheen.",
+    "isolation": "isolate",
+    "beforeBlend": "screen, linear-gradient(135deg, rgba(255,255,255,.18) 0%, transparent 50%)",
+    "afterBlend": "multiply, linear-gradient(135deg, transparent 50%, rgba(0,0,0,.06) 100%)",
+    "measuredFrom": "CLONE_SPEC.md:59; src/index.css:174-206"
+  }
+}

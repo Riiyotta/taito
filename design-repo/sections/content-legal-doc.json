@@ -1,0 +1,15 @@
+{
+  "id": "sections.content.legal-doc",
+  "category": "CONTENT",
+  "description": "Single narrow centered prose column (no header/hero/CTA) rendering one of privacy/terms/dpa via the same tuple-array Prose schema as compliance guides.",
+  "scope": "Present on all 3 legal routes (privacy, terms, dpa).",
+  "implementedBy": "src/pages/Legal.jsx",
+  "measuredFrom": "src/content/compliance-legal.js (legalDocs, 3 keys)",
+  "content": {
+    "doc": { "enum": ["privacy", "terms", "dpa"] },
+    "blocks": { "type": "array", "note": "same tuple-array Prose DSL as content.prose-guide" }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — static prose, no animation" },
+  "assetRoles": ["document.regulatory-prose"]
+}

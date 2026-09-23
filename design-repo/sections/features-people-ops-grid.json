@@ -1,0 +1,21 @@
+{
+  "id": "sections.features.people-ops-grid",
+  "category": "FEATURES",
+  "description": "Bordered 3x2 (or 3x1) icon+H3+body feature grid: no card chrome, just a hairline grid of cells. Two separate implementations share this shape: the homepage/persona-pages component, and product/Sections.jsx's FeatureGrid used by waitlist, pricing, and security.",
+  "scope": "Present on the homepage, all 3 persona pages, /waitlist, /pricing ('Our model'), /security ('Security controls' and 'Documentation', the latter as link cards), and /tools ('standard') — 9 route occurrences total.",
+  "implementedBy": "src/components/PeopleOps.jsx (home) + src/components/persona-company/Sections.jsx (FeatureSection, persona) + src/components/product/Sections.jsx (FeatureGrid, waitlist/pricing/security) + src/pages/ToolsIndex.jsx (inline FeatureColumns-based grid)",
+  "measuredFrom": "CLONE_SPEC.md:123-135 (§5 People ops feature grid)",
+  "composes": ["components.feature-list-item"],
+  "content": {
+    "header": { "variant": "default" },
+    "cells": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 6,
+      "items": { "icon": { "assetRole": "icon.lucide" }, "title": { "maxWords": 4 }, "body": { "maxWords": 28 }, "isLinkCard": { "type": "boolean", "default": false, "note": "security's Documentation variant renders cells as link cards, no Read-more button" } }
+    }
+  },
+  "constraints": { "noConsecutive": false },
+  "motion": { "reducedMotionFallback": "n/a — no hover state on these cells per spec (\"No hover state on these cells\")" },
+  "assetRoles": ["icon.lucide"]
+}

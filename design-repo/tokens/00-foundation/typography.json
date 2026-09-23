@@ -1,0 +1,41 @@
+{
+  "$comment": "Fluid Utopia-style type scale and font stack, real clamp() formulas from tailwind.config.js, resolved px values at 1440/1280/390 from CLONE_SPEC.md measurements.",
+  "measuredFrom": "tailwind.config.js:83-106 (fontFamily, fontSize, lineHeight); CLONE_SPEC.md:16-42 (§1.1 Fonts, §1.3 Type scale)",
+  "fontFamily": {
+    "sans": {
+      "stack": ["\"Suisse Intl\"", "\"Suisse Intl fallback\"", "-apple-system", "BlinkMacSystemFont", "Inter", "ui-sans-serif", "system-ui", "sans-serif"],
+      "measuredFrom": "tailwind.config.js:88-97",
+      "licensingNote": "Suisse Intl is a commercial typeface (Swiss Typefaces). CLONE_SPEC.md:342 explicitly states the woff2 files were downloaded for local study only and must NOT be redeployed publicly without a license. A generated instance of this design-repo must not assume the font files may ship in a public build; treat the metric-matched fallback face as the safe default for anything leaving this local environment."
+    }
+  },
+  "weights": {
+    "regular": 400,
+    "medium": 500,
+    "note": "Only 400 and 500 appear anywhere on the real site (CLONE_SPEC.md:19). Headings render at weight 400, not bold."
+  },
+  "typeScale": {
+    "step--2": { "clamp": "clamp(0.6944rem, 0.6658rem + 0.1431vw, 0.8rem)", "px1440": 12.71, "px1280": 12.48, "px390": 11.21, "measuredFrom": "tailwind.config.js:100; CLONE_SPEC.md:25" },
+    "step--1": { "clamp": "clamp(0.8333rem, 0.7881rem + 0.226vw, 1rem)", "px1440": 15.86, "px1280": 15.50, "px390": 13.49, "measuredFrom": "tailwind.config.js:101; CLONE_SPEC.md:26" },
+    "step-0": { "clamp": "clamp(1rem, 0.9322rem + 0.339vw, 1.25rem)", "px1440": 19.80, "px1280": 19.25, "px390": 16.24, "measuredFrom": "tailwind.config.js:102; CLONE_SPEC.md:27" },
+    "step-1": { "clamp": "clamp(1.2rem, 1.1017rem + 0.4915vw, 1.5625rem)", "px1440": 24.70, "px1280": 23.92, "px390": 19.54, "measuredFrom": "tailwind.config.js:103; CLONE_SPEC.md:28" },
+    "step-2": { "clamp": "clamp(1.44rem, 1.3008rem + 0.6958vw, 1.9531rem)", "px1440": 30.83, "px1280": 29.72, "px390": 23.53, "letterSpacing": "-0.01em", "measuredFrom": "tailwind.config.js:104; CLONE_SPEC.md:29,35" },
+    "step-3": { "clamp": "clamp(1.728rem, 1.5345rem + 0.9673vw, 2.4414rem)", "px1440": 38.48, "px1280": 36.93, "px390": 28.32, "letterSpacing": "-0.015em", "measuredFrom": "tailwind.config.js:105; CLONE_SPEC.md:30,35" },
+    "step-4": { "clamp": "clamp(2.0736rem, 1.8083rem + 1.3263vw, 3.0518rem)", "px1440": 48.03, "px1280": 45.91, "px390": 34.11, "letterSpacing": "-0.02em", "measuredFrom": "tailwind.config.js:106; CLONE_SPEC.md:31,35" },
+    "step-5": { "clamp": "clamp(2.4883rem, 2.1286rem + 1.7985vw, 3.8147rem)", "px1440": 59.96, "px1280": 57.08, "px390": 41.07, "letterSpacing": "-0.025em", "measuredFrom": "tailwind.config.js:107; CLONE_SPEC.md:32,35" }
+  },
+  "lineHeights": {
+    "none": { "value": 1, "measuredFrom": "tailwind.config.js:109" },
+    "heading": { "value": 1.2, "measuredFrom": "tailwind.config.js:110" },
+    "tight": { "value": 1.25, "measuredFrom": "tailwind.config.js:111" },
+    "snug": { "value": 1.375, "measuredFrom": "tailwind.config.js:112" },
+    "normal": { "value": 1.5, "measuredFrom": "tailwind.config.js:113" }
+  },
+  "bodyDefault": {
+    "fontSize": "16px",
+    "lineHeight": 1.5,
+    "weight": 400,
+    "color": "#0f0e0d",
+    "background": "#fafaf9",
+    "measuredFrom": "CLONE_SPEC.md:23"
+  }
+}

@@ -1,0 +1,22 @@
+{
+  "measuredFrom": "CLONE_SPEC.md:53-56 (§1.5 Buttons); src/index.css:83-137 (.btn, .btn-sm, .btn-lg, .btn-primary, .btn-ghost, .btn-outline)",
+  "shape": {
+    "small": { "radius": "radius.md (6px)", "height": "calc(space-2xs * 4)", "px1440": 39.58, "px1280": 38.5, "paddingInline": "space-xs" },
+    "large": { "radius": "radius.lg (8px)", "height": "calc(space-2xs * 5)", "px1440": 49.48, "px1280": 48.13, "px390": 40.58, "paddingInline": "space-s" }
+  },
+  "innerSpan": { "gap": "space-2xs", "textBoxTrim": "trim-both cap alphabetic" },
+  "transition": {
+    "color": "0.2s",
+    "backgroundColor": "0.2s ease.out",
+    "transform": "0.16s ease.out"
+  },
+  "activeState": { "transform": "scale(.97)" },
+  "variants": {
+    "primary": {
+      "light": { "bg": "action.primary.bg", "text": "action.primary.fg", "hoverBg": "action.primary.bg.hover" },
+      "dark": { "bg": "surface (dark: #fafaf9)", "text": "ink (dark: #0f0e0d)", "hoverBg": "#e5e5e3" }
+    },
+    "ghost": { "bg": "transparent", "text": "text.primary", "hoverBg": "surface.raised", "hoverText": "#33312c" },
+    "outline": { "border": "1px solid border.default", "hoverBg": "surface.raised" }
+  }
+}

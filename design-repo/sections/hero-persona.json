@@ -1,0 +1,22 @@
+{
+  "id": "sections.hero.persona",
+  "category": "HERO",
+  "description": "Shared hero shell for founders/operators/people-leaders/company/customers: eyebrow (plain text, not a link), H1, lede, primary CTA left; right-hand photo with an absolutely-positioned typed-prompt card overlay (omitted on company and customers).",
+  "scope": "Present on the 5 persona+company+customers routes (founders, operators, people-leaders, company, customers).",
+  "implementedBy": "src/components/persona-company/PageHero.jsx",
+  "measuredFrom": "specs/SPEC_persona_company.md §A (Page hero)",
+  "content": {
+    "eyebrow": { "type": "string", "maxWords": 4, "note": "plain <p>, not a link (unlike hero.marketing)" },
+    "title": { "type": "string", "maxWords": 9 },
+    "lede": { "type": "string", "maxWords": 40 },
+    "ctaLabel": { "const": "Join waitlist" },
+    "mediaAssetRole": { "const": "photo.hero-editorial" },
+    "promptCard": { "type": "object", "required": false, "note": "present on founders/operators/people-leaders; omitted on company and customers", "prompt": { "maxWords": 14 } }
+  },
+  "constraints": { "mustBeFirst": true, "onePerPage": true },
+  "motion": {
+    "pattern": ["hero-title-word-reveal", "hero-fade-stagger", "hero-complete-reveal", "prompt-typewriter", "caret-blink"],
+    "reducedMotionFallback": "everything visible immediately, prompt text shown statically, no caret"
+  },
+  "assetRoles": ["photo.hero-editorial"]
+}

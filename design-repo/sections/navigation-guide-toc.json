@@ -1,0 +1,11 @@
+{
+  "id": "sections.navigation.guide-toc",
+  "category": "NAVIGATION",
+  "description": "Sticky in-page table of contents (desktop cols 1-3) alongside the compliance guide's prose body (cols 5-12).",
+  "scope": "Present on all 11 compliance-country routes.",
+  "implementedBy": "src/components/compliance-legal/GuideToc.jsx",
+  "measuredFrom": "src/components/compliance-legal/GuideToc.jsx",
+  "content": { "items": { "type": "array", "items": { "label": { "maxWords": 8 }, "anchor": { "type": "string" } } } },
+  "constraints": { "onePerPage": true, "requiresSection": "content.prose-guide (adjacent, same section)" },
+  "motion": { "reducedMotionFallback": "n/a — no animation, sticky positioning only" }
+}

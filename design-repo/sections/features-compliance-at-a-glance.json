@@ -1,0 +1,19 @@
+{
+  "id": "sections.features.compliance-at-a-glance",
+  "category": "FEATURES",
+  "description": "Checklist-style summary block on each country page giving the headline numbers (leave days, sick-pay rules, etc.) before the full prose guide.",
+  "scope": "Present on all 11 compliance-country route occurrences (6 English + 5 localized).",
+  "implementedBy": "src/pages/ComplianceCountry.jsx",
+  "measuredFrom": "src/content/compliance-legal.js (countryPages[*].atAGlance or equivalent checklist field)",
+  "content": {
+    "items": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 8,
+      "items": { "label": { "maxWords": 10 }, "value": { "type": "string", "note": "real regulatory fact, e.g. a leave-day count or statutory rate — see document.regulatory-prose assetRole, must-not-fabricate" } }
+    }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — no animation" },
+  "assetRoles": ["document.regulatory-prose"]
+}

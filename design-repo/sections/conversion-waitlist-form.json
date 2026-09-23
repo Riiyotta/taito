@@ -1,0 +1,23 @@
+{
+  "id": "sections.conversion.waitlist-form",
+  "category": "CONVERSION",
+  "description": "Bordered signup form (email, how-did-you-hear select, message) with client-only regex/required validation and a static success/error message swap — no network submission. Right-hand column of the same section as hero.waitlist-intro.",
+  "scope": "Present only on /waitlist (1 route).",
+  "implementedBy": "src/components/product/WaitlistIntro.jsx (WaitlistForm)",
+  "measuredFrom": "specs/SPEC_product.md §9 (Waitlist intro > form card)",
+  "composes": ["primitives.input", "primitives.button"],
+  "content": {
+    "fields": {
+      "type": "array",
+      "items": { "label": { "maxWords": 6 }, "type": { "enum": ["email", "select", "textarea"] }, "required": { "type": "boolean" } },
+      "example": [{ "label": "Work email", "type": "email", "required": true }, { "label": "How did you hear about us?", "type": "select", "required": true }, { "label": "Message", "type": "textarea", "required": true }]
+    },
+    "helperNote": { "type": "string", "maxWords": 12, "example": "You can also email us at contact@taito.ai." },
+    "submitLabel": { "const": "Send message" },
+    "errorMessages": { "type": "array", "items": { "maxWords": 6 } },
+    "successMessage": { "maxWords": 20 }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — form/success swap is instant, no animation" },
+  "note": "This form never submits over the network — no real backend endpoint. A generated instance must preserve this: client-only validation, no fetch/XHR call."
+}

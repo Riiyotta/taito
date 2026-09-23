@@ -1,0 +1,19 @@
+{
+  "id": "sections.features.company-story",
+  "category": "FEATURES",
+  "description": "Centered narrative block unique to /company: eyebrow+H2, two-paragraph founder-story copy (lorem-ipsum placeholder matching real length per this repo's study-clone convention), an hr, and 'Backed by the best' investor logos (Accel, illusian).",
+  "scope": "Present only on /company (1 route).",
+  "implementedBy": "src/components/persona-company/CompanySections.jsx",
+  "measuredFrom": "specs/SPEC_persona_company.md (Story block)",
+  "composes": ["components.section-header"],
+  "content": {
+    "eyebrow": { "const": "Our story" },
+    "title": { "const": "Built from personal experience" },
+    "narrative": { "type": "string", "maxWords": 110, "note": "two paragraphs, lorem-ipsum placeholder per the study-clone convention (matching a real length of roughly 60+45 words) — see assetRole document.long-form-prose generation policy" },
+    "backedByHeading": { "const": "Backed by the best" },
+    "investorLogos": { "type": "array", "minItems": 1, "maxItems": 4, "items": { "assetRole": { "const": "logo.investor" } } }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — no animation" },
+  "assetRoles": ["logo.investor"]
+}

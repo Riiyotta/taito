@@ -1,0 +1,11 @@
+{
+  "id": "sections.navigation.blog-category-nav",
+  "category": "NAVIGATION",
+  "description": "Pill-style category filter row (guides/case-studies/news/product) plus an RSS link on the main index; active-pill state only, no RSS, on category pages.",
+  "scope": "Present on the English /blog index and all 4 /blog/:category pages (5 route occurrences); not on localized indexes.",
+  "implementedBy": "src/components/blog/Listing.jsx (CategoryNav)",
+  "measuredFrom": "src/content/blog.js:7 (BLOG_CATEGORIES); src/components/blog/Listing.jsx:33",
+  "content": { "activeCategory": { "enum": ["all", "guides", "case-studies", "news", "product"] }, "showRss": { "type": "boolean", "default": false, "note": "true only on the main /blog index, not on category pages" } },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — no animation, instant pill active-state swap" }
+}

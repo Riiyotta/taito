@@ -1,0 +1,291 @@
+{
+  "$comment": "Closed list of every real settable component/primitive/section an LLM may instantiate. Every id here has a matching contract file (verified by extraction/verify_all.py's allowlist-parity check); every real contract file has an entry here (same check, other direction).",
+  "version": "1.0.0",
+  "entries": [
+    {
+      "id": "primitives.avatar",
+      "kind": "primitive",
+      "file": "primitives/avatar.json"
+    },
+    {
+      "id": "primitives.badge",
+      "kind": "primitive",
+      "file": "primitives/badge.json"
+    },
+    {
+      "id": "primitives.button",
+      "kind": "primitive",
+      "file": "primitives/button.json"
+    },
+    {
+      "id": "primitives.icon",
+      "kind": "primitive",
+      "file": "primitives/icon.json"
+    },
+    {
+      "id": "primitives.input",
+      "kind": "primitive",
+      "file": "primitives/input.json"
+    },
+    {
+      "id": "primitives.link",
+      "kind": "primitive",
+      "file": "primitives/link.json"
+    },
+    {
+      "id": "components.card-base",
+      "kind": "component",
+      "file": "components/card-base.json"
+    },
+    {
+      "id": "components.faq-item",
+      "kind": "component",
+      "file": "components/faq-item.json"
+    },
+    {
+      "id": "components.feature-icon-tile",
+      "kind": "component",
+      "file": "components/feature-icon-tile.json"
+    },
+    {
+      "id": "components.feature-list-item",
+      "kind": "component",
+      "file": "components/feature-list-item.json"
+    },
+    {
+      "id": "components.quote-block",
+      "kind": "component",
+      "file": "components/quote-block.json"
+    },
+    {
+      "id": "components.section-header",
+      "kind": "component",
+      "file": "components/section-header.json"
+    },
+    {
+      "id": "components.stat-block",
+      "kind": "component",
+      "file": "components/stat-block.json"
+    },
+    {
+      "id": "sections.comparison.table",
+      "kind": "section",
+      "file": "sections/comparison-table.json"
+    },
+    {
+      "id": "sections.content.blog-archive-list",
+      "kind": "section",
+      "file": "sections/content-blog-archive-list.json"
+    },
+    {
+      "id": "sections.content.blog-index-cards",
+      "kind": "section",
+      "file": "sections/content-blog-index-cards.json"
+    },
+    {
+      "id": "sections.content.blog-post-body",
+      "kind": "section",
+      "file": "sections/content-blog-post-body.json"
+    },
+    {
+      "id": "sections.content.blog-product-timeline",
+      "kind": "section",
+      "file": "sections/content-blog-product-timeline.json"
+    },
+    {
+      "id": "sections.content.faq",
+      "kind": "section",
+      "file": "sections/content-faq.json"
+    },
+    {
+      "id": "sections.content.legal-doc",
+      "kind": "section",
+      "file": "sections/content-legal-doc.json"
+    },
+    {
+      "id": "sections.content.mcp-gallery-grid",
+      "kind": "section",
+      "file": "sections/content-mcp-gallery-grid.json"
+    },
+    {
+      "id": "sections.content.not-found",
+      "kind": "section",
+      "file": "sections/content-not-found.json"
+    },
+    {
+      "id": "sections.content.prose-guide",
+      "kind": "section",
+      "file": "sections/content-prose-guide.json"
+    },
+    {
+      "id": "sections.content.related-grid",
+      "kind": "section",
+      "file": "sections/content-related-grid.json"
+    },
+    {
+      "id": "sections.conversion.pricing-columns",
+      "kind": "section",
+      "file": "sections/conversion-pricing-columns.json"
+    },
+    {
+      "id": "sections.conversion.waitlist-form",
+      "kind": "section",
+      "file": "sections/conversion-waitlist-form.json"
+    },
+    {
+      "id": "sections.features.calculator-tool-list",
+      "kind": "section",
+      "file": "sections/features-calculator-tool-list.json"
+    },
+    {
+      "id": "sections.features.company-mission",
+      "kind": "section",
+      "file": "sections/features-company-mission.json"
+    },
+    {
+      "id": "sections.features.company-story",
+      "kind": "section",
+      "file": "sections/features-company-story.json"
+    },
+    {
+      "id": "sections.features.compliance-at-a-glance",
+      "kind": "section",
+      "file": "sections/features-compliance-at-a-glance.json"
+    },
+    {
+      "id": "sections.features.compliance-markets-grid",
+      "kind": "section",
+      "file": "sections/features-compliance-markets-grid.json"
+    },
+    {
+      "id": "sections.features.mcp-how-it-works",
+      "kind": "section",
+      "file": "sections/features-mcp-how-it-works.json"
+    },
+    {
+      "id": "sections.features.mcp-value-columns",
+      "kind": "section",
+      "file": "sections/features-mcp-value-columns.json"
+    },
+    {
+      "id": "sections.features.pain-columns",
+      "kind": "section",
+      "file": "sections/features-pain-columns.json"
+    },
+    {
+      "id": "sections.features.people-ops-grid",
+      "kind": "section",
+      "file": "sections/features-people-ops-grid.json"
+    },
+    {
+      "id": "sections.features.split-media",
+      "kind": "section",
+      "file": "sections/features-split-media.json"
+    },
+    {
+      "id": "sections.features.team-grid",
+      "kind": "section",
+      "file": "sections/features-team-grid.json"
+    },
+    {
+      "id": "sections.features.why-taito",
+      "kind": "section",
+      "file": "sections/features-why-taito.json"
+    },
+    {
+      "id": "sections.hero.marketing",
+      "kind": "section",
+      "file": "sections/hero-marketing.json"
+    },
+    {
+      "id": "sections.hero.mcp-split",
+      "kind": "section",
+      "file": "sections/hero-mcp-split.json"
+    },
+    {
+      "id": "sections.hero.page-header",
+      "kind": "section",
+      "file": "sections/hero-page-header.json"
+    },
+    {
+      "id": "sections.hero.persona",
+      "kind": "section",
+      "file": "sections/hero-persona.json"
+    },
+    {
+      "id": "sections.hero.product",
+      "kind": "section",
+      "file": "sections/hero-product.json"
+    },
+    {
+      "id": "sections.hero.waitlist-intro",
+      "kind": "section",
+      "file": "sections/hero-waitlist-intro.json"
+    },
+    {
+      "id": "sections.navigation.blog-category-nav",
+      "kind": "section",
+      "file": "sections/navigation-blog-category-nav.json"
+    },
+    {
+      "id": "sections.navigation.guide-toc",
+      "kind": "section",
+      "file": "sections/navigation-guide-toc.json"
+    },
+    {
+      "id": "sections.proof.logo-marquee",
+      "kind": "section",
+      "file": "sections/proof-logo-marquee.json"
+    },
+    {
+      "id": "sections.proof.math-stats",
+      "kind": "section",
+      "file": "sections/proof-math-stats.json"
+    },
+    {
+      "id": "sections.proof.personas-grid",
+      "kind": "section",
+      "file": "sections/proof-personas-grid.json"
+    },
+    {
+      "id": "sections.proof.testimonial",
+      "kind": "section",
+      "file": "sections/proof-testimonial.json"
+    },
+    {
+      "id": "sections.shell.cookie-banner",
+      "kind": "section",
+      "file": "sections/shell-cookie-banner.json"
+    },
+    {
+      "id": "sections.shell.footer",
+      "kind": "section",
+      "file": "sections/shell-footer.json"
+    },
+    {
+      "id": "sections.shell.navbar",
+      "kind": "section",
+      "file": "sections/shell-navbar.json"
+    },
+    {
+      "id": "sections.trust.integrations-grid",
+      "kind": "section",
+      "file": "sections/trust-integrations-grid.json"
+    },
+    {
+      "id": "sections.trust.security-badges",
+      "kind": "section",
+      "file": "sections/trust-security-badges.json"
+    },
+    {
+      "id": "sections.utility.calculator",
+      "kind": "section",
+      "file": "sections/utility-calculator.json"
+    },
+    {
+      "id": "sections.utility.compliance-calendar",
+      "kind": "section",
+      "file": "sections/utility-compliance-calendar.json"
+    }
+  ]
+}

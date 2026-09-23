@@ -1,0 +1,9 @@
+{
+  "measuredFrom": "CLONE_SPEC.md:65-67",
+  "columnWidths": { "px1440": 78, "px1280": 68.19, "px390": 13.63 },
+  "commonSpans": {
+    "half-split": { "text": "col-span-5", "media": "col-span-7", "usedFor": "hero, agents/performance split sections" },
+    "three-up": { "span": "col-span-4 (@4xl), col-span-6 (@2xl), col-span-full (mobile)", "usedFor": "why-taito, integrations, feature grids" },
+    "two-up": { "span": "col-span-6", "usedFor": "pricing columns, company mission (4-col variant: col-span-3)" }
+  }
+}

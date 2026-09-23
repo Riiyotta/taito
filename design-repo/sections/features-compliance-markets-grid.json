@@ -1,0 +1,20 @@
+{
+  "id": "sections.features.compliance-markets-grid",
+  "category": "FEATURES",
+  "description": "Bordered grid of 6 country cards (flag + name + description + arrow) linking into /compliance/:country, on the compliance index.",
+  "scope": "Present only on /compliance (1 route).",
+  "implementedBy": "src/pages/ComplianceIndex.jsx",
+  "measuredFrom": "src/content/compliance-legal.js (complianceIndex.markets.items, 6 entries)",
+  "content": {
+    "header": { "variant": "default" },
+    "countries": {
+      "type": "array",
+      "minItems": 6,
+      "maxItems": 6,
+      "items": { "name": { "enum": ["Finland", "Sweden", "Norway", "Estonia", "UK", "Netherlands"] }, "description": { "maxWords": 25 }, "flagAssetRole": { "const": "flag.country" }, "href": { "type": "string" } }
+    }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — no animation" },
+  "assetRoles": ["flag.country"]
+}

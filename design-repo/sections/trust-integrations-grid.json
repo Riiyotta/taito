@@ -1,0 +1,21 @@
+{
+  "id": "sections.trust.integrations-grid",
+  "category": "TRUST",
+  "description": "3-column feature grid demonstrating platform reach: Slack agent mock, MCP prompt-card mock, and a masked icon grid of real third-party integration logos (Slack, Google Workspace, Microsoft 365, Notion, Greenhouse, Xero, DocuSign, Okta, Gusto, Fortnox, Deel, QuickBooks, etc.).",
+  "scope": "Present only on the homepage (1 route).",
+  "implementedBy": "src/components/Integrations.jsx",
+  "measuredFrom": "CLONE_SPEC.md:213-226 (§11 Integrations)",
+  "content": {
+    "header": { "variant": "default" },
+    "cards": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "title": { "maxWords": 4 }, "body": { "maxWords": 40 }, "mediaAssetRole": { "const": "photo.hero-editorial" }, "overlayVariant": { "enum": ["slack-mock", "mcp-prompt-mock", "integration-icon-grid"] } }
+    },
+    "integrationLogos": { "type": "array", "maxItems": 13, "items": { "assetRole": { "const": "logo.integration-partner" } }, "note": "3 masked rows: Slack/Google Workspace/Microsoft 365/Notion; Greenhouse/Teamtailor/Xero/DocuSign/Okta; Gusto/Fortnox/Deel/QuickBooks" }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — no animation" },
+  "assetRoles": ["photo.hero-editorial", "logo.integration-partner"]
+}

@@ -1,0 +1,17 @@
+{
+  "id": "sections.hero.waitlist-intro",
+  "category": "HERO",
+  "description": "Split hero unique to /waitlist: left SectionHeader + 3-item feature list (or 3 badges on mobile), right a bordered signup form card (name/email/company/team-size/referral-source fields, submit, inline success/error states).",
+  "scope": "Present only on /waitlist (1 route).",
+  "implementedBy": "src/components/product/WaitlistIntro.jsx",
+  "measuredFrom": "specs/SPEC_product.md §9 (Waitlist intro)",
+  "content": {
+    "eyebrow": { "const": "Early access" },
+    "title": { "const": "Join the waitlist" },
+    "description": { "type": "string", "maxWords": 30 },
+    "featureRows": { "type": "array", "maxItems": 3, "items": { "icon": { "assetRole": "icon.lucide" } }, "note": "icon-only rows, no title text, per specs/SPEC_product.md §9" },
+    "mobileBadges": { "type": "array", "maxItems": 3, "items": { "label": { "maxWords": 4 } } }
+  },
+  "constraints": { "mustBeFirst": true, "onePerPage": true, "requiresSection": "conversion.waitlist-form (right column of the same section)" },
+  "motion": { "reducedMotionFallback": "n/a — this section has no distinctive load animation beyond the standard hero-fade-stagger" }
+}

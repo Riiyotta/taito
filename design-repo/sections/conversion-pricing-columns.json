@@ -1,0 +1,25 @@
+{
+  "id": "sections.conversion.pricing-columns",
+  "category": "CONVERSION",
+  "description": "Two-column price card pair (annual/monthly) with a 'Save 20%' pill, big price, billing-cadence note, and a Join-waitlist CTA per column, sitting directly under /pricing's PageHeader.",
+  "scope": "Present only on /pricing (1 route).",
+  "implementedBy": "src/pages/Pricing.jsx",
+  "measuredFrom": "specs/SPEC_product.md §7 (Pricing columns)",
+  "content": {
+    "columns": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 2,
+      "items": {
+        "cadenceLabel": { "enum": ["Annual", "Monthly"] },
+        "savePill": { "required": false, "const": "Save 20%" },
+        "price": { "type": "string", "example": "€8 / seat / month" },
+        "billingNote": { "maxWords": 3 },
+        "ctaLabel": { "const": "Join waitlist" },
+        "variant": { "enum": ["primary", "outline"] }
+      }
+    }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — no animation" }
+}

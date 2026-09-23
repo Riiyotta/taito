@@ -1,0 +1,12 @@
+{
+  "$comment": "Real lucide icon sizes observed across the site. All icons are lucide (stroke currentColor, stroke-width 2, 24 viewBox), saved under public/assets/svg/icons/.",
+  "measuredFrom": "CLONE_SPEC.md:63 (Icons: all UI icons are lucide); CLONE_SPEC.md various component sections citing icon px sizes",
+  "sizes": {
+    "xs": { "value": "12px", "usedFor": "info-circle tooltip trigger" },
+    "sm": { "value": "14px", "usedFor": "sidebar row icons, badge icons" },
+    "md": { "value": "16px", "usedFor": "feature-list icon tiles (39.58px tile), button icons" },
+    "lg": { "value": "24px", "usedFor": "FAQ plus icon, security badge icons, hamburger lines" },
+    "tile-sm": { "value": "39.58px", "clampToken": "space-l", "usedFor": "feature-list icon tile container" },
+    "tile-lg": { "value": "58.56px", "clampToken": "space-l-xl", "usedFor": "people-ops/feature-grid icon tile container" }
+  }
+}

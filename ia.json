@@ -1,0 +1,705 @@
+{
+  "$comment": "IA for the taito.ai clone (React + Vite + Tailwind v3). Built from src/App.jsx's real route table, CLONE_SPEC.md / specs/SPEC_persona_company.md / specs/SPEC_product.md (measured live from the original site 2026-09-23), and direct inspection of src/content/*.js + src/pages/*.jsx + src/components/**/*.jsx for the route families (blog, mcp-use-cases, tools, compliance, legal) that predate a written spec doc.",
+  "meta": {
+    "source": "Local site mirror, measured via Playwright 2026-09-23, plus this repo own src/App.jsx route table",
+    "mirror": "React/Vite/Tailwind v3 clone in this repo, not the original Astro/Tailwind v4 site",
+    "status": "measured-from-mirror",
+    "productionApproved": false,
+    "totalRoutes": 202,
+    "totalTemplates": 20,
+    "generatedBy": "ia-builder skill, from src/App.jsx:60-83 + CLONE_SPEC.md + specs/*.md + direct src/content + src/pages inspection"
+  },
+  "categories": {
+    "SHELL": "Chrome present on every route: header/nav, footer, cookie banner.",
+    "HERO": "Page-opening block: eyebrow, H1, lede, primary CTA, and a right-hand media/mock illustration.",
+    "PROOF": "Social proof: logos, testimonials, stats, investor/customer marks.",
+    "FEATURES": "Product/value explanation blocks: feature grids, split media+text sections, pain-point columns.",
+    "COMPARISON": "Structured before/after or us-vs-them tables.",
+    "CONVERSION": "Pricing, waitlist form, CTA bands aimed at a signup/contact action.",
+    "TRUST": "Security/compliance badges, certifications, trust-center links.",
+    "CONTENT": "Long-form or listing content: blog posts/index, compliance guides, legal docs, tool descriptions.",
+    "UTILITY": "Functional, non-marketing UI: statutory calculators, calendars, FAQ accordions.",
+    "NAVIGATION": "In-page wayfinding: table of contents, category pills, related-content grids, pagination."
+  },
+  "sections": {
+    "shell.navbar": {
+      "category": "SHELL",
+      "description": "Fixed-position-looking (actually `position:relative`, scrolls away) header: logo + mega-menu desktop nav (Product/Solutions dropdowns, Pricing/Blog/Company links) + Log in/Join waitlist CTAs; collapses to a full-screen hamburger overlay below 1200px.",
+      "scope": "Present identically on all 202 routes.",
+      "implementedBy": "src/components/Navbar.jsx"
+    },
+    "shell.footer": {
+      "category": "SHELL",
+      "description": "Dark footer: closing CTA row (H2 'See what autopilot looks like.' + Join-waitlist button \u2014 fixed copy, load-bearing for conversion), 4-column link nav (Product/Solutions/Resources/Legal), bottom bar with copyright + social icons.",
+      "scope": "Present identically on all 202 routes.",
+      "implementedBy": "src/components/Footer.jsx"
+    },
+    "shell.cookie-banner": {
+      "category": "SHELL",
+      "description": "Bottom-right cookie consent dialog with Accept all / Reject all / Customize (expands a checkbox fieldset), shown once per visit and stored for 180 days.",
+      "scope": "Present identically on all 202 routes (client-side, not server-rendered per route).",
+      "implementedBy": "src/components/CookieBanner.jsx"
+    },
+    "hero.marketing": {
+      "category": "HERO",
+      "description": "Homepage-only hero: eyebrow LINK (case-study teaser), H1 'Run people ops on autopilot', lede, primary CTA, right-hand photo + fake AI-chat app-window mock, plus a logo marquee strip beneath it.",
+      "scope": "Present only on the homepage (1 route).",
+      "implementedBy": "src/components/Hero.jsx"
+    },
+    "hero.persona": {
+      "category": "HERO",
+      "description": "Shared hero shell for founders/operators/people-leaders/company/customers: eyebrow (plain text, not a link, except customers keeps hero.marketing's eyebrow style off), H1, lede, primary CTA left; right-hand photo with an absolutely-positioned typed-prompt card overlay (omitted on company and customers).",
+      "scope": "Present on the 5 persona+company+customers routes (founders, operators, people-leaders, company, customers).",
+      "implementedBy": "src/components/persona-company/PageHero.jsx"
+    },
+    "hero.product": {
+      "category": "HERO",
+      "description": "Shared hero shell for the 5 product feature pages: eyebrow (plain text), H1, lede, primary CTA left; right-hand media panel holds a page-specific animated mock (bar chart + runs ticker for agents, review card for performance, balances card for time-off, app-window table for people-directory, rotating document wheel for documents) instead of a photo.",
+      "scope": "Present on the 5 product-hero routes (agents, performance, time-off-attendance, people-directory, documents).",
+      "implementedBy": "src/components/product/HeroFigures.jsx (mocks) + src/pages/*.jsx (shell)"
+    },
+    "hero.page-header": {
+      "category": "HERO",
+      "description": "Non-split page header (no right-hand media): eyebrow + H1 (cols 1-6) + description (cols 7-12), used for pages whose 'hero' is really a title band above tabular/listing content. Pricing adds a two-column price comparison beneath it; security adds an 'Explore trust center' CTA row.",
+      "scope": "Present on pricing, security, tools-index, tools-detail, compliance-index, compliance-country, compliance-calendar (7 route shapes).",
+      "implementedBy": "src/components/product/Sections.jsx (PageHeader, pricing/security) + src/components/compliance-legal/shared.jsx (PageHeader, tools/compliance/calendar)"
+    },
+    "hero.mcp-split": {
+      "category": "HERO",
+      "description": "Split hero shell reused for the MCP-use-cases family: same left-text/right-media geometry as hero.product, but the right media is a use-case-specific illustration (a logo grid on the index, a per-slug mock on detail pages) via a `children` render slot rather than a fixed set of mocks.",
+      "scope": "Present on mcp-index and all 8 mcp-detail routes (9 route occurrences).",
+      "implementedBy": "src/components/mcp-tools/shared.jsx (SplitHero)"
+    },
+    "hero.waitlist-intro": {
+      "category": "HERO",
+      "description": "Split hero unique to /waitlist: left SectionHeader + 3-item feature list (or 3 badges on mobile), right a bordered signup form card (name/email/company/team-size/referral-source fields, submit, inline success/error states).",
+      "scope": "Present only on /waitlist (1 route).",
+      "implementedBy": "src/components/product/WaitlistIntro.jsx"
+    },
+    "features.why-taito": {
+      "category": "FEATURES",
+      "description": "Homepage-only 3-card feature grid ('One product for all things people' / 'Works where your team already does' / 'Regional compliance, no workarounds'), each card a 4:3 photo tile with an overlaid mock (icon grid, Slack card, or flag list) plus H3+body text below.",
+      "scope": "Present only on the homepage (1 route).",
+      "implementedBy": "src/components/WhyTaito.jsx"
+    },
+    "features.people-ops-grid": {
+      "category": "FEATURES",
+      "description": "Bordered 3x2 (or 3x1) icon+H3+body feature grid: no card chrome, just a hairline grid of cells. Two separate implementations share this shape: the homepage/persona-pages component, and product/Sections.jsx's FeatureGrid used by waitlist, pricing, and security.",
+      "scope": "Present on the homepage, all 3 persona pages, /waitlist, /pricing ('Our model'), /security ('Security controls' and 'Documentation', the latter as link cards), and /tools ('standard') \u2014 9 route occurrences total.",
+      "implementedBy": "src/components/PeopleOps.jsx (home) + src/components/persona-company/Sections.jsx (FeatureSection, persona) + src/components/product/Sections.jsx (FeatureGrid, waitlist/pricing/security) + src/pages/ToolsIndex.jsx (inline FeatureColumns-based grid)"
+    },
+    "features.split-media": {
+      "category": "FEATURES",
+      "description": "Two-column split section: a feature list (icon+H3+body items, optionally divider-separated) on one side and a large media panel with a page-specific animated mock on the other; media alternates left/right between the first and second occurrence on a page. Used for the homepage's People agents/Performance sections and every product-hero page's two 'How it works'/'Integrations' splits.",
+      "scope": "Present on the homepage (2 occurrences: agents, performance) and each of the 5 product-hero pages (2 occurrences each = 10) \u2014 12 route occurrences total.",
+      "implementedBy": "src/components/PeopleAgents.jsx, src/components/Performance.jsx (home) + src/components/product/Sections.jsx, src/components/product/SplitMocks.jsx (product pages)"
+    },
+    "features.pain-columns": {
+      "category": "FEATURES",
+      "description": "3-column (stacked on mobile) list of kicker+H3+body items separated by hairline dividers, framing the problem before the product's answer. Reused as PainPoints on product-hero pages.",
+      "scope": "Present on all 3 persona pages ('cracks-at-scale' / 'operator-plate' / 'week-before-and-after') and all 5 product-hero pages ('From friction to fixed') \u2014 8 route occurrences.",
+      "implementedBy": "src/components/persona-company/Sections.jsx (PainColumns) + src/components/product/Sections.jsx (PainPoints)"
+    },
+    "features.company-story": {
+      "category": "FEATURES",
+      "description": "Centered narrative block unique to /company: eyebrow+H2, two-paragraph founder-story copy (lorem-ipsum placeholder matching real length per this repo's study-clone convention), an hr, and 'Backed by the best' investor logos (Accel, illusian).",
+      "scope": "Present only on /company (1 route).",
+      "implementedBy": "src/components/persona-company/CompanySections.jsx"
+    },
+    "features.company-mission": {
+      "category": "FEATURES",
+      "description": "4-column value-grid variant of features.people-ops-grid: kicker 'V / n' instead of an icon, no card chrome, unique to /company's Mission/values/goals section.",
+      "scope": "Present only on /company (1 route).",
+      "implementedBy": "src/components/persona-company/CompanySections.jsx"
+    },
+    "features.team-grid": {
+      "category": "FEATURES",
+      "description": "Subgrid team roster unique to /company: circular avatar + name + role + bio per member (7 real people), plus a trailing 'You?' careers card.",
+      "scope": "Present only on /company (1 route).",
+      "implementedBy": "src/components/persona-company/CompanySections.jsx"
+    },
+    "features.calculator-tool-list": {
+      "category": "FEATURES",
+      "description": "5-item link-card list on /tools linking to each statutory calculator, each card showing a kicker (jurisdiction/topic), title, body description, and the governing statute citation.",
+      "scope": "Present only on /tools (1 route).",
+      "implementedBy": "src/pages/ToolsIndex.jsx (LinkCardGrid)"
+    },
+    "features.compliance-markets-grid": {
+      "category": "FEATURES",
+      "description": "Bordered grid of 6 country cards (flag + name + description + arrow) linking into /compliance/:country, on the compliance index.",
+      "scope": "Present only on /compliance (1 route).",
+      "implementedBy": "src/pages/ComplianceIndex.jsx"
+    },
+    "features.compliance-at-a-glance": {
+      "category": "FEATURES",
+      "description": "Checklist-style summary block on each country page giving the headline numbers (leave days, sick-pay rules, etc.) before the full prose guide.",
+      "scope": "Present on all 11 compliance-country route occurrences (6 English + 5 localized).",
+      "implementedBy": "src/pages/ComplianceCountry.jsx"
+    },
+    "features.mcp-value-columns": {
+      "category": "FEATURES",
+      "description": "3-column feature-list block explaining the value proposition of MCP-based automation, on the mcp-use-cases index.",
+      "scope": "Present only on /mcp-use-cases (1 route).",
+      "implementedBy": "src/pages/McpIndex.jsx (FeatureColumns)"
+    },
+    "content.mcp-gallery-grid": {
+      "category": "CONTENT",
+      "description": "Full gallery grid of all 8 MCP use-case cards on the index page, reusing the same UseCaseGrid component as content.related-grid's 3-item variant on detail pages but at full population.",
+      "scope": "Present only on /mcp-use-cases (1 route).",
+      "implementedBy": "src/pages/McpIndex.jsx (UseCaseGrid), src/components/mcp-tools/shared.jsx (UseCaseGrid)"
+    },
+    "features.mcp-how-it-works": {
+      "category": "FEATURES",
+      "description": "Split block on each MCP use-case detail page: a feature list on the left, and a prompt-snippet mock with a copy button and integration-brand chips on the right.",
+      "scope": "Present on all 8 mcp-detail routes.",
+      "implementedBy": "src/components/mcp-tools/HowItWorks.jsx"
+    },
+    "proof.logo-marquee": {
+      "category": "PROOF",
+      "description": "Infinite-scroll (60s linear) horizontal strip of 7 customer wordmarks, all rendered pure black via CSS filter, doubled in the DOM for seamless looping.",
+      "scope": "Present on the homepage (inside hero.marketing) and again standalone on /pricing.",
+      "implementedBy": "src/components/Hero.jsx (home) + src/pages/Pricing.jsx"
+    },
+    "proof.testimonial": {
+      "category": "PROOF",
+      "description": "Centered single-quote block: customer logo, blockquote with curly-quote pseudo-elements, name + title figcaption. Content (logo, quote, name, role) varies per route.",
+      "scope": "Present on the homepage, all 3 persona pages, and 2 product-hero pages (performance, waitlist) \u2014 6 route occurrences, one shared component.",
+      "implementedBy": "src/components/Testimonial.jsx (home) + src/components/persona-company/Sections.jsx (PcTestimonial) + src/components/product/Sections.jsx (product testimonial)"
+    },
+    "proof.personas-grid": {
+      "category": "PROOF",
+      "description": "3-card dark-mode grid ('Built for') linking to the founders/operators/people-leaders persona pages: full-bleed photo, gradient overlay, kicker/H3/description, hover zoom + indicator icon flip.",
+      "scope": "Present on the homepage and again on /waitlist (2 route occurrences).",
+      "implementedBy": "src/components/Personas.jsx"
+    },
+    "proof.math-stats": {
+      "category": "PROOF",
+      "description": "4-row definition-list of big statistic + label + sourced tooltip ('By the numbers' on home, 'The cost of doing it the old way' on /founders).",
+      "scope": "Present on the homepage and /founders only (2 route occurrences).",
+      "implementedBy": "src/components/MathStats.jsx (home) + src/components/persona-company/Sections.jsx (PcStats)"
+    },
+    "trust.security-badges": {
+      "category": "TRUST",
+      "description": "Row of 2-line icon+label certification badges (ISO 27001, GDPR, field-level permissions, EU data residency / encryption / EU-US residency depending on page), divided by hairlines.",
+      "scope": "Present on the homepage, /pricing, and /security \u2014 3 route occurrences.",
+      "implementedBy": "src/components/Security.jsx (home) + src/components/product/Sections.jsx (Badges/BadgeRow, pricing/security)"
+    },
+    "trust.integrations-grid": {
+      "category": "TRUST",
+      "description": "3-column feature grid demonstrating platform reach: Slack agent mock, MCP prompt-card mock, and a masked icon grid of real third-party integration logos (Slack, Google Workspace, Microsoft 365, Notion, Greenhouse, Xero, DocuSign, Okta, Gusto, Fortnox, Deel, QuickBooks, etc.).",
+      "scope": "Present only on the homepage (1 route).",
+      "implementedBy": "src/components/Integrations.jsx"
+    },
+    "comparison.table": {
+      "category": "COMPARISON",
+      "description": "'Status quo' vs 'Taito.ai' (or equivalent headers) comparison table with sourced-tooltip cells, shared across every page that runs this contrast.",
+      "scope": "Present on /operators, /people-leaders (2 persona pages; founders uses stats instead), and on agents/time-off-attendance/people-directory/pricing (4 product-family pages) \u2014 6 route occurrences, one shared component.",
+      "implementedBy": "src/components/persona-company/Sections.jsx (ComparisonTable) + src/components/product/Sections.jsx (ComparisonTable)"
+    },
+    "conversion.pricing-columns": {
+      "category": "CONVERSION",
+      "description": "Two-column price card pair (annual/monthly) with a 'Save 20%' pill, big price, billing-cadence note, and a Join-waitlist CTA per column, sitting directly under /pricing's PageHeader.",
+      "scope": "Present only on /pricing (1 route).",
+      "implementedBy": "src/pages/Pricing.jsx"
+    },
+    "conversion.waitlist-form": {
+      "category": "CONVERSION",
+      "description": "Bordered signup form (email, how-did-you-hear select, message) with client-only regex/required validation and a static success/error message swap \u2014 no network submission. Right-hand column of the same section as hero.waitlist-intro.",
+      "scope": "Present only on /waitlist (1 route).",
+      "implementedBy": "src/components/product/WaitlistIntro.jsx (WaitlistForm)"
+    },
+    "content.faq": {
+      "category": "CONTENT",
+      "description": "Accordion FAQ list: click toggles height+opacity+icon-rotate (0.25s/0.2s, ease [.23,1,.32,1]); multiple entries can be open at once. Question count and presence of an eyebrow vary per route.",
+      "scope": "Present on the homepage, all 3 persona pages, 5 of 8 mcp-detail routes worth of pages (actually all 8, per HowItWorks+Faq pairing), 6 of 8 product-hero-family pages (agents/performance/pricing/security/waitlist; time-off/people-directory/documents have none), all 11 compliance-country routes, and optionally inside individual blog posts \u2014 the single most reused content block in the site.",
+      "implementedBy": "src/components/Faq.jsx (home) + src/components/persona-company/Sections.jsx (PcFaq) + src/pages/McpIndex.jsx & McpUseCase.jsx (FaqSection) + src/components/compliance-legal/shared.jsx (FaqItem) + src/components/blog/Article.jsx (FaqItem, in-post variant)"
+    },
+    "content.related-grid": {
+      "category": "CONTENT",
+      "description": "Bordered 3-up (or fewer) grid of link cards pointing to sibling content: 'Built to work together / Keep exploring' on product pages, related-use-case grid (3 items) on mcp-detail, resources grid on compliance-country. Three separate implementations share this shape, not one component.",
+      "scope": "Present on all 5 product-hero routes, all 8 mcp-detail routes, and all 11 compliance-country routes \u2014 24 route occurrences.",
+      "implementedBy": "src/components/product/Sections.jsx (Related) + src/components/mcp-tools/shared.jsx (UseCaseGrid, 3-item variant) + src/pages/ComplianceCountry.jsx (inline Block/SectionTitle grid)"
+    },
+    "content.prose-guide": {
+      "category": "CONTENT",
+      "description": "Long-form prose body rendered from a compact tuple-array block schema (`['h2', ...]`, `['p', segs]`, `['table', ...]`, etc.) with a real, statute-cited employment-compliance guide as content. Distinct from content.blog-body's object-based block schema \u2014 the two are not shared/unified in this codebase.",
+      "scope": "Present on all 11 compliance-country routes and all 3 legal routes (privacy/terms/dpa) \u2014 14 route occurrences, one shared Prose renderer.",
+      "implementedBy": "src/components/compliance-legal/Prose.jsx"
+    },
+    "content.blog-index-cards": {
+      "category": "CONTENT",
+      "description": "Grid of post-preview cards (cover image, category pill, title, description, author/date) with pagination-by-batch (18 per page equivalent via CARDS_PER_PAGE) rather than numbered pages.",
+      "scope": "Present on the English /blog index and all 5 localized /:lang/blog indexes, and again (filtered to one category) on the 4 /blog/:category pages \u2014 10 route occurrences.",
+      "implementedBy": "src/components/blog/Listing.jsx, src/components/blog/BlogCard.jsx"
+    },
+    "content.blog-product-timeline": {
+      "category": "CONTENT",
+      "description": "Horizontal timeline of the 4 most recent 'product' category posts, inserted after the first batch of cards on the English blog index only (not on category pages or localized indexes, which have too few posts to warrant it).",
+      "scope": "Present only on the English /blog index (1 route occurrence, out of 6 blog-index route occurrences).",
+      "implementedBy": "src/pages/BlogIndex.jsx"
+    },
+    "content.blog-archive-list": {
+      "category": "CONTENT",
+      "description": "Plain row-list (no card chrome) of any posts left over after the card grid + timeline budget is spent, so every post remains reachable without true pagination.",
+      "scope": "Present on the English /blog index and all 4 /blog/:category pages (5 route occurrences) \u2014 not on localized indexes, which show every post as cards with no overflow.",
+      "implementedBy": "src/components/blog/Listing.jsx (ArchiveList)"
+    },
+    "content.blog-post-body": {
+      "category": "CONTENT",
+      "description": "Article body: breadcrumb+H1+description+author/date/copy-link header, 16:9 cover image, prose body, optional in-post FAQ, 'Keep reading' band. Real metadata (title/description/category/date/author/tags) per post, but every post's body text is a deterministic lorem-ipsum generation (seeded by slug) per this repo's explicit study-clone convention, not scraped real copy.",
+      "scope": "Present on all 143 blog-post routes (111 English + 32 localized).",
+      "implementedBy": "src/pages/BlogPost.jsx, src/components/blog/Article.jsx, src/components/blog/lorem.js (buildLoremBody)"
+    },
+    "content.legal-doc": {
+      "category": "CONTENT",
+      "description": "Single narrow centered prose column (no header/hero/CTA) rendering one of privacy/terms/dpa via the same tuple-array Prose schema as compliance guides.",
+      "scope": "Present on all 3 legal routes (privacy, terms, dpa).",
+      "implementedBy": "src/pages/Legal.jsx"
+    },
+    "content.not-found": {
+      "category": "CONTENT",
+      "description": "Fallback 404 page shown for any unmatched path.",
+      "scope": "Present only on the wildcard route (1 route).",
+      "implementedBy": "src/pages/NotFound.jsx"
+    },
+    "utility.calculator": {
+      "category": "UTILITY",
+      "description": "Genuine, statute-accurate employment-law calculator: a single generic component renders any of the 5 calculators from a data-driven field/aside schema and dispatches to a pure calc function (holidayPay/ssp/feriepenger/semesterdagar/vuosiloma), each citing the specific statute section behind every computed row. Not a decorative mock \u2014 real formulas including UK WTR reference-period logic, Norway's 6G cap, Sweden's sammal\u00f6neregeln/procentregeln split, and Finland's 2.0-vs-2.5-day accrual test.",
+      "scope": "Present on all 5 tools-detail routes.",
+      "implementedBy": "src/components/mcp-tools/Calculator.jsx, src/components/mcp-tools/calcs.js"
+    },
+    "utility.compliance-calendar": {
+      "category": "UTILITY",
+      "description": "Month-grouped list of statutory deadline events (date chip, title, tag pills, description, citation + external primary-source link), with a client-generated .ics download button and month-jump navigation. Only 4 of the 6 compliance countries have a calendar (Estonia and Netherlands do not \u2014 a real content gap, not a routing bug).",
+      "scope": "Present on 4 of the 6 possible compliance-calendar routes (norway, uk, finland, sweden); netherlands and estonia calendars do not exist in the content data.",
+      "implementedBy": "src/pages/ComplianceCalendar.jsx"
+    },
+    "navigation.guide-toc": {
+      "category": "NAVIGATION",
+      "description": "Sticky in-page table of contents (desktop cols 1-3) alongside the compliance guide's prose body (cols 5-12).",
+      "scope": "Present on all 11 compliance-country routes.",
+      "implementedBy": "src/components/compliance-legal/GuideToc.jsx"
+    },
+    "navigation.blog-category-nav": {
+      "category": "NAVIGATION",
+      "description": "Pill-style category filter row (guides/case-studies/news/product) plus an RSS link on the main index; active-pill state only, no RSS, on category pages.",
+      "scope": "Present on the English /blog index and all 4 /blog/:category pages (5 route occurrences); not on localized indexes.",
+      "implementedBy": "src/components/blog/Listing.jsx (CategoryNav)"
+    }
+  },
+  "templates": [
+    {
+      "id": "template.home",
+      "name": "Homepage",
+      "routeCount": 1,
+      "routes": [
+        "/"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.marketing",
+        "proof.logo-marquee",
+        "features.why-taito",
+        "features.people-ops-grid",
+        "features.split-media",
+        "features.split-media",
+        "proof.personas-grid",
+        "proof.testimonial",
+        "trust.security-badges",
+        "trust.integrations-grid",
+        "proof.math-stats",
+        "content.faq",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.persona",
+      "name": "Persona page (founders / operators / people-leaders)",
+      "routeCount": 3,
+      "routes": [
+        "/founders",
+        "/operators",
+        "/people-leaders"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.persona",
+        "features.pain-columns",
+        "features.people-ops-grid",
+        "proof.testimonial",
+        "proof.math-stats",
+        "comparison.table",
+        "content.faq",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.company",
+      "name": "Company",
+      "routeCount": 1,
+      "routes": [
+        "/company"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.persona",
+        "features.company-story",
+        "features.company-mission",
+        "features.team-grid",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.customers",
+      "name": "Customers (coming soon)",
+      "routeCount": 1,
+      "routes": [
+        "/customers"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.persona",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.product-hero",
+      "name": "Product feature page (agents / performance / time-off / people-directory / documents)",
+      "routeCount": 5,
+      "routes": [
+        "/agents",
+        "/performance",
+        "/time-off-attendance",
+        "/people-directory",
+        "/documents"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.product",
+        "features.split-media",
+        "features.split-media",
+        "proof.testimonial",
+        "features.pain-columns",
+        "comparison.table",
+        "content.faq",
+        "content.related-grid",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.pricing",
+      "name": "Pricing",
+      "routeCount": 1,
+      "routes": [
+        "/pricing"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.page-header",
+        "conversion.pricing-columns",
+        "features.people-ops-grid",
+        "proof.logo-marquee",
+        "comparison.table",
+        "trust.security-badges",
+        "content.faq",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.security",
+      "name": "Security",
+      "routeCount": 1,
+      "routes": [
+        "/security"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.page-header",
+        "trust.security-badges",
+        "features.people-ops-grid",
+        "features.split-media",
+        "features.people-ops-grid",
+        "content.faq",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.waitlist",
+      "name": "Waitlist",
+      "routeCount": 1,
+      "routes": [
+        "/waitlist"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.waitlist-intro",
+        "conversion.waitlist-form",
+        "proof.testimonial",
+        "features.people-ops-grid",
+        "proof.personas-grid",
+        "content.faq",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.mcp-index",
+      "name": "MCP use cases index",
+      "routeCount": 1,
+      "routes": [
+        "/mcp-use-cases"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.mcp-split",
+        "content.mcp-gallery-grid",
+        "features.mcp-value-columns",
+        "content.faq",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.mcp-detail",
+      "name": "MCP use case detail",
+      "routeCount": 8,
+      "routes": [
+        "/mcp-use-cases/engineering-performance-review-linear",
+        "/mcp-use-cases/gtm-performance-review-hubspot",
+        "/mcp-use-cases/ask-hr-in-slack",
+        "/mcp-use-cases/team-availability-digest-slack",
+        "/mcp-use-cases/onboarding-automation-ashby",
+        "/mcp-use-cases/payroll-prep",
+        "/mcp-use-cases/sales-bonus-hubspot",
+        "/mcp-use-cases/custom-people-apps-lovable"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.mcp-split",
+        "features.mcp-how-it-works",
+        "content.faq",
+        "content.related-grid",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.tools-index",
+      "name": "Tools index",
+      "routeCount": 1,
+      "routes": [
+        "/tools"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.page-header",
+        "features.calculator-tool-list",
+        "features.people-ops-grid",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.tool-calculator",
+      "name": "Tool calculator detail",
+      "routeCount": 5,
+      "routes": [
+        "/tools/holiday-pay-calculator",
+        "/tools/statutory-sick-pay-calculator",
+        "/tools/feriepengekalkulator",
+        "/tools/semesterdagar-raknare",
+        "/tools/vuosilomalaskuri"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.page-header",
+        "utility.calculator",
+        "content.prose-guide",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.compliance-index",
+      "name": "Compliance index",
+      "routeCount": 1,
+      "routes": [
+        "/compliance"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.page-header",
+        "features.compliance-markets-grid",
+        "features.people-ops-grid",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.compliance-country",
+      "name": "Compliance country guide (English + localized)",
+      "routeCount": 11,
+      "routes": [
+        "/compliance/finland",
+        "/compliance/sweden",
+        "/compliance/norway",
+        "/compliance/estonia",
+        "/compliance/uk",
+        "/compliance/netherlands",
+        "/fi/compliance/finland",
+        "/sv/compliance/sweden",
+        "/no/compliance/norway",
+        "/et/compliance/estonia",
+        "/nl/compliance/netherlands"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.page-header",
+        "features.compliance-at-a-glance",
+        "navigation.guide-toc",
+        "content.prose-guide",
+        "content.faq",
+        "content.related-grid",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.compliance-calendar",
+      "name": "Compliance calendar",
+      "routeCount": 4,
+      "routes": [
+        "/compliance/norway/calendar",
+        "/compliance/uk/calendar",
+        "/compliance/finland/calendar",
+        "/compliance/sweden/calendar"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.page-header",
+        "utility.compliance-calendar",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.legal",
+      "name": "Legal document (privacy / terms / DPA)",
+      "routeCount": 3,
+      "routes": [
+        "/privacy",
+        "/terms",
+        "/dpa"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "content.legal-doc",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.blog-index",
+      "name": "Blog index (English + localized)",
+      "routeCount": 6,
+      "routes": [
+        "/blog",
+        "/et/blog",
+        "/fi/blog",
+        "/nl/blog",
+        "/no/blog",
+        "/sv/blog"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.page-header",
+        "navigation.blog-category-nav",
+        "content.blog-index-cards",
+        "content.blog-product-timeline",
+        "content.blog-index-cards",
+        "content.blog-archive-list",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.blog-category",
+      "name": "Blog category listing",
+      "routeCount": 4,
+      "routes": [
+        "/blog/guides",
+        "/blog/case-studies",
+        "/blog/news",
+        "/blog/product"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "hero.page-header",
+        "navigation.blog-category-nav",
+        "content.blog-index-cards",
+        "content.blog-archive-list",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.blog-post",
+      "name": "Blog post (English + localized)",
+      "routeCount": 143,
+      "routePattern": "/blog/{slug} or /{lang}/blog/{slug}",
+      "routes": [
+        "/blog/how-zero-built-people-ops-ahead-of-a-10m-seed-round",
+        "/blog/..."
+      ],
+      "routesTruncated": true,
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "content.blog-post-body",
+        "content.faq",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    },
+    {
+      "id": "template.not-found",
+      "name": "404 Not Found",
+      "routeCount": 1,
+      "routes": [
+        "*"
+      ],
+      "chrome": "full",
+      "sections": [
+        "shell.navbar",
+        "content.not-found",
+        "shell.footer",
+        "shell.cookie-banner"
+      ]
+    }
+  ]
+}

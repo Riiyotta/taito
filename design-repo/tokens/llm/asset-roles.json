@@ -1,0 +1,66 @@
+{
+  "$comment": "COMPLIANCE-CRITICAL. This project clones the real company taito.ai — real employees, real customers, real investors, real third-party integration logos, and a commercial typeface. Every asset field in every section contract references one of these closed roles. A generator MUST NOT invent a role, and MUST follow the generation policy exactly.",
+  "measuredFrom": "ASSET_MANIFEST.md, specs/ASSETS_product.md, specs/ASSETS_persona_company.md",
+  "roles": {
+    "brand.logo": {
+      "description": "Taito.ai's own logo mark / wordmark (header logo, favicon, brand-kit assets).",
+      "generationPolicy": "must-reuse-exact",
+      "licensingNote": "This is the fictional/example brand for this study clone. If this design-repo is retargeted to a different real or fictional brand, replace with that brand's own approved logo — never fabricate a new 'Taito.ai' variant."
+    },
+    "photo.hero-editorial": {
+      "description": "Stock-style editorial photography used in hero/persona/company media panels (e.g. street-1, founders-hero, operators-hero).",
+      "generationPolicy": "may-generate-new",
+      "licensingNote": "These are generic stock-style photos, not identifiable real people in a posed portrait sense — safe to regenerate a similar-mood stock photo. Do NOT use a real, identifiable photo of an actual person without a model release."
+    },
+    "photo.team-headshot": {
+      "description": "Real headshots of real named taito.ai employees in the /company team grid (Kristo Ovaska, Mikko Kivelä, Juho Eräste, Reeta Kari, Antti Pitkänen, Miikka Kataja, Niko Kosonen).",
+      "generationPolicy": "must-not-fabricate",
+      "licensingNote": "MANDATORY: never generate a photo depicting a real, named person. If team-member photos are needed for a retargeted brand, use that brand's own approved employee photos, or clearly-synthetic placeholder avatars with no real name attached. Reproducing a real person's likeness or attaching a real person's name to a generated/altered image is a real compliance and likeness-rights issue, not a style choice."
+    },
+    "photo.customer-avatar": {
+      "description": "Real customer/testimonial-giver photos and names (e.g. any avatar tied to a named testimonial quote).",
+      "generationPolicy": "must-not-fabricate",
+      "licensingNote": "Same rule as photo.team-headshot: never fabricate an image or attribute a generated quote to a real, named customer. A generated testimonial must use a clearly fictional name and a non-identifiable or synthetic avatar, and must say so if used outside this local study context."
+    },
+    "logo.customer-social-proof": {
+      "description": "Real third-party customer/logo-marquee wordmarks (Way, Huuva, Faculty, Strise, Shook, Clock&Cloud, Zero).",
+      "generationPolicy": "must-reuse-exact",
+      "licensingNote": "These are real companies' trademarks. Never redraw, alter, or approximate a third-party logo — only use the exact asset already licensed/downloaded for this local study clone (see ASSET_MANIFEST.md), and never publish a build containing them without confirming rights."
+    },
+    "logo.investor": {
+      "description": "Real investor logos on /company ('Backed by the best': Accel, illusian).",
+      "generationPolicy": "must-reuse-exact",
+      "licensingNote": "Same as logo.customer-social-proof — real trademarks, reuse-exact only, never fabricate or imply a fictional investor relationship."
+    },
+    "logo.integration-partner": {
+      "description": "Real third-party product integration logos (Slack, Notion, Okta, Gusto, Fortnox, Deel, Xero, QuickBooks, Greenhouse, DocuSign, Google Workspace, Microsoft 365, Linear, HubSpot, Ashby, Lovable, etc.).",
+      "generationPolicy": "must-reuse-exact",
+      "licensingNote": "Real trademarks belonging to their respective companies. Reuse the exact downloaded SVG/webp asset only; never redraw or imply an unverified integration partnership."
+    },
+    "icon.lucide": {
+      "description": "Generic UI iconography (lucide icon set) used throughout: feature tiles, nav, buttons, badges.",
+      "generationPolicy": "may-generate-new",
+      "licensingNote": "Lucide is an open-source (ISC-licensed) icon set. Safe to substitute any lucide icon with a matching semantic meaning, or generate a stroke-style icon consistent with the set's visual language."
+    },
+    "flag.country": {
+      "description": "Country flag SVGs used in the compliance-markets grid and time-off policy items (UK, Sweden, Germany, Finland, Norway, Estonia, Netherlands).",
+      "generationPolicy": "may-generate-new",
+      "licensingNote": "National flags are not subject to copyright/trademark restriction in the way a company logo is — safe to regenerate a standard flag graphic for any country."
+    },
+    "font.suisse-intl": {
+      "description": "The commercial typeface Suisse Intl (Swiss Typefaces), self-hosted as woff2 files.",
+      "generationPolicy": "must-not-fabricate",
+      "licensingNote": "MANDATORY, already flagged in CLONE_SPEC.md:342: this is a commercial typeface downloaded for local study only. Do NOT redeploy these font files in any public-facing build. Use the documented metric-matched fallback stack (see tokens/00-foundation/typography.json) for anything leaving this local environment, or acquire a proper license."
+    },
+    "document.long-form-prose": {
+      "description": "Blog post body content (all 143 posts).",
+      "generationPolicy": "may-generate-new",
+      "licensingNote": "The real site's own existing convention (src/components/blog/lorem.js) is to use deterministic lorem-ipsum for post BODIES only — this is already how the source project handles this content type, confirmed by direct inspection (0 real bodies present in src/content/blog-posts.js). A generator may freely produce new lorem-ipsum-style placeholder body text following this same convention. Post METADATA (title/description/category/date/author/tags) is real and must not be altered without new real research."
+    },
+    "document.regulatory-prose": {
+      "description": "Compliance country guides, statutory calculator citations, and legal documents (privacy/terms/dpa).",
+      "generationPolicy": "must-not-fabricate",
+      "licensingNote": "This content cites real statutes and legal sections (e.g. 'Vuosilomalaki 162/2005', 'WTR reg 16(3)(e)'). Never let a generator invent a new statute citation or alter a real one — this is regulatory/compliance content where fabrication has real legal-accuracy consequences, unlike a marketing headline. If new regulatory content is needed, it requires new real research, not generation."
+    }
+  }
+}

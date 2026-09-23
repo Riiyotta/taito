@@ -1,0 +1,18 @@
+{
+  "id": "sections.content.blog-index-cards",
+  "category": "CONTENT",
+  "description": "Grid of post-preview cards (cover image, category pill, title, description, author/date) with pagination-by-batch (18 per page equivalent via CARDS_PER_PAGE) rather than numbered pages.",
+  "scope": "Present on the English /blog index and all 5 localized /:lang/blog indexes, and again (filtered to one category) on the 4 /blog/:category pages — 10 route occurrences.",
+  "implementedBy": "src/components/blog/Listing.jsx, src/components/blog/BlogCard.jsx",
+  "measuredFrom": "src/content/blog.js:10 (CARDS_PER_PAGE = 18)",
+  "content": {
+    "cards": {
+      "type": "array",
+      "maxItems": 18,
+      "items": { "coverImageAssetRole": { "const": "photo.hero-editorial" }, "categoryPill": { "enum": ["guides", "case-studies", "news", "product"] }, "title": { "maxWords": 14 }, "description": { "maxWords": 24 }, "author": { "type": "string" }, "date": { "type": "string", "format": "date" } }
+    }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — no animation" },
+  "assetRoles": ["photo.hero-editorial"]
+}

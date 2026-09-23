@@ -1,0 +1,50 @@
+{
+  "$comment": "Real easing curves and named CSS keyframe animations from tailwind.config.js and src/index.css, plus the full site-wide motion inventory from CLONE_SPEC.md §17. This is the closed, evidence-grounded set of motion primitives available to any section's motion contract — nothing outside this list.",
+  "measuredFrom": "tailwind.config.js:133-160 (transitionTimingFunction, keyframes, animation); src/index.css (marquee/shimmer/caret-blink rules); CLONE_SPEC.md:311-334 (§17 Motion inventory, complete)",
+  "easings": {
+    "out": { "value": "cubic-bezier(0.23, 1, 0.32, 1)", "usedFor": "the default UI easing — nearly every load/hover/click animation on the site", "measuredFrom": "tailwind.config.js:135" },
+    "in-out": { "value": "cubic-bezier(0.77, 0, 0.175, 1)", "usedFor": "agent stepper track translateY, tile background-color transition", "measuredFrom": "tailwind.config.js:136" },
+    "menu-in": { "value": "cubic-bezier(0.16, 1, 0.3, 1)", "usedFor": "logo right-click context menu open", "measuredFrom": "tailwind.config.js:137" },
+    "menu-out": { "value": "cubic-bezier(0.4, 0, 1, 1)", "usedFor": "logo right-click context menu close", "measuredFrom": "tailwind.config.js:138" },
+    "default": { "value": "cubic-bezier(0.4, 0, 0.2, 1)", "usedFor": "Tailwind's default transition-colors (nav item dim, footer link dim)", "measuredFrom": "tailwind.config.js:139" }
+  },
+  "namedAnimations": {
+    "marquee": { "keyframes": "from{translate:0} to{translate:-50%}", "duration": "60s", "timing": "linear", "iteration": "infinite", "usedBy": "proof.logo-marquee", "measuredFrom": "tailwind.config.js:143-146,163; CLONE_SPEC.md:322" },
+    "caret": { "keyframes": "to{opacity:0}", "duration": "1s", "timing": "steps(2, end)", "iteration": "infinite", "usedBy": "hero prompt-box typing caret", "measuredFrom": "tailwind.config.js:147-149,164; CLONE_SPEC.md:321" },
+    "shimmer": { "keyframes": "0%{background-position:100% 0}", "duration": "1.9347s", "timing": "linear", "iteration": "infinite backwards", "usedBy": "\"Reasoning\" label on performance review cards", "measuredFrom": "tailwind.config.js:150-152,165; CLONE_SPEC.md:172,324" }
+  },
+  "reducedMotion": {
+    "$comment": "Every animation on the real site has a documented prefers-reduced-motion branch. A generated section MUST declare its reducedMotionFallback field per the schema; leaving it implicit is a real accessibility regression on this site, not just a nice-to-have.",
+    "rule": "elements shown immediately (final state, no transition), marquee/shimmer animation-play-state paused or removed, typing caret hidden",
+    "measuredFrom": "CLONE_SPEC.md:14 (\"every animation has a reduced-motion branch\"); src/index.css (prefers-reduced-motion block disabling .animate-marquee/.animate-shimmer/.prompt-caret)"
+  },
+  "siteWideInventory": {
+    "$comment": "The complete, closed list of every real motion pattern observed on the live site (CLONE_SPEC.md §17, verbatim table). Section motion contracts must reference an id from this list, or a page/product-family-specific extension documented in specs/SPEC_product.md §11 or specs/SPEC_persona_company.md's motion inventory — never an invented pattern.",
+    "patterns": [
+      { "id": "hero-eyebrow-fade", "trigger": "load", "property": "opacity 0->1, y 12->0px", "duration": "0.5s", "easing": "out" },
+      { "id": "hero-title-word-reveal", "trigger": "load", "property": "opacity 0->1, y 105%->0 (masked)", "duration": "0.45s", "easing": "out", "delay": "0.12s + 0.05s*i" },
+      { "id": "hero-fade-stagger", "trigger": "load", "property": "opacity 0->1, y 12->0px", "duration": "0.5s", "easing": "out", "delay": "L + 0.05s*i" },
+      { "id": "hero-figure-rise", "trigger": "load", "property": "opacity 0->1, y 40->0px", "duration": "0.7s", "easing": "out", "delay": "0.35s" },
+      { "id": "hero-complete-reveal", "trigger": "hero:complete custom event (~1.03s)", "property": "opacity 0->1, y 12->0px", "duration": "0.35s", "easing": "out" },
+      { "id": "prompt-typewriter", "trigger": "IntersectionObserver 25% + 900ms", "property": "text typed 28ms/char, hold, fade, loop", "duration": "loop", "easing": "CSS opacity out" },
+      { "id": "caret-blink", "trigger": "always", "property": "opacity blink", "duration": "1s steps(2,end) infinite" },
+      { "id": "logo-marquee-scroll", "trigger": "always", "property": "translateX 0->-50%", "duration": "60s linear infinite" },
+      { "id": "agent-stepper-advance", "trigger": "IntersectionObserver 25%, then every 2.8s (first 1.2s)", "property": "track y -rowHeight; row opacities shift; active tile bg->ink", "duration": "0.55s", "easing": "in-out (track), out (opacity), in-out (tile CSS)", "note": "pauses on hover" },
+      { "id": "shimmer-sweep", "trigger": "always", "property": "background-position sweep", "duration": "1.9347s linear infinite" },
+      { "id": "persona-card-hover", "trigger": "hover", "property": "bg, img scale 1.04, indicator scale 1.1 + icon rotate 90deg + color invert", "duration": "0.25s", "easing": "out / default" },
+      { "id": "button-hover-active", "trigger": "hover / active", "property": "bg + color / scale .97", "duration": "0.2s / 0.16s", "easing": "out" },
+      { "id": "mega-menu-open-close", "trigger": "hover 150ms delay / leave 300ms delay", "property": "opacity + y -4px, height morph, crossfade", "duration": "0.2s/0.25s/0.15s/0.12s", "easing": "out" },
+      { "id": "mobile-menu-toggle", "trigger": "click", "property": "overlay opacity; li opacity + y 8px stagger; hamburger->X", "duration": "0.3s/0.2s", "easing": "out", "delay": "0.04s*i" },
+      { "id": "faq-accordion-toggle", "trigger": "click", "property": "height + opacity, icon rotate 45deg", "duration": "0.25s open / 0.2s close", "easing": "out" },
+      { "id": "inline-hover-color", "trigger": "hover", "property": "decoration color / color", "duration": "0.1s linear / 0.2s / 0.15s" },
+      { "id": "footer-link-dim", "trigger": "hover (CSS :has())", "property": "sibling links dim to muted-foreground", "duration": "0.15s", "easing": "default" },
+      { "id": "related-cell-hover", "trigger": "hover", "property": "background -> ink, text -> surface", "duration": "0.15s", "easing": "default", "measuredFrom": "specs/SPEC_product.md §5 (Related)" },
+      { "id": "cookie-banner-enter-exit", "trigger": "load (no consent) / dismiss", "property": "opacity + y 16px", "duration": "0.3s in / 0.2s out", "easing": "out" }
+    ],
+    "explicitlyExcluded": {
+      "$comment": "Real constraints confirmed by direct measurement, not assumptions — a generated section must NOT invent any of these.",
+      "excludes": ["scroll-triggered section reveals", "parallax", "sticky elements (header included — it scrolls away)", "canvas/WebGL", "video"]
+    },
+    "measuredFrom": "CLONE_SPEC.md:311-334"
+  }
+}

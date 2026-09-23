@@ -1,0 +1,12 @@
+{
+  "$comment": "The curated, referenceable token surface for a generator. This is not the whole token system — it's what an LLM is allowed to cite in a PageSpec. Category names match real keys in the foundation/semantic files exactly (fontSize/fontWeight not 'typography'; per MASTER-GUIDE.md §3.21's lesson on policy-category-name drift).",
+  "categories": {
+    "color": { "referenceableRoles": ["surface.page", "surface.raised", "border.default", "text.primary", "text.secondary", "text.muted", "action.primary.bg", "action.primary.bg.hover", "action.primary.fg"] },
+    "fontSize": { "referenceableSteps": ["step--2", "step--1", "step-0", "step-1", "step-2", "step-3", "step-4", "step-5"] },
+    "fontWeight": { "referenceableWeights": [400, 500] },
+    "spacing": { "referenceableSteps": ["space-3xs", "space-2xs", "space-xs", "space-s", "space-m", "space-l", "space-xl", "space-2xl", "space-3xl", "space-s-m", "space-m-l", "space-l-xl", "space-xl-2xl", "space-2xl-3xl"] },
+    "radius": { "referenceableSteps": ["md", "lg", "xl", "2xl", "full"] },
+    "elevation": { "referenceableSteps": ["xs", "lg", "prompt"] },
+    "motion": { "referenceablePatterns": "see tokens/00-foundation/motion.json siteWideInventory — closed list, no free-form values" }
+  }
+}

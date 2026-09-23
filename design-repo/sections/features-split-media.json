@@ -1,0 +1,22 @@
+{
+  "id": "sections.features.split-media",
+  "category": "FEATURES",
+  "description": "Two-column split section: a feature list (icon+H3+body items, optionally divider-separated) on one side and a large media panel with a page-specific animated mock on the other; media alternates left/right between the first and second occurrence on a page. Used for the homepage's People agents/Performance sections and every product-hero page's two 'How it works'/'Integrations' splits.",
+  "scope": "Present on the homepage (2 occurrences: agents, performance) and each of the 5 product-hero pages (2 occurrences each = 10) — 12 route occurrences total.",
+  "implementedBy": "src/components/PeopleAgents.jsx, src/components/Performance.jsx (home) + src/components/product/Sections.jsx, src/components/product/SplitMocks.jsx (product pages)",
+  "measuredFrom": "CLONE_SPEC.md:139-172 (§6 People agents, §7 Performance); specs/SPEC_product.md §2 (Split sections)",
+  "composes": ["components.section-header", "components.feature-list-item"],
+  "content": {
+    "header": { "variant": "default" },
+    "mediaPosition": { "enum": ["left", "right"] },
+    "featureItems": { "type": "array", "minItems": 2, "maxItems": 3, "items": { "icon": { "assetRole": "icon.lucide" }, "title": { "maxWords": 4 }, "body": { "maxWords": 26 } } },
+    "mediaMockVariant": { "type": "string", "note": "one of a closed, page-specific set: agent-stepper-card, review-card-shimmer, cycle-panels, ticker-table, tabs-crossfade, etc. — see specs/SPEC_product.md §2 for the full per-page mock catalog" }
+  },
+  "constraints": { "noConsecutive": false },
+  "motion": {
+    "pattern": ["hero-figure-rise", "agent-stepper-advance", "shimmer-sweep"],
+    "note": "the exact motion pattern is media-mock-specific; see specs/SPEC_product.md §11 for the per-mock timing table",
+    "reducedMotionFallback": "final state shown immediately, no stagger/entrance animation, no auto-advancing ticker/carousel"
+  },
+  "assetRoles": ["icon.lucide"]
+}

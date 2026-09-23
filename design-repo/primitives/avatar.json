@@ -1,0 +1,7 @@
+{
+  "id": "primitives.avatar",
+  "description": "Circular person/entity image, used in team grid, testimonial figcaptions, Slack-mock message avatars, and review-card avatars.",
+  "measuredFrom": "specs/SPEC_persona_company.md (team member avatar), CLONE_SPEC.md §6/§7 (review/message avatars)",
+  "props": { "size": { "type": "enum", "values": ["sm-20", "md-28", "lg-40", "xl-80", "team-96"] }, "assetRole": { "const": "photo.team-headshot | photo.customer-avatar | photo.hero-editorial" } },
+  "style": { "radius": "radius.full", "background": "surface.raised (placeholder)" }
+}

@@ -1,0 +1,11 @@
+{
+  "id": "components.quote-block",
+  "description": "Centered blockquote with curly-quote pseudo-elements, logo, and figcaption (name + title). The content unit of proof.testimonial.",
+  "measuredFrom": "CLONE_SPEC.md §9 (Testimonial); src/index.css:373-378 (.quote::before/::after)",
+  "content": {
+    "quote": { "type": "string", "maxWords": 70 },
+    "name": { "type": "string", "maxWords": 4 },
+    "role": { "type": "string", "maxWords": 8 },
+    "logoAssetRole": { "const": "logo.customer-social-proof" }
+  }
+}

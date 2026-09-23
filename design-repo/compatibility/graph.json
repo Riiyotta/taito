@@ -1,0 +1,78 @@
+{
+  "$comment": "Rhythm rules JSON Schema cannot express. Every rule cites the real template(s) it was checked against in templates/templates.json before being written — not assumed. severity: error = hard validator failure; warn = non-fatal notice.",
+  "measuredFrom": "design-repo/templates/templates.json (checked directly against every template's node array before writing each rule below)",
+  "rules": [
+    {
+      "id": "SHELL_NAVBAR_FIRST",
+      "description": "shell.navbar must be the first node in every template.",
+      "severity": "error",
+      "exception": "none — verified: all 20 templates list shell.navbar as nodes[0]"
+    },
+    {
+      "id": "SHELL_FOOTER_LAST_CONTENT",
+      "description": "shell.footer must appear after every content section, immediately before shell.cookie-banner (the true last node).",
+      "severity": "error",
+      "exception": "none — verified: all 20 templates list shell.footer as the second-to-last node, shell.cookie-banner last"
+    },
+    {
+      "id": "ONE_HERO_PER_PAGE",
+      "description": "At most one HERO-category section per template — no page may have two.",
+      "severity": "error",
+      "exception": "template.legal, template.blog-post, and template.not-found are real hero-less templates (verified directly against templates.json's node arrays) — they open straight into content.legal-doc / content.blog-post-body / content.not-found respectively, with no HERO-category section at all. The rule therefore allows zero-or-one, not exactly-one; a PageSpec using one of these three templates correctly has no hero node, and this must not be flagged as a missing-hero error."
+    },
+    {
+      "id": "ONE_FAQ_PER_PAGE",
+      "description": "content.faq may appear at most once per template (onePerPage per its own section contract).",
+      "severity": "error",
+      "exception": "none needed — no template lists content.faq twice"
+    },
+    {
+      "id": "NO_CONSECUTIVE_SAME_SECTION",
+      "description": "The same section id must not appear twice in a row in a template's node sequence, UNLESS that section's own node entry is marked repeatable:true. A rule that structurally rejects a repeated section id outright would false-positive on every case below, which is why this is a (section, position-in-sequence)-content-difference check, not a blanket adjacency check.",
+      "severity": "warn",
+      "exception": "Three real repeated-section cases exist, all verified directly against templates.json (not assumed), all marked repeatable:true: (1) features.split-media IS back-to-back in template.home (positions 5-6, People agents then Performance) and in template.product-hero (positions 2-3, the two 'How it works'/'Integrations' splits) — genuinely adjacent, different content each time (different feature list, different media mock, alternating media-left/media-right per CLONE_SPEC.md §6-7 and specs/SPEC_product.md §2). (2) features.people-ops-grid appears twice in template.security (positions 3 and 5: 'Security controls' and 'Documentation' cell sets) but is NOT adjacent — features.split-media sits between them. (3) content.blog-index-cards appears twice in template.blog-index (positions 3 and 5: the first card batch and the batch after the product timeline) but is also NOT adjacent — content.blog-product-timeline sits between them. Only case (1) is a true adjacency exception; cases (2) and (3) never trigger this rule at all since they aren't consecutive, but are documented here so a future reviewer doesn't mistake the repeated section id alone for a violation."
+    },
+    {
+      "id": "NAV_TOC_REQUIRES_PROSE_GUIDE",
+      "description": "navigation.guide-toc must never appear in a template that does not also include content.prose-guide — the TOC has nothing to index without it.",
+      "severity": "error",
+      "exception": "none — verified: navigation.guide-toc only appears in template.compliance-country, which also lists content.prose-guide"
+    },
+    {
+      "id": "HERO_WAITLIST_REQUIRES_WAITLIST_FORM",
+      "description": "hero.waitlist-intro must never appear without conversion.waitlist-form in the same template — they are two columns of one section.",
+      "severity": "error",
+      "exception": "none — verified: both appear together only in template.waitlist, and nowhere else"
+    },
+    {
+      "id": "COMPLIANCE_CALENDAR_COUNTRY_RESTRICTION",
+      "description": "A PageSpec using template.compliance-calendar must set utility.compliance-calendar's country field to one of {norway, uk, finland, sweden} only — netherlands and estonia have no real calendar content and must be rejected.",
+      "severity": "error",
+      "exception": "none — this is a real, permanent content gap in src/content/compliance-legal.js (calendars object has exactly 4 keys), not a temporary state to design around"
+    },
+    {
+      "id": "BLOG_POST_FAQ_OPTIONAL",
+      "description": "content.faq is NOT required on template.blog-post — most of the 143 posts have no FAQ (hasFaq defaults to false per the section's own content contract). A PageSpec is valid whether or not it includes this node on a blog-post template.",
+      "severity": "warn",
+      "exception": "this rule exists specifically to prevent a validator treating content.faq as unconditionally required just because it appears in template.blog-post's node list — templates.json marks this node required:false for exactly this reason"
+    },
+    {
+      "id": "BLOG_INDEX_ENGLISH_ONLY_SECTIONS",
+      "description": "navigation.blog-category-nav, content.blog-product-timeline, and content.blog-archive-list are required:false on template.blog-index — they apply only to the English /blog index, not the 5 localized /:lang/blog indexes that share this template.",
+      "severity": "warn",
+      "exception": "this rule documents why templates.json marks these three nodes required:false on template.blog-index rather than making them universally mandatory, per each section's own ia.json-sourced scope text"
+    },
+    {
+      "id": "SECURITY_BADGES_MAX_PER_PAGE",
+      "description": "trust.security-badges may appear at most once per template.",
+      "severity": "error",
+      "exception": "none — appears at most once in every template that has it (home, pricing, security)"
+    },
+    {
+      "id": "LOGO_MARQUEE_MAX_PER_PAGE",
+      "description": "proof.logo-marquee may appear at most once per template.",
+      "severity": "error",
+      "exception": "none — verified directly against templates.json: template.home lists it once at position 2 (immediately after hero.marketing, matching the real DOM where the marquee strip sits inside the same <section> as the hero but is modeled here as its own node since it has its own content contract), and template.pricing lists it once as a standalone section. No template lists it twice."
+    }
+  ]
+}

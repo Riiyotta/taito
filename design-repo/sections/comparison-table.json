@@ -1,0 +1,21 @@
+{
+  "id": "sections.comparison.table",
+  "category": "COMPARISON",
+  "description": "'Status quo' vs 'Taito.ai' (or equivalent headers) comparison table with sourced-tooltip cells, shared across every page that runs this contrast.",
+  "scope": "Present on /operators, /people-leaders (2 persona pages; founders uses stats instead), and on agents/time-off-attendance/people-directory/pricing (4 product-family pages) — 6 route occurrences, one shared component.",
+  "implementedBy": "src/components/persona-company/Sections.jsx (ComparisonTable) + src/components/product/Sections.jsx (ComparisonTable)",
+  "measuredFrom": "specs/SPEC_persona_company.md §F (Comparison table); specs/SPEC_product.md §4 (ComparisonTable)",
+  "composes": ["components.section-header"],
+  "content": {
+    "header": { "eyebrow": { "type": "string", "maxWords": 3 }, "title": { "maxWords": 10 } },
+    "columnHeaders": { "type": "array", "minItems": 2, "maxItems": 2, "items": { "label": { "maxWords": 3 } }, "example": ["Status quo", "Taito.ai"] },
+    "rows": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 8,
+      "items": { "rowLabel": { "maxWords": 6 }, "statusQuoValue": { "maxWords": 20 }, "taitoValue": { "maxWords": 20 }, "sourceTooltip": { "required": false, "maxWords": 10 } }
+    }
+  },
+  "constraints": { "noConsecutive": false },
+  "motion": { "reducedMotionFallback": "n/a — no animation, tooltip toggled by display only" }
+}

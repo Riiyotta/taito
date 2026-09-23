@@ -1,0 +1,17 @@
+{
+  "id": "sections.hero.mcp-split",
+  "category": "HERO",
+  "description": "Split hero shell reused for the MCP-use-cases family: same left-text/right-media geometry as hero.product, but the right media is a use-case-specific illustration (a logo grid on the index, a per-slug mock on detail pages) via a children render slot rather than a fixed set of mocks.",
+  "scope": "Present on mcp-index and all 8 mcp-detail routes (9 route occurrences).",
+  "implementedBy": "src/components/mcp-tools/shared.jsx (SplitHero)",
+  "measuredFrom": "src/components/mcp-tools/shared.jsx:148-180 (SplitHero); src/pages/McpIndex.jsx, src/pages/McpUseCase.jsx",
+  "content": {
+    "eyebrow": { "type": "string", "maxWords": 4 },
+    "title": { "type": "string", "maxWords": 9 },
+    "lede": { "type": "string", "maxWords": 32 },
+    "ctaLabel": { "const": "Join waitlist" },
+    "mediaSlot": { "type": "enum", "values": ["logo-grid (index only)", "use-case-mock (detail only, per-slug)"] }
+  },
+  "constraints": { "mustBeFirst": true, "onePerPage": true },
+  "motion": { "pattern": "hero-fade-stagger", "reducedMotionFallback": "everything visible immediately" }
+}

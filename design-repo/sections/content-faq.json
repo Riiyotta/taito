@@ -1,0 +1,16 @@
+{
+  "id": "sections.content.faq",
+  "category": "CONTENT",
+  "description": "Accordion FAQ list: click toggles height+opacity+icon-rotate (0.25s/0.2s, ease [.23,1,.32,1]); multiple entries can be open at once. Question count and presence of an eyebrow vary per route.",
+  "scope": "Present on the homepage, all 3 persona pages, all 8 mcp-detail routes, 6 of 8 product-hero-family pages (agents/performance/pricing/security/waitlist; time-off/people-directory/documents have none), and all 11 compliance-country routes — the single most reused content block in the site.",
+  "implementedBy": "src/components/Faq.jsx (home) + src/components/persona-company/Sections.jsx (PcFaq) + src/pages/McpIndex.jsx & McpUseCase.jsx (FaqSection) + src/components/compliance-legal/shared.jsx (FaqItem) + src/components/blog/Article.jsx (FaqItem, in-post variant)",
+  "measuredFrom": "CLONE_SPEC.md:245-259 (§13 FAQ)",
+  "composes": ["components.faq-item"],
+  "content": {
+    "hasEyebrow": { "type": "boolean", "default": true, "note": "persona pages omit the eyebrow, showing only the H2" },
+    "title": { "const": "Frequently asked questions" },
+    "items": { "type": "array", "minItems": 3, "maxItems": 9, "items": { "$ref": "components.faq-item" } }
+  },
+  "constraints": { "maxPerPage": 1 },
+  "motion": { "pattern": "faq-accordion-toggle", "reducedMotionFallback": "instant height/opacity swap, no icon rotate transition" }
+}

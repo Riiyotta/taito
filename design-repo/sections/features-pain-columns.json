@@ -1,0 +1,20 @@
+{
+  "id": "sections.features.pain-columns",
+  "category": "FEATURES",
+  "description": "3-column (stacked on mobile) list of kicker+H3+body items separated by hairline dividers, framing the problem before the product's answer. Reused as PainPoints on product-hero pages.",
+  "scope": "Present on all 3 persona pages ('cracks-at-scale' / 'operator-plate' / 'week-before-and-after') and all 5 product-hero pages ('From friction to fixed') — 8 route occurrences.",
+  "implementedBy": "src/components/persona-company/Sections.jsx (PainColumns) + src/components/product/Sections.jsx (PainPoints)",
+  "measuredFrom": "specs/SPEC_persona_company.md §B (Pain columns); specs/SPEC_product.md §3 (PainPoints)",
+  "composes": ["components.section-header"],
+  "content": {
+    "header": { "variant": "default", "hasDescription": false },
+    "columns": {
+      "type": "array",
+      "minItems": 3,
+      "maxItems": 3,
+      "items": { "kicker": { "maxWords": 3 }, "title": { "maxWords": 10 }, "body": { "maxWords": 45, "note": "may include <strong> emphasis spans in the source content" } }
+    }
+  },
+  "constraints": { "noConsecutive": false },
+  "motion": { "reducedMotionFallback": "n/a — no animation on this section" }
+}

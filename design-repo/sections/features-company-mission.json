@@ -1,0 +1,20 @@
+{
+  "id": "sections.features.company-mission",
+  "category": "FEATURES",
+  "description": "4-column value-grid variant of features.people-ops-grid: kicker 'V / n' instead of an icon, no card chrome, unique to /company's Mission/values/goals section.",
+  "scope": "Present only on /company (1 route).",
+  "implementedBy": "src/components/persona-company/CompanySections.jsx",
+  "measuredFrom": "specs/SPEC_persona_company.md (Mission block)",
+  "composes": ["components.section-header"],
+  "content": {
+    "header": { "variant": "default", "eyebrow": { "const": "Mission, values + goals" } },
+    "values": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "kicker": { "type": "string", "pattern": "^V / \\d$" }, "title": { "maxWords": 6 }, "body": { "maxWords": 20 } }
+    }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — no animation" }
+}

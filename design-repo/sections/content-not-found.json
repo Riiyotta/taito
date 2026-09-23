@@ -1,0 +1,11 @@
+{
+  "id": "sections.content.not-found",
+  "category": "CONTENT",
+  "description": "Fallback 404 page shown for any unmatched path.",
+  "scope": "Present only on the wildcard route (1 route).",
+  "implementedBy": "src/pages/NotFound.jsx",
+  "measuredFrom": "src/pages/NotFound.jsx",
+  "content": { "title": { "type": "string", "maxWords": 6 }, "body": { "type": "string", "maxWords": 20 }, "ctaLabel": { "type": "string", "maxWords": 4 } },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — static page" }
+}

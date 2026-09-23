@@ -1,0 +1,13 @@
+{
+  "id": "sections.content.blog-archive-list",
+  "category": "CONTENT",
+  "description": "Plain row-list (no card chrome) of any posts left over after the card grid + timeline budget is spent, so every post remains reachable without true pagination.",
+  "scope": "Present on the English /blog index and all 4 /blog/:category pages (5 route occurrences) — not on localized indexes, which show every post as cards with no overflow.",
+  "implementedBy": "src/components/blog/Listing.jsx (ArchiveList)",
+  "measuredFrom": "src/pages/BlogIndex.jsx:39,57; src/pages/BlogCategory.jsx:30",
+  "content": {
+    "rows": { "type": "array", "items": { "title": { "maxWords": 14 }, "date": { "type": "string", "format": "date" } } }
+  },
+  "constraints": { "onePerPage": true, "mustBeLastContent": true },
+  "motion": { "reducedMotionFallback": "n/a — no animation" }
+}

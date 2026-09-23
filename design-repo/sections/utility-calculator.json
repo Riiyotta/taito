@@ -1,0 +1,18 @@
+{
+  "id": "sections.utility.calculator",
+  "category": "UTILITY",
+  "description": "Genuine, statute-accurate employment-law calculator: a single generic component renders any of the 5 calculators from a data-driven field/aside schema and dispatches to a pure calc function (holidayPay/ssp/feriepenger/semesterdagar/vuosiloma), each citing the specific statute section behind every computed row. Not a decorative mock — real formulas including UK WTR reference-period logic, Norway's 6G cap, Sweden's sammalöneregeln/procentregeln split, and Finland's 2.0-vs-2.5-day accrual test.",
+  "scope": "Present on all 5 tools-detail routes.",
+  "implementedBy": "src/components/mcp-tools/Calculator.jsx, src/components/mcp-tools/calcs.js",
+  "measuredFrom": "src/components/mcp-tools/calcs.js:1-300 (holidayPay, ssp, feriepenger, semesterdagar, vuosiloma)",
+  "content": {
+    "calcId": { "enum": ["holiday-pay-calculator", "statutory-sick-pay-calculator", "feriepengekalkulator", "semesterdagar-raknare", "vuosilomalaskuri"] },
+    "fields": { "type": "array", "items": { "label": { "maxWords": 6 }, "type": { "enum": ["number", "date", "select", "checkbox"] }, "conditionalOn": { "required": false, "type": "string", "note": "field-group visibility can depend on another field's value" } } },
+    "resultRows": { "type": "array", "items": { "label": { "maxWords": 8 }, "citation": { "type": "string", "note": "real statute citation, e.g. 'WTR reg 16(3)(e)' — must not be fabricated, see document.regulatory-prose assetRole" } } },
+    "exampleDataButton": { "required": false, "type": "boolean", "note": "UK holiday-pay calculator has a 'load example data' button for a 55-week table" }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — this is a functional form, not an animated element" },
+  "assetRoles": ["document.regulatory-prose"],
+  "note": "This is a real interactive feature, not a mock illustration. A generator producing a PageSpec for this section must not substitute a static image — the field schema and calc dispatch must remain functional."
+}

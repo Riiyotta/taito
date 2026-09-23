@@ -1,0 +1,26 @@
+{
+  "id": "sections.features.calculator-tool-list",
+  "category": "FEATURES",
+  "description": "5-item link-card list on /tools linking to each statutory calculator, each card showing a kicker (jurisdiction/topic), title, body description, and the governing statute citation.",
+  "scope": "Present only on /tools (1 route).",
+  "implementedBy": "src/pages/ToolsIndex.jsx (LinkCardGrid)",
+  "measuredFrom": "src/content/mcp-tools.js (calculators object, 5 keys); src/pages/ToolsIndex.jsx",
+  "content": {
+    "header": { "variant": "default" },
+    "tools": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": {
+        "slug": { "enum": ["holiday-pay-calculator", "statutory-sick-pay-calculator", "feriepengekalkulator", "semesterdagar-raknare", "vuosilomalaskuri"] },
+        "kicker": { "maxWords": 4, "note": "jurisdiction + topic, e.g. 'Finland · Annual leave'" },
+        "title": { "maxWords": 4 },
+        "body": { "maxWords": 55 },
+        "statute": { "type": "string", "note": "real statute citation, e.g. 'Vuosilomalaki 162/2005' — must not be fabricated, see assetRole document.regulatory-prose" }
+      }
+    }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — no animation" },
+  "assetRoles": ["document.regulatory-prose"]
+}

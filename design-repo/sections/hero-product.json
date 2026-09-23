@@ -1,0 +1,22 @@
+{
+  "id": "sections.hero.product",
+  "category": "HERO",
+  "description": "Shared hero shell for the 5 product feature pages: eyebrow (plain text), H1, lede, primary CTA left; right-hand media panel holds a page-specific animated mock (bar chart + runs ticker for agents, review card for performance, balances card for time-off, app-window table for people-directory, rotating document wheel for documents) instead of a photo.",
+  "scope": "Present on the 5 product-hero routes (agents, performance, time-off-attendance, people-directory, documents).",
+  "implementedBy": "src/components/product/HeroFigures.jsx (mocks) + src/pages/*.jsx (shell)",
+  "measuredFrom": "specs/SPEC_product.md §1 (ProductHero), §1.1 (Hero figures)",
+  "content": {
+    "eyebrow": { "type": "string", "maxWords": 4 },
+    "title": { "type": "string", "maxWords": 9 },
+    "lede": { "type": "string", "maxWords": 40 },
+    "ctaLabel": { "const": "Join waitlist" },
+    "figureVariant": { "type": "enum", "values": ["agents-dash", "performance-review", "time-off-balances", "directory-app-window", "documents-wheel"], "note": "one per route, no fallback default — each is a distinct, real, page-specific mock" }
+  },
+  "constraints": { "mustBeFirst": true, "onePerPage": true },
+  "motion": {
+    "pattern": ["hero-title-word-reveal", "hero-fade-stagger", "hero-figure-rise"],
+    "figureSpecific": "each figureVariant has its own additional motion (e.g. agents-dash bar scaleY, documents-wheel 140s rotate) — see specs/SPEC_product.md §1.1 and §11 for the per-variant table",
+    "reducedMotionFallback": "everything visible immediately, wheel stopped"
+  },
+  "assetRoles": ["icon.lucide"]
+}

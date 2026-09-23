@@ -1,0 +1,8 @@
+{
+  "id": "primitives.icon",
+  "description": "A single lucide icon, stroke currentColor, stroke-width 2, 24 viewBox.",
+  "measuredFrom": "CLONE_SPEC.md §1.5 Icons",
+  "props": { "name": { "type": "string", "note": "must match a real lucide icon name" }, "size": { "type": "enum", "values": ["xs", "sm", "md", "lg"] } },
+  "assetRole": "icon.lucide",
+  "tokens": ["00-foundation/icon-size.json"]
+}

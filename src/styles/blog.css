@@ -1,0 +1,209 @@
+/*
+ * Blog article typography — equivalent of the live `.prose.prose-lg.max-w-none`
+ * (@tailwindcss/typography v4 + taito's ProseStyles overrides), scoped to `.blog-prose`.
+ * Values measured on https://taito.ai/blog/* at 1440 and 390 (see specs/SPEC_blog.md §4).
+ * Elements inside `.not-prose` are left untouched.
+ */
+.blog-prose {
+  --bp-body: rgb(var(--color-secondary-foreground));
+  --bp-headings: rgb(var(--color-primary-foreground));
+  --bp-bullets: oklch(87.2% 0.01 258.338); /* tw gray-300 (typography default) */
+  --bp-counters: oklch(55.1% 0.027 264.364); /* tw gray-500 */
+  --bp-hr: oklch(92.8% 0.006 264.531); /* tw gray-200 */
+  --bp-captions: oklch(55.1% 0.027 264.364);
+  color: var(--bp-body);
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.77778; /* 32px */
+  max-width: none;
+}
+
+.blog-prose :where(p):not(:where(.not-prose, .not-prose *)) {
+  margin-top: 1.33333em;
+  margin-bottom: 1.33333em;
+}
+
+.blog-prose :where(a):not(:where(.not-prose, .not-prose *)) {
+  color: rgb(var(--color-primary-foreground));
+  font-weight: 500;
+  text-decoration-line: underline;
+  text-decoration-color: rgb(var(--color-surface-tertiary));
+  text-underline-offset: 3px;
+  transition: text-decoration-color 0.1s linear;
+}
+.blog-prose :where(a):not(:where(.not-prose, .not-prose *)):hover {
+  text-decoration-color: rgb(var(--color-muted-foreground));
+}
+
+.blog-prose :where(strong):not(:where(.not-prose, .not-prose *)) {
+  color: var(--bp-headings);
+  font-weight: 600;
+}
+.blog-prose :where(a strong, blockquote strong, thead th strong):not(:where(.not-prose, .not-prose *)) {
+  color: inherit;
+}
+
+/* Headings: weight 400, sizes from prose-lg, margins from taito's overrides */
+.blog-prose :where(h1, h2, h3, h4):not(:where(.not-prose, .not-prose *)) {
+  color: var(--bp-headings);
+  font-weight: 400;
+}
+.blog-prose > h1:first-child {
+  display: none;
+}
+.blog-prose :where(h2):not(:where(.not-prose, .not-prose *)) {
+  font-size: 1.66667em; /* 30px */
+  line-height: 1.33333; /* 40px */
+  margin-top: 2em; /* 60px */
+  margin-bottom: 1em; /* 30px */
+}
+.blog-prose :where(h3):not(:where(.not-prose, .not-prose *)) {
+  font-size: 1.33333em; /* 24px */
+  line-height: 1.5; /* 36px */
+  margin-top: 1.5em;
+  margin-bottom: 0.75em;
+}
+.blog-prose :where(h2 + *, h3 + *, h4 + *, hr + *):not(:where(.not-prose, .not-prose *)) {
+  margin-top: 0;
+}
+
+/* Lists */
+.blog-prose :where(ul, ol):not(:where(.not-prose, .not-prose *)) {
+  margin-top: 1.33333em;
+  margin-bottom: 1.33333em;
+  padding-left: 1.5em; /* 27px */
+}
+.blog-prose :where(ul):not(:where(.not-prose, .not-prose *)) {
+  list-style-type: disc;
+}
+.blog-prose :where(ol):not(:where(.not-prose, .not-prose *)) {
+  list-style-type: decimal;
+}
+.blog-prose :where(li):not(:where(.not-prose, .not-prose *)) {
+  margin-top: 0.666667em; /* 12px */
+  margin-bottom: 0.5em; /* 9px */
+  padding-inline-start: 0.444444em; /* 8px */
+}
+.blog-prose :where(ul > li):not(:where(.not-prose, .not-prose *))::marker {
+  color: var(--bp-bullets);
+}
+.blog-prose :where(ol > li):not(:where(.not-prose, .not-prose *))::marker {
+  color: var(--bp-counters);
+  font-weight: 400;
+}
+
+/* Blockquote: 4px ink rule, italic 500, curly quotes around the quote block */
+.blog-prose :where(blockquote):not(:where(.not-prose, .not-prose *)) {
+  color: var(--bp-body);
+  border-inline-start: 0.25rem solid rgb(var(--color-ink));
+  quotes: '\201C' '\201D' '\2018' '\2019';
+  margin-top: 1.66667em;
+  margin-bottom: 1.66667em;
+  padding-inline-start: 1em;
+  font-style: italic;
+  font-weight: 500;
+}
+.blog-prose :where(blockquote p:first-of-type):not(:where(.not-prose, .not-prose *))::before {
+  content: open-quote;
+}
+.blog-prose :where(blockquote p:last-of-type):not(:where(.not-prose, .not-prose *))::after {
+  content: close-quote;
+}
+
+.blog-prose :where(hr):not(:where(.not-prose, .not-prose *)) {
+  border: 0;
+  border-top: 1px solid var(--bp-hr);
+  margin-top: 3.11111em; /* 56px */
+  margin-bottom: 3.11111em;
+}
+
+/* Images / figures */
+.blog-prose :where(img):not(:where(.not-prose, .not-prose *)) {
+  border-radius: 0.75rem;
+  margin-top: 1.77778em;
+  margin-bottom: 1.77778em;
+}
+.blog-prose :where(p > img):not(:where(.not-prose, .not-prose *)) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.blog-prose :where(figure):not(:where(.not-prose, .not-prose *)) {
+  margin-top: 1.77778em;
+  margin-bottom: 1.77778em;
+}
+.blog-prose :where(figure > *):not(:where(.not-prose, .not-prose *)) {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.blog-prose :where(figcaption):not(:where(.not-prose, .not-prose *)) {
+  color: var(--bp-captions);
+  margin-top: 1em;
+  font-size: 0.888889em;
+  line-height: 1.5;
+}
+
+/* Tables (wrapped in a horizontally scrollable .table-scroll) */
+.blog-prose .table-scroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  margin-block: 2em; /* 36px */
+}
+.blog-prose .table-scroll:focus-visible {
+  outline: 2px solid rgb(var(--color-ink));
+  outline-offset: 2px;
+}
+.blog-prose :where(table):not(:where(.not-prose, .not-prose *)) {
+  width: 100%;
+  table-layout: auto;
+  border-collapse: collapse;
+  margin-top: 2em;
+  margin-bottom: 2em;
+  font-size: 0.875em; /* 15.75px */
+  line-height: 1.5;
+}
+.blog-prose .table-scroll > table {
+  margin-block: 0;
+}
+.blog-prose table thead {
+  border-bottom: 1px solid rgb(var(--color-surface-tertiary));
+}
+.blog-prose table :is(th, td) {
+  text-align: start;
+  padding-block: clamp(0.5rem, 0.4661rem + 0.1695vw, 0.625rem); /* --space-2xs */
+  padding-inline: clamp(0.75rem, 0.6991rem + 0.2542vw, 0.9375rem); /* --space-xs */
+}
+.blog-prose table tr > :first-child {
+  padding-inline-start: 0;
+}
+.blog-prose table tr > :last-child {
+  padding-inline-end: 0;
+}
+.blog-prose table th {
+  color: var(--bp-headings);
+  font-weight: 500;
+  vertical-align: bottom;
+}
+.blog-prose table tbody tr {
+  border-bottom: 1px solid var(--bp-hr);
+}
+.blog-prose table tbody tr:last-child {
+  border-bottom-width: 0;
+}
+.blog-prose table td {
+  border-bottom: 1px solid rgb(var(--color-surface-tertiary));
+  vertical-align: top;
+}
+
+.blog-prose :where(code):not(:where(.not-prose, .not-prose *)) {
+  color: var(--bp-headings);
+  background: rgb(var(--color-surface-tertiary));
+  border-radius: 0.25rem;
+  padding: 0.2em 0.4em;
+  font-size: 0.875em;
+}
+
+.blog-prose > :first-child {
+  margin-top: 0;
+}
+.blog-prose > :last-child {
+  margin-bottom: 0;
+}

@@ -1,0 +1,100 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://design-repo.local/schema/pagespec.schema.json",
+  "title": "taito.ai clone — PageSpec",
+  "description": "The machine contract for a generated page composition. Structural validity (closed enums, required fields, additionalProperties:false) is enforced here. Per-section-type content-field validation, template<->node cross-referencing, rhythm rules, and maxWords are enforced by schema/semantic_validate.py, which JSON Schema alone cannot express — see BUILD-GUIDE.md 2.5/2.7.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["pageSpecVersion", "route", "template", "nodes"],
+  "properties": {
+    "$comment": {
+      "type": "string",
+      "description": "Optional, documentation-only, standard JSON Schema convention — never enforced or read by semantic_validate.py."
+    },
+    "pageSpecVersion": {
+      "type": "string",
+      "pattern": "^\\d+\\.\\d+\\.\\d+$",
+      "description": "Documentation-only version marker. NOT machine-checked against anything (see registry.manifest.json versionFieldNote)."
+    },
+    "route": {
+      "type": "string",
+      "pattern": "^/.*$",
+      "description": "The real or intended route path this PageSpec composes a page for, e.g. '/', '/founders', '/blog/some-post-slug'."
+    },
+    "template": {
+      "type": "string",
+      "enum": [
+        "template.home", "template.persona", "template.company", "template.customers",
+        "template.product-hero", "template.pricing", "template.security", "template.waitlist",
+        "template.mcp-index", "template.mcp-detail", "template.tools-index", "template.tool-calculator",
+        "template.compliance-index", "template.compliance-country", "template.compliance-calendar",
+        "template.legal", "template.blog-index", "template.blog-category", "template.blog-post",
+        "template.not-found"
+      ],
+      "description": "Closed enum, one of the 20 real template ids in templates/templates.json. semantic_validate.py cross-references this against that template's own real node list — a PageSpec's nodes[] must not just be independently valid, it must actually match its declared template's shape (BUILD-GUIDE.md 2.7, the single most-repeated bug class per MASTER-GUIDE.md 3.3)."
+    },
+    "nodes": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "$ref": "#/definitions/node" }
+    }
+  },
+  "definitions": {
+    "node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["section", "content", "motion"],
+      "properties": {
+        "section": {
+          "type": "string",
+          "enum": [
+            "comparison.table", "content.blog-archive-list", "content.blog-index-cards",
+            "content.blog-post-body", "content.blog-product-timeline", "content.faq",
+            "content.legal-doc", "content.mcp-gallery-grid", "content.not-found",
+            "content.prose-guide", "content.related-grid", "conversion.pricing-columns",
+            "conversion.waitlist-form", "features.calculator-tool-list", "features.company-mission",
+            "features.company-story", "features.compliance-at-a-glance", "features.compliance-markets-grid",
+            "features.mcp-how-it-works", "features.mcp-value-columns", "features.pain-columns",
+            "features.people-ops-grid", "features.split-media", "features.team-grid",
+            "features.why-taito", "hero.marketing", "hero.mcp-split", "hero.page-header",
+            "hero.persona", "hero.product", "hero.waitlist-intro", "navigation.blog-category-nav",
+            "navigation.guide-toc", "proof.logo-marquee", "proof.math-stats", "proof.personas-grid",
+            "proof.testimonial", "shell.cookie-banner", "shell.footer", "shell.navbar",
+            "trust.integrations-grid", "trust.security-badges", "utility.calculator",
+            "utility.compliance-calendar"
+          ],
+          "description": "Closed enum of the 44 real section ids defined under sections/. No invented section id can pass schema validation."
+        },
+        "content": {
+          "type": "object",
+          "description": "Section-type-specific content fields. Structurally open here at the JSON Schema layer (each of the 44 section types has a genuinely different field shape — see sections/*.json for each one's real content contract) but CLOSED and per-field-validated by semantic_validate.py, which loads the matching sections/<id>.json contract and rejects any field not declared there, any missing required field, and any maxWords overflow. This is the schema/validator split BUILD-GUIDE.md 2.7 describes, not a gap — additionalProperties:false at the JSON-Schema layer for 44 independently-shaped content objects would require 44 oneOf branches with zero shared structure, which the semantic validator already does more precisely (it reads the real section contract file, not a duplicated copy of it)."
+        },
+        "motion": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["reducedMotionFallback"],
+          "properties": {
+            "pattern": {
+              "description": "One id (or array of ids, for sections with multiple concurrent patterns) from tokens/00-foundation/motion.json's siteWideInventory. Closed set — semantic_validate.py rejects any pattern id not in that inventory.",
+              "oneOf": [
+                { "type": "string" },
+                { "type": "array", "items": { "type": "string" } }
+              ]
+            },
+            "trigger": {
+              "type": "string",
+              "enum": ["load", "hover", "click", "scroll-intersection", "always", "custom-event"],
+              "description": "Closed enum of real trigger types observed site-wide (CLONE_SPEC.md §17). No scroll-triggered section reveals or parallax exist on the real site — 'scroll-intersection' here refers only to the documented IntersectionObserver-gated patterns (e.g. agent-stepper-advance), never a generic scroll-reveal."
+            },
+            "reducedMotionFallback": {
+              "type": "string",
+              "minLength": 1,
+              "description": "REQUIRED on every node, no exceptions. Every real animation on the site has a documented reduced-motion branch (CLONE_SPEC.md:14) — a PageSpec node with motion but no fallback description is rejected."
+            }
+          },
+          "description": "Closed to real, evidence-grounded fields only (additionalProperties:false) — a generated PageSpec cannot smuggle in an invented motion field, per MASTER-GUIDE.md 3.7's Craft lesson."
+        }
+      }
+    }
+  }
+}

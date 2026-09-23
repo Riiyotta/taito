@@ -1,0 +1,17 @@
+{
+  "$comment": "The site's only page-level theme. Resolves every semantic color role down to a real foundation value. This is the default and only theme applied at the page/document level; dark is a locally-scoped override (see themes/dark-scope.json), not a competing page theme.",
+  "id": "light",
+  "isDefault": true,
+  "resolves": {
+    "surface.page": "#fafaf9",
+    "surface.raised": "#f2f1f0",
+    "border.default": "#e5e5e3",
+    "text.primary": "#0f0e0d",
+    "text.secondary": "#524f49",
+    "text.muted": "#6e6a65",
+    "action.primary.bg": "#0f0e0d",
+    "action.primary.bg.hover": "#33312c",
+    "action.primary.fg": "#fafaf9"
+  },
+  "measuredFrom": "tokens/00-foundation/color.json (light palette)"
+}

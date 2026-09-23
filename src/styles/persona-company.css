@@ -1,0 +1,96 @@
+/* Persona + company pages (specs/SPEC_persona_company.md). Page-local styles only. */
+
+/* A. Hero prompt card — hidden until the hero load sequence completes */
+.pc-prompt-root {
+  opacity: 0;
+  transform: translateY(12px);
+}
+.pc-caret {
+  display: inline-block;
+  vertical-align: middle;
+  width: 0.08em;
+  height: 0.95em;
+  margin-left: 2px;
+  background: currentColor;
+  transform: translateY(-0.05em);
+  transition: opacity 0.2s ease-out;
+  animation: pc-caret-blink 1s steps(2, end) infinite;
+}
+.pc-caret[data-done] {
+  opacity: 0;
+  animation: none;
+}
+@keyframes pc-caret-blink {
+  to {
+    opacity: 0;
+  }
+}
+
+/* F. Comparison table (.u-table) */
+.pc-table :is(th, td) {
+  padding-block: clamp(1.5rem, 1.3983rem + 0.5085vw, 1.875rem); /* --space-m */
+  padding-inline: clamp(0.75rem, 0.6991rem + 0.2542vw, 0.9375rem); /* --space-xs */
+}
+.pc-table tr > :first-child {
+  padding-inline-start: 0;
+}
+.pc-table tr > :last-child {
+  padding-inline-end: 0;
+}
+
+/* Company > team grid: 2 per row (<42rem container), 3 per row (>=42rem), with column dividers */
+.pc-team > li {
+  position: relative;
+  grid-column: span 5 / span 5;
+}
+.pc-team > li:nth-child(2n) {
+  grid-column: 8 / span 5;
+}
+.pc-team > li:nth-child(2n)::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: calc(-1 * (100% + 3.5 * var(--pc-gutter)) / 5);
+  border-left: 1px solid rgb(var(--color-surface-tertiary));
+}
+@container (min-width: 42rem) {
+  .pc-team > li:nth-child(n) {
+    grid-column: span 3 / span 3;
+  }
+  .pc-team > li:nth-child(3n + 1) {
+    grid-column-start: 1;
+  }
+  .pc-team > li:nth-child(3n + 2) {
+    grid-column-start: 5;
+  }
+  .pc-team > li:nth-child(3n) {
+    grid-column-start: 9;
+  }
+  .pc-team > li:nth-child(2n)::before {
+    display: none;
+  }
+  .pc-team > li:nth-child(3n + 2)::before,
+  .pc-team > li:nth-child(3n)::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: calc(-1 * (100% + 4 * var(--pc-gutter)) / 6);
+    border-left: 1px solid rgb(var(--color-surface-tertiary));
+  }
+}
+.pc-team {
+  --pc-gutter: clamp(1rem, 0.5932rem + 2.0339vw, 2.5rem);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pc-prompt-root {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .pc-caret {
+    display: none;
+  }
+}

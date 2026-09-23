@@ -1,0 +1,14 @@
+{
+  "id": "primitives.button",
+  "description": "Interactive call-to-action element. No content contract beyond its own props (label text, href, variant, size) — this is a primitive, not a section.",
+  "measuredFrom": "CLONE_SPEC.md:53-56; src/components/ui.jsx; src/index.css:83-137",
+  "props": {
+    "variant": { "type": "enum", "values": ["primary", "ghost", "outline"], "default": "primary" },
+    "size": { "type": "enum", "values": ["sm", "lg"], "default": "lg" },
+    "label": { "type": "string", "maxWords": 4 },
+    "href": { "type": "string", "format": "uri-or-path" }
+  },
+  "tokens": ["20-component/button.json"],
+  "motion": { "hover": "button-hover-active", "reducedMotionFallback": "instant color/background swap, no scale transform" },
+  "accessibility": { "note": "focus-visible outline required; primary button contrast ratio verified against surface.page (light) and surface (dark-scope)" }
+}

@@ -1,0 +1,1060 @@
+{
+  "$comment": "One entry per distinct real page shape, mapped 1:1 from ia.json's already-validated template/route data (node validate.mjs confirms route sum=202, referential integrity holds). Node arrays are structured objects per BUILD-GUIDE.md 2.3, not bare section-id strings.",
+  "measuredFrom": "ia.json (this project's own validated IA build)",
+  "templates": [
+    {
+      "id": "template.home",
+      "name": "Homepage",
+      "routeCount": 1,
+      "routes": [
+        "/"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.marketing",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "proof.logo-marquee",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.why-taito",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.people-ops-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.split-media",
+          "required": true,
+          "repeatable": true
+        },
+        {
+          "section": "features.split-media",
+          "required": true,
+          "repeatable": true
+        },
+        {
+          "section": "proof.personas-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "proof.testimonial",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "trust.security-badges",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "trust.integrations-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "proof.math-stats",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.faq",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.persona",
+      "name": "Persona page (founders / operators / people-leaders)",
+      "routeCount": 3,
+      "routes": [
+        "/founders",
+        "/operators",
+        "/people-leaders"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.persona",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.pain-columns",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.people-ops-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "proof.testimonial",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "proof.math-stats",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "comparison.table",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.faq",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.company",
+      "name": "Company",
+      "routeCount": 1,
+      "routes": [
+        "/company"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.persona",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.company-story",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.company-mission",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.team-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.customers",
+      "name": "Customers (coming soon)",
+      "routeCount": 1,
+      "routes": [
+        "/customers"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.persona",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.product-hero",
+      "name": "Product feature page (agents / performance / time-off / people-directory / documents)",
+      "routeCount": 5,
+      "routes": [
+        "/agents",
+        "/performance",
+        "/time-off-attendance",
+        "/people-directory",
+        "/documents"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.product",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.split-media",
+          "required": true,
+          "repeatable": true
+        },
+        {
+          "section": "features.split-media",
+          "required": true,
+          "repeatable": true
+        },
+        {
+          "section": "proof.testimonial",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.pain-columns",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "comparison.table",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.faq",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.related-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.pricing",
+      "name": "Pricing",
+      "routeCount": 1,
+      "routes": [
+        "/pricing"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.page-header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "conversion.pricing-columns",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.people-ops-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "proof.logo-marquee",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "comparison.table",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "trust.security-badges",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.faq",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.security",
+      "name": "Security",
+      "routeCount": 1,
+      "routes": [
+        "/security"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.page-header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "trust.security-badges",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.people-ops-grid",
+          "required": true,
+          "repeatable": true
+        },
+        {
+          "section": "features.split-media",
+          "required": true,
+          "repeatable": true
+        },
+        {
+          "section": "features.people-ops-grid",
+          "required": true,
+          "repeatable": true
+        },
+        {
+          "section": "content.faq",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.waitlist",
+      "name": "Waitlist",
+      "routeCount": 1,
+      "routes": [
+        "/waitlist"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.waitlist-intro",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "conversion.waitlist-form",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "proof.testimonial",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.people-ops-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "proof.personas-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.faq",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.mcp-index",
+      "name": "MCP use cases index",
+      "routeCount": 1,
+      "routes": [
+        "/mcp-use-cases"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.mcp-split",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.mcp-gallery-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.mcp-value-columns",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.faq",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.mcp-detail",
+      "name": "MCP use case detail",
+      "routeCount": 8,
+      "routes": [
+        "/mcp-use-cases/engineering-performance-review-linear",
+        "/mcp-use-cases/gtm-performance-review-hubspot",
+        "/mcp-use-cases/ask-hr-in-slack",
+        "/mcp-use-cases/team-availability-digest-slack",
+        "/mcp-use-cases/onboarding-automation-ashby",
+        "/mcp-use-cases/payroll-prep",
+        "/mcp-use-cases/sales-bonus-hubspot",
+        "/mcp-use-cases/custom-people-apps-lovable"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.mcp-split",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.mcp-how-it-works",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.faq",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.related-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.tools-index",
+      "name": "Tools index",
+      "routeCount": 1,
+      "routes": [
+        "/tools"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.page-header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.calculator-tool-list",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.people-ops-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.tool-calculator",
+      "name": "Tool calculator detail",
+      "routeCount": 5,
+      "routes": [
+        "/tools/holiday-pay-calculator",
+        "/tools/statutory-sick-pay-calculator",
+        "/tools/feriepengekalkulator",
+        "/tools/semesterdagar-raknare",
+        "/tools/vuosilomalaskuri"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.page-header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "utility.calculator",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.prose-guide",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.compliance-index",
+      "name": "Compliance index",
+      "routeCount": 1,
+      "routes": [
+        "/compliance"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.page-header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.compliance-markets-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.people-ops-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.compliance-country",
+      "name": "Compliance country guide (English + localized)",
+      "routeCount": 11,
+      "routes": [
+        "/compliance/finland",
+        "/compliance/sweden",
+        "/compliance/norway",
+        "/compliance/estonia",
+        "/compliance/uk",
+        "/compliance/netherlands",
+        "/fi/compliance/finland",
+        "/sv/compliance/sweden",
+        "/no/compliance/norway",
+        "/et/compliance/estonia",
+        "/nl/compliance/netherlands"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.page-header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "features.compliance-at-a-glance",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "navigation.guide-toc",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.prose-guide",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.faq",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.related-grid",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.compliance-calendar",
+      "name": "Compliance calendar",
+      "routeCount": 4,
+      "routes": [
+        "/compliance/norway/calendar",
+        "/compliance/uk/calendar",
+        "/compliance/finland/calendar",
+        "/compliance/sweden/calendar"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.page-header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "utility.compliance-calendar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.legal",
+      "name": "Legal document (privacy / terms / DPA)",
+      "routeCount": 3,
+      "routes": [
+        "/privacy",
+        "/terms",
+        "/dpa"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.legal-doc",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.blog-index",
+      "name": "Blog index (English + localized)",
+      "routeCount": 6,
+      "routes": [
+        "/blog",
+        "/et/blog",
+        "/fi/blog",
+        "/nl/blog",
+        "/no/blog",
+        "/sv/blog"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.page-header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "navigation.blog-category-nav",
+          "required": false,
+          "repeatable": false,
+          "note": "English-only variant per this section's scope in ia.json \u2014 not present on the 5 localized /:lang/blog indexes"
+        },
+        {
+          "section": "content.blog-index-cards",
+          "required": true,
+          "repeatable": true
+        },
+        {
+          "section": "content.blog-product-timeline",
+          "required": false,
+          "repeatable": false,
+          "note": "English-only variant per this section's scope in ia.json \u2014 not present on the 5 localized /:lang/blog indexes"
+        },
+        {
+          "section": "content.blog-index-cards",
+          "required": true,
+          "repeatable": true
+        },
+        {
+          "section": "content.blog-archive-list",
+          "required": false,
+          "repeatable": false,
+          "note": "English-only variant per this section's scope in ia.json \u2014 not present on the 5 localized /:lang/blog indexes"
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.blog-category",
+      "name": "Blog category listing",
+      "routeCount": 4,
+      "routes": [
+        "/blog/guides",
+        "/blog/case-studies",
+        "/blog/news",
+        "/blog/product"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "hero.page-header",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "navigation.blog-category-nav",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.blog-index-cards",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.blog-archive-list",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.blog-post",
+      "name": "Blog post (English + localized)",
+      "routeCount": 143,
+      "routes": [
+        "/blog/how-zero-built-people-ops-ahead-of-a-10m-seed-round",
+        "/blog/..."
+      ],
+      "routePattern": "/blog/{slug} or /{lang}/blog/{slug}",
+      "routesTruncated": true,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.blog-post-body",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.faq",
+          "required": false,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    },
+    {
+      "id": "template.not-found",
+      "name": "404 Not Found",
+      "routeCount": 1,
+      "routes": [
+        "*"
+      ],
+      "routePattern": null,
+      "routesTruncated": false,
+      "chrome": "full",
+      "nodes": [
+        {
+          "section": "shell.navbar",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "content.not-found",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.footer",
+          "required": true,
+          "repeatable": false
+        },
+        {
+          "section": "shell.cookie-banner",
+          "required": true,
+          "repeatable": false
+        }
+      ]
+    }
+  ]
+}

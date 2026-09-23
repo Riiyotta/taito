@@ -1,0 +1,16 @@
+{
+  "id": "sections.shell.cookie-banner",
+  "category": "SHELL",
+  "description": "Bottom-right cookie consent dialog with Accept all / Reject all / Customize (expands a checkbox fieldset), shown once per visit and stored for 180 days.",
+  "scope": "Present identically on all 202 routes (client-side, not server-rendered per route).",
+  "implementedBy": "src/components/CookieBanner.jsx",
+  "measuredFrom": "CLONE_SPEC.md:279-283 (§15 Cookie consent banner)",
+  "content": {
+    "title": { "const": "We value your privacy" },
+    "body": { "type": "string", "maxWords": 40 },
+    "buttonLabels": { "accept": { "const": "Accept all" }, "reject": { "const": "Reject all" }, "customize": { "const": "Customize" } },
+    "customizeCategories": { "type": "array", "maxItems": 3, "items": { "label": { "maxWords": 2 }, "description": { "maxWords": 16 }, "lockedOn": { "type": "boolean" } } }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "pattern": "cookie-banner-enter-exit", "reducedMotionFallback": "instant appear/disappear, no translateY" }
+}

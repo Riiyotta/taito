@@ -1,0 +1,10 @@
+{
+  "id": "primitives.badge",
+  "description": "Small pill/tag element, used for status pills (agent-run 'Success' status), category pills (blog nav), and pricing 'Save 20%' pill.",
+  "measuredFrom": "specs/SPEC_product.md §1.1 (status pill), CLONE_SPEC.md §16 pricing pill",
+  "props": {
+    "label": { "type": "string", "maxWords": 3 },
+    "tone": { "type": "enum", "values": ["neutral", "positive", "warning", "negative", "outline"] }
+  },
+  "style": { "radius": "radius.full", "fontStep": "step--2" }
+}

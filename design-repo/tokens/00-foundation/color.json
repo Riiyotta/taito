@@ -1,0 +1,37 @@
+{
+  "$comment": "Foundation color values, real hex, measured from the live taito.ai site and implemented as CSS var RGB channels in tailwind.config.js. Two palettes: light (page default) and dark (footer + persona cards, applied via a .dark class, not prefers-color-scheme).",
+  "measuredFrom": "tailwind.config.js:11-30 (palette.light, palette.dark); CLONE_SPEC.md:44-52 (§1.2 Color tokens)",
+  "light": {
+    "surface": { "value": "#fafaf9", "rgb": "250 250 249", "measuredFrom": "tailwind.config.js:14" },
+    "surface-secondary": { "value": "#f2f1f0", "rgb": "242 241 240", "measuredFrom": "tailwind.config.js:15" },
+    "surface-tertiary": { "value": "#e5e5e3", "rgb": "229 229 227", "measuredFrom": "tailwind.config.js:16" },
+    "primary-foreground": { "value": "#0f0e0d", "rgb": "15 14 13", "measuredFrom": "tailwind.config.js:17" },
+    "secondary-foreground": { "value": "#524f49", "rgb": "82 79 73", "measuredFrom": "tailwind.config.js:18" },
+    "muted-foreground": { "value": "#6e6a65", "rgb": "110 106 101", "measuredFrom": "tailwind.config.js:19" },
+    "ink": { "value": "#0f0e0d", "rgb": "15 14 13", "measuredFrom": "tailwind.config.js:20" },
+    "ink-hover": { "value": "#33312c", "rgb": "51 49 44", "measuredFrom": "tailwind.config.js:21" },
+    "white": { "value": "#ffffff", "measuredFrom": "tailwind.config.js:82 (icon tiles)" }
+  },
+  "dark": {
+    "surface": { "value": "#0f0e0d", "rgb": "15 14 13", "measuredFrom": "tailwind.config.js:24" },
+    "surface-secondary": { "value": "#1f1d1a", "rgb": "31 29 26", "measuredFrom": "tailwind.config.js:25" },
+    "surface-tertiary": { "value": "#33312c", "rgb": "51 49 44", "measuredFrom": "tailwind.config.js:26" },
+    "primary-foreground": { "value": "#fafaf9", "rgb": "250 250 249", "measuredFrom": "tailwind.config.js:27" },
+    "secondary-foreground": { "value": "#cccac6", "rgb": "204 202 198", "measuredFrom": "tailwind.config.js:28" },
+    "muted-foreground": { "value": "#8f8b85", "rgb": "143 139 133", "measuredFrom": "tailwind.config.js:29" },
+    "ink": { "value": "#fafaf9", "rgb": "250 250 249", "measuredFrom": "tailwind.config.js:30" },
+    "ink-hover": { "value": "#e5e5e3", "rgb": "229 229 227", "measuredFrom": "tailwind.config.js:31" }
+  },
+  "fixed": {
+    "persona-overlay": { "value": "rgba(29, 29, 29, 0.9)", "measuredFrom": "tailwind.config.js:85; CLONE_SPEC.md:183 (.persona-overlay gradient end)" },
+    "glass": { "value": "rgba(255, 255, 255, 0.25)", "measuredFrom": "tailwind.config.js:86; CLONE_SPEC.md:152-153 (.glass-border ::before)" }
+  },
+  "derivedAlphaColors": {
+    "$comment": "Not separate tokens in tailwind.config.js — computed inline as Tailwind alpha-modifier utilities (e.g. ink/10) or literal rgba() in component CSS. Documented here so a generator does not invent new alpha values.",
+    "ink/10": { "value": "rgba(15,14,13,0.10)", "usedFor": "prompt-box ring", "measuredFrom": "CLONE_SPEC.md:52" },
+    "ink/20": { "value": "rgba(15,14,13,0.20)", "usedFor": "prompt-box outline button border", "measuredFrom": "CLONE_SPEC.md:52" },
+    "surface/90": { "value": "rgba(250,250,249,0.9)", "usedFor": "prompt-box glass background", "measuredFrom": "CLONE_SPEC.md:52" },
+    "surface/75": { "value": "rgba(250,250,249,0.75)", "usedFor": "mobile menu accordion description text", "measuredFrom": "CLONE_SPEC.md:52" },
+    "primary-foreground/40": { "value": "rgba(15,14,13,0.4)", "usedFor": "shimmer label base color", "measuredFrom": "CLONE_SPEC.md:52, 172" }
+  }
+}

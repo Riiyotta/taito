@@ -1,0 +1,21 @@
+{
+  "id": "sections.proof.math-stats",
+  "category": "PROOF",
+  "description": "4-row definition-list of big statistic + label + sourced tooltip ('By the numbers' on home, 'The cost of doing it the old way' on /founders).",
+  "scope": "Present on the homepage and /founders only (2 route occurrences).",
+  "implementedBy": "src/components/MathStats.jsx (home) + src/components/persona-company/Sections.jsx (PcStats)",
+  "measuredFrom": "CLONE_SPEC.md:229-242 (§12 Math stats)",
+  "composes": ["components.section-header", "components.stat-block"],
+  "content": {
+    "header": { "variant": "default", "hasDescription": false },
+    "rows": {
+      "type": "array",
+      "minItems": 4,
+      "maxItems": 4,
+      "items": { "claim": { "maxWords": 16 }, "value": { "maxWords": 3 }, "sourceTooltip": { "maxWords": 10, "note": "real citation, e.g. 'McKinsey, \"Human Resources in the Age of Automation\"' — must not be fabricated" } }
+    }
+  },
+  "constraints": { "maxPerPage": 1 },
+  "motion": { "reducedMotionFallback": "n/a — tooltip toggled by display only, no animation to fall back from" },
+  "assetRoles": []
+}

@@ -1,0 +1,257 @@
+/*
+ * PRODUCT pages (/agents, /performance, /time-off-attendance, /people-directory,
+ * /documents, /pricing, /security, /waitlist). Values from specs/SPEC_product.md.
+ * Every selector is prefixed `prod-` so this file is safe in the global bundle.
+ */
+
+:root {
+  --prod-space-l: clamp(2rem, 1.8644rem + 0.678vw, 2.5rem);
+  --prod-space-l-xl: clamp(2rem, 1.5254rem + 2.3729vw, 3.75rem);
+  --prod-space-xl-2xl: clamp(3rem, 2.4576rem + 2.7119vw, 5rem);
+  --prod-space-s: clamp(1rem, 0.9322rem + 0.339vw, 1.25rem);
+  --prod-space-2xs: clamp(0.5rem, 0.4661rem + 0.1695vw, 0.625rem);
+  --prod-ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+  --prod-ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+/* ---- hero load sequence initial states (revealed by motion's animate()) ---- */
+.prod-hero [data-prod-title] {
+  opacity: 0;
+}
+.prod-hero [data-prod-fade] {
+  opacity: 0;
+  transform: translateY(8px);
+}
+.prod-word-inner {
+  transform: translateY(105%);
+  opacity: 0;
+}
+[data-prod-reveal] {
+  opacity: 0;
+}
+
+/* ---- fit-to-container scaling of fixed-width mocks below md (spec §2) ---- */
+@media (max-width: 767.98px) {
+  .prod-fit {
+    width: var(--fit-w) !important;
+    max-width: none !important;
+    flex-shrink: 0;
+    transform-origin: center;
+    scale: min(
+      var(--fit-max, 1),
+      tan(atan2(100cqw - 2 * var(--prod-space-l), var(--fit-w))),
+      tan(atan2(100cqw - 2 * var(--prod-space-l), var(--fit-w2, var(--fit-w))))
+    );
+  }
+  .prod-fit-raw {
+    width: var(--fit-w) !important;
+    max-width: none !important;
+    flex-shrink: 0;
+    transform-origin: center;
+    scale: min(1, tan(atan2(100cqw, var(--fit-w))), tan(atan2(100cqw, var(--fit-w2, var(--fit-w)))));
+  }
+}
+
+/* ---- "app window" card bleeding off the bottom-right of a media panel ---- */
+.prod-window {
+  position: absolute;
+  top: var(--prod-space-xl-2xl);
+  left: var(--prod-space-xl-2xl);
+  right: var(--win-offset, 0px);
+  bottom: var(--win-offset, 0px);
+}
+.prod-window.glass-border::before,
+.prod-window.glass-border::after {
+  border-radius: calc(var(--glass-border-radius, 0.5rem) + var(--glass-border-width)) 0 0 0;
+}
+@media (max-width: 767.98px) {
+  .prod-window {
+    top: auto;
+    left: auto;
+    right: 0;
+    bottom: 0;
+    width: 36rem;
+    height: 36rem;
+    transform-origin: bottom right;
+    scale: tan(atan2(100cqw - var(--prod-space-l-xl), 36rem));
+  }
+}
+
+/* ---- masks ---- */
+.prod-fade-60 {
+  -webkit-mask-image: linear-gradient(#000 60%, transparent 100%);
+  mask-image: linear-gradient(#000 60%, transparent 100%);
+}
+.prod-fade-65 {
+  -webkit-mask-image: linear-gradient(#000 65%, transparent 100%);
+  mask-image: linear-gradient(#000 65%, transparent 100%);
+}
+.prod-bottom-fade {
+  -webkit-mask-image: linear-gradient(#000 55%, transparent 100%);
+  mask-image: linear-gradient(#000 55%, transparent 100%);
+}
+
+/* ---- item group dividers (inset space-s for sm items) ---- */
+.prod-item-group > :not(:last-child) {
+  position: relative;
+}
+.prod-item-group > :not(:last-child)::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: var(--prod-space-s);
+  right: var(--prod-space-s);
+  height: 1px;
+  background-color: rgb(var(--color-surface-tertiary));
+}
+
+/* ---- step rows with a vertical connector under the media square ---- */
+.prod-steps > :not(:last-child) .prod-step-media::after {
+  content: '';
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  width: 1px;
+  height: var(--step-connector-h, calc(2 * var(--prod-space-2xs)));
+  background: rgb(var(--color-surface-tertiary));
+  transform: translateX(-50%);
+}
+
+/* ---- agents hero: recent runs ticker ---- */
+.prod-runs-row {
+  height: calc(2.25rem + 2 * var(--prod-space-2xs));
+}
+.prod-runs-window {
+  height: calc((2.25rem + 2 * var(--prod-space-2xs)) * 5);
+}
+.prod-runs-track {
+  will-change: transform;
+}
+
+/* ---- performance typewriter caret ---- */
+.prod-caret {
+  display: inline-block;
+  width: 0.08em;
+  height: 0.95em;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+  background: currentColor;
+  animation: caret-blink 1s steps(2, end) infinite;
+}
+[data-typing-done] .prod-caret {
+  display: none;
+}
+
+/* ---- documents hero: rotating wheel (spec §1.1) ---- */
+.prod-docs-figure {
+  --wheel-size: clamp(48rem, 220cqi, 84rem);
+  --card-w: clamp(9.5rem, 20cqi, 13rem);
+  --card-h: clamp(9rem, 19cqi, 12rem);
+  --inner-r: calc(var(--wheel-size) * 0.18);
+  --middle-r: calc(var(--wheel-size) * 0.33);
+  --outer-r: calc(var(--wheel-size) * 0.5);
+  --inner-scale: 0.45;
+  --middle-scale: 0.7;
+  --outer-scale: 1;
+  container-type: inline-size;
+}
+.prod-docs-mask {
+  -webkit-mask-image: radial-gradient(
+    circle at 100% 100%,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 25%,
+    #000 55%,
+    rgba(0, 0, 0, 0.7) 85%,
+    transparent 115%
+  );
+  mask-image: radial-gradient(
+    circle at 100% 100%,
+    transparent 0%,
+    rgba(0, 0, 0, 0.4) 25%,
+    #000 55%,
+    rgba(0, 0, 0, 0.7) 85%,
+    transparent 115%
+  );
+}
+.prod-docs-wheel {
+  position: absolute;
+  width: var(--wheel-size);
+  height: var(--wheel-size);
+  bottom: calc(-0.5 * var(--wheel-size));
+  right: calc(-0.5 * var(--wheel-size));
+  transform-origin: 50% 50%;
+  will-change: transform;
+  animation: prod-wheel-rotate 140s linear infinite;
+}
+.prod-docs-card {
+  width: var(--card-w);
+  height: var(--card-h);
+}
+@keyframes prod-wheel-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* ---- documents templates card ---- */
+.prod-tab {
+  color: rgb(var(--color-muted-foreground));
+  transition: color 0.2s ease-out;
+}
+.prod-tab[data-active='true'] {
+  color: rgb(var(--color-ink));
+}
+.prod-underline {
+  will-change: transform;
+}
+
+/* ---- comparison table (.u-table) ---- */
+.prod-table :is(th, td) {
+  padding-block: clamp(1.5rem, 1.3983rem + 0.5085vw, 1.875rem);
+  padding-inline: clamp(0.75rem, 0.6991rem + 0.2542vw, 0.9375rem);
+}
+.prod-table tr > :first-child {
+  padding-inline-start: 0;
+}
+.prod-table tr > :last-child {
+  padding-inline-end: 0;
+}
+
+/* ---- waitlist select placeholder color ---- */
+.prod-select:has(option[value='']:checked) {
+  color: rgb(var(--color-muted-foreground));
+}
+.prod-select option {
+  color: rgb(var(--color-primary-foreground));
+}
+
+/* ---- card-link press (related grid) ---- */
+.prod-card-link {
+  transition:
+    transform 0.14s var(--prod-ease-out),
+    outline-color 0.15s,
+    outline-offset 0.15s;
+}
+.prod-card-link:active {
+  transform: scale(0.99);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .prod-hero [data-prod-title],
+  .prod-hero [data-prod-fade],
+  .prod-word-inner,
+  [data-prod-reveal] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .prod-docs-wheel,
+  .prod-caret {
+    animation: none !important;
+  }
+  .prod-card-link:active {
+    transform: none;
+  }
+}

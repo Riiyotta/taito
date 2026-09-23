@@ -1,0 +1,23 @@
+{
+  "id": "sections.features.team-grid",
+  "category": "FEATURES",
+  "description": "Subgrid team roster unique to /company: circular avatar + name + role + bio per member (7 real people), plus a trailing 'You?' careers card.",
+  "scope": "Present only on /company (1 route).",
+  "implementedBy": "src/components/persona-company/CompanySections.jsx",
+  "measuredFrom": "specs/SPEC_persona_company.md (Team block); specs/ASSETS_persona_company.md (real team member photos)",
+  "composes": ["components.section-header", "primitives.avatar"],
+  "content": {
+    "header": { "variant": "horizontal" },
+    "members": {
+      "type": "array",
+      "minItems": 7,
+      "maxItems": 7,
+      "items": { "name": { "maxWords": 3 }, "role": { "maxWords": 4 }, "bio": { "maxWords": 30 }, "avatarAssetRole": { "const": "photo.team-headshot" } }
+    },
+    "careersCard": { "type": "object", "title": { "const": "Opportunities" }, "buttonLabel": { "type": "string", "note": "e.g. 'careers@taito.ai' mailto link" } }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — no animation" },
+  "assetRoles": ["photo.team-headshot"],
+  "licensingNote": "REAL, NAMED employees (Kristo Ovaska, Mikko Kivelä, Juho Eräste, Reeta Kari, Antti Pitkänen, Miikka Kataja, Niko Kosonen). See tokens/llm/asset-roles.json photo.team-headshot: must-not-fabricate. A generator retargeting this section to a different company MUST replace with that company's own real, approved team photos/names — never invent a new named person."
+}

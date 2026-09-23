@@ -1,0 +1,18 @@
+{
+  "id": "sections.content.prose-guide",
+  "category": "CONTENT",
+  "description": "Long-form prose body rendered from a compact tuple-array block schema (['h2', ...], ['p', segs], ['table', ...], etc.) with a real, statute-cited employment-compliance guide as content. Distinct from content.blog-post-body's object-based block schema — the two are not shared/unified in this codebase.",
+  "scope": "Present on all 11 compliance-country routes and all 3 legal routes (privacy/terms/dpa) — 14 route occurrences, one shared Prose renderer.",
+  "implementedBy": "src/components/compliance-legal/Prose.jsx",
+  "measuredFrom": "src/components/compliance-legal/Prose.jsx:1-65",
+  "content": {
+    "blocks": {
+      "type": "array",
+      "items": { "tag": { "enum": ["h1", "h2", "h3", "p", "ul", "ol", "hr", "table"] }, "content": { "type": ["string", "array"] } },
+      "note": "the tuple-array DSL: each block is [tag, content], not an object. See asset-role document.regulatory-prose for compliance-country content; legal docs are their own real content, also must-not-fabricate."
+    }
+  },
+  "constraints": { "onePerPage": true },
+  "motion": { "reducedMotionFallback": "n/a — static prose, no animation" },
+  "assetRoles": ["document.regulatory-prose"]
+}
