@@ -18,8 +18,8 @@
     },
     "route": {
       "type": "string",
-      "pattern": "^/.*$",
-      "description": "The real or intended route path this PageSpec composes a page for, e.g. '/', '/founders', '/blog/some-post-slug'."
+      "pattern": "^(?:/.*|\\*)$",
+      "description": "The real or intended route path this PageSpec composes a page for, e.g. '/', '/founders', '/blog/some-post-slug', or the literal '*' for template.not-found's real wildcard route (src/App.jsx's catch-all Route path=\"*\")."
     },
     "template": {
       "type": "string",

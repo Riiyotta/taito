@@ -1,5 +1,102 @@
 # Changelog
 
+## 1.0.1 — External review fix pass
+
+An external punch list (6 items) was applied. Every item was verified
+directly against the real repo before fixing anything, per the
+design-repo-extraction skill's Situation B rules; all 6 reproduced exactly
+as described.
+
+1. **BLOCKER, confirmed real**: `schema/pagespec.schema.json`'s `route`
+   field required `^/.*$`, which a real, valid route (`template.not-found`'s
+   `*`, matching `src/App.jsx`'s catch-all `Route path="*"`) cannot satisfy.
+   Fixed to `^(?:/.*|\*)$`; confirmed `*`, `/`, and `/founders` all match,
+   and a bare non-slash string (e.g. `founders`) still correctly does not.
+2. **BLOCKER, confirmed real**: `sections/content-blog-post-body.json`'s
+   `content.title.assetRole` was the malformed string
+   `"document.long-form-prose (metadata, real)"` — not a real key in
+   `tokens/llm/asset-roles.json`'s canonical registry (`document.long-form-prose`
+   alone is). Fixed by moving the annotation into a separate `note` field.
+   **A second, previously unreported instance of the same bug class was
+   found and fixed in the same pass** (not named in the punch list, found
+   by writing the closure check the punch list's item 3 asked for and
+   running it against the whole repo before considering the fix done, per
+   the skill's "a review's named examples are a lower bound, not the full
+   scope" lesson): `primitives/avatar.json`'s `assetRole` prop used `const`
+   with a pipe-separated union of three role names
+   (`"photo.team-headshot | photo.customer-avatar | photo.hero-editorial"`)
+   — `const` can only ever hold one literal value. Corrected to a real
+   `enum` of the three role ids.
+3. **BLOCKER, confirmed real**: `extraction/verify_all.py` had zero logic
+   referencing `assetRole` anywhere — nothing was checking asset-role
+   references against the canonical registry, which is exactly why items 2
+   and the avatar.json bug above shipped undetected. Added
+   `check_asset_role_closure()`, which walks every `primitives/`/`components/`/
+   `sections/` file, collects every `assetRole`/`assetRoles`/asset-role-shaped
+   `const` value, and fails if any doesn't resolve to a real key in
+   `tokens/llm/asset-roles.json`. Proven to catch drift: a phantom role
+   reference injected into a scratch copy of `sections/hero-marketing.json`
+   correctly fails the check; the real repo passes clean.
+4. **BLOCKER, confirmed real**: `tokens/llm/token-policy.json` claimed
+   `color`, `fontSize`, and `spacing` are "enforced" by
+   `semantic_validate.py` rejecting raw values in a PageSpec's content
+   fields — but `semantic_validate.py` has no such logic anywhere, and this
+   schema has no per-node style/token-override field at all for a raw value
+   to even appear on (a fact `token-policy.json`'s own `overrides` block
+   already stated correctly, contradicting its own `enforcement` block one
+   section up). Corrected all three claims to `convention-only`, with the
+   real reasoning spelled out inline. Only the `motion` claim was already
+   true (verified: `semantic_validate.py` does check `motion.pattern`
+   against the closed inventory) and was left as `enforced`, now with a
+   cross-reference to the new automated check that verifies this claim
+   against the validator's real source rather than trusting the prose.
+5. **HIGH, confirmed real**: no checks against `token-catalog.json` or
+   `token-policy.json` existed in `verify_all.py` at all. Added
+   `check_token_catalog_and_policy()`: (a) confirms every category name in
+   `token-policy.json`'s `enforcement` block is a real key in
+   `token-catalog.json`'s `categories` block (the exact check
+   `MASTER-GUIDE.md` 3.21 recommends, to prevent a policy file's category
+   names drifting from the catalog's real keys); (b) for every category
+   claimed `enforced`, confirms `semantic_validate.py`'s actual source
+   contains logic referencing that category name — this is what caught
+   item 4's false claims the moment the check was written, and would catch
+   the same class of drift again if a future edit re-introduced it. Proven
+   to catch drift: re-injecting the original false `color: enforced` claim
+   into a scratch copy correctly fails the check; the real repo passes
+   clean.
+6. **HIGH, confirmed real**: every auto-synthesized control PageSpec in
+   `schema/tests/adversarial_test.py` used the same hardcoded placeholder
+   route (`/synthetic-control`) regardless of template, so the
+   `template.not-found` control never actually exercised the real runtime
+   route (`*`) — it would have kept passing even with item 1's regex bug in
+   place, for the wrong reason. Fixed generally (not as a one-off special
+   case): the auto-synthesis now uses the target template's own first real
+   `routes[]` entry when one exists (falling back to the synthetic
+   placeholder only for patterned route families like blog-post, which have
+   no literal route sample). Confirmed `template.not-found`'s control now
+   validates with `route: "*"` and the fixed schema pattern together,
+   end-to-end.
+
+### Re-verification after all 6 fixes
+
+All 4 mandatory verification steps re-run in full after every fix, not just
+once at the end:
+
+1. **Schema validation**: 0 errors, including the new `route` pattern.
+2. **Adversarial suite**: 31/31 — same 21 controls (now each using a real
+   route where available) and 10 mutations, all still correct.
+3. **Self-containment**: re-run clean in an isolated `/tmp` directory with
+   zero siblings.
+4. **Zip cleanliness**: regenerated fresh, last, after every fix;
+   `unzip -l design-repo.zip | grep -ic "__MACOSX\|\.DS_Store"` → `0`;
+   confirmed not stale (`find design-repo -type f -newer design-repo.zip`
+   returns nothing).
+
+Two new drift-detection checks (asset-role closure, token-policy validity)
+were each proven against a real injected bug in a scratch copy, then
+confirmed to pass clean on the real, corrected repo — not just asserted to
+work.
+
 ## 1.0.0 — Initial build
 
 Built from scratch (Situation A per the design-repo-extraction skill) against

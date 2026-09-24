@@ -9,7 +9,7 @@
     "frameworkVersions": "React ^18.3.1, Vite ^5.4.11, Tailwind CSS ^3.4.17, react-router-dom ^6.30.6, motion ^12.23.0"
   },
   "allowlistVersion": "1.0.0",
-  "repositoryVersion": "1.0.0",
+  "repositoryVersion": "1.0.1",
   "pageSpecVersion": "1.0.0",
   "versionFieldNote": "allowlistVersion is machine-checked — extraction/verify_all.py's allowlist-parity check fails the run if tokens/llm/component-allowlist.json's own version field drifts from this one. repositoryVersion and pageSpecVersion are documentation-only, hand-maintained markers with nothing automatically enforcing them.",
   "counts": {

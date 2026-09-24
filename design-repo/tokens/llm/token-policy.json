@@ -2,10 +2,10 @@
   "$comment": "What's machine-enforced vs. convention-only. Category keys match token-catalog.json's real keys exactly.",
   "resolutionOrder": ["foundation", "theme-mode override (light default / dark-scope for footer+persona-card)", "semantic alias", "component token", "permitted local override (none currently defined — see overrides below)", "responsive/breakpoint override"],
   "enforcement": {
-    "color": "enforced — semantic_validate.py rejects a raw hex value in a PageSpec's content fields; only semantic role ids are accepted",
-    "fontSize": "enforced — only the 8 step ids are accepted",
-    "spacing": "enforced — only catalog spacing ids are accepted",
-    "motion": "enforced — motion.pattern must be one of tokens/00-foundation/motion.json's siteWideInventory ids; additionalProperties: false on the motion object closes it to reducedMotionFallback + pattern + trigger only"
+    "color": "convention-only — this design-repo's PageSpec schema has no per-node style/token-override field at all (see overrides below), so there is nothing for a generated instance to set a raw color value on, and semantic_validate.py has no color-checking logic. The 'no raw hex, semantic role ids only' rule is real and correct as a rule for anyone hand-authoring a section/component contract file, but it is not machine-checked against a PageSpec instance.",
+    "fontSize": "convention-only — same reasoning as color: no per-node field exists for a PageSpec to set a font-size step on, and semantic_validate.py has no font-size-checking logic.",
+    "spacing": "convention-only — same reasoning as color: no per-node field exists for a PageSpec to set a spacing value on, and semantic_validate.py has no spacing-checking logic.",
+    "motion": "enforced — motion.pattern must be one of tokens/00-foundation/motion.json's siteWideInventory ids; additionalProperties: false on the motion object closes it to reducedMotionFallback + pattern + trigger only. This is the one category where a real PageSpec field (node.motion.pattern) exists and semantic_validate.py actually checks it (see check_asset_role_closure's sibling check, extraction/verify_all.py's check_token_catalog_and_policy, which verifies this claim against the validator's real source at build-check time)."
   },
   "overrides": {
     "$comment": "Per-instance style/token-override mechanism at the PageSpec level. This design-repo's schema.pagespec.schema.json does NOT define a per-node style-override field — styling is fully owned by each section/component contract, not by a generated instance. This is a real gap relative to a more permissive design-repo shape, documented here per MASTER-GUIDE.md §3.21 rather than inventing a field just to have something to validate.",

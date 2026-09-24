@@ -85,9 +85,16 @@ def run():
                 "content": minimal_content,
                 "motion": {"reducedMotionFallback": "n/a for minimal control instance"}
             })
+        # Use the template's own first real route when it has one (this is what
+        # actually proves a real runtime route validates against this template,
+        # not just a synthetic placeholder path) — falls back to a synthetic
+        # path only for templates with no literal `routes` sample (patterned
+        # route families like blog-post, which use routePattern instead).
+        real_routes = t.get("routes") or []
+        route = real_routes[0] if real_routes and not str(real_routes[0]).endswith("...") else "/synthetic-control"
         minimal_spec = {
             "pageSpecVersion": "1.0.0",
-            "route": "/synthetic-control",
+            "route": route,
             "template": tid,
             "nodes": minimal_nodes
         }

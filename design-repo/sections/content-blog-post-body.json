@@ -6,7 +6,7 @@
   "implementedBy": "src/pages/BlogPost.jsx, src/components/blog/Article.jsx, src/components/blog/lorem.js (buildLoremBody)",
   "measuredFrom": "src/content/blog-posts.js (metadata, real, 143 entries); src/components/blog/lorem.js:1-5 (explicit lorem-body statement); confirmed 0 real bodies present via grep -c '\"body\":' src/content/blog-posts.js",
   "content": {
-    "title": { "type": "string", "maxWords": 14, "assetRole": "document.long-form-prose (metadata, real)" },
+    "title": { "type": "string", "maxWords": 14, "assetRole": "document.long-form-prose", "note": "metadata, real — see content.blog-post-body's own description: post metadata (including this title field) is real/scraped, unlike the body field below which is lorem-ipsum" },
     "description": { "type": "string", "maxWords": 24 },
     "category": { "enum": ["guides", "case-studies", "news", "product"] },
     "author": { "type": "string" },

@@ -16,6 +16,13 @@ Checks:
      standalone with no sibling source tree — see extraction/measured-values.json).
   4. Manifest counts recomputed from the actual files, compared against
      registry.manifest.json's own `counts` block.
+  5. Asset-role closure: every `assetRole`/`assetRoles`/asset-role-shaped
+     `const` value referenced anywhere in primitives/components/sections
+     resolves to a real key in tokens/llm/asset-roles.json's canonical
+     registry. Added after a real bug shipped (a malformed value with a
+     parenthetical annotation baked into the enum string itself, and a
+     `const` holding a pipe-separated union of three roles instead of a
+     real single value) that nothing in this file was checking for.
 
 Path portability: repo root derived from __file__, never hardcoded.
 """
@@ -178,7 +185,109 @@ def check_manifest_counts():
         ok(f"manifest counts recomputed and match: {real_counts}")
 
 
-# ---------- 5. Absolute path leak check ----------
+# ---------- 5. Asset-role closure ----------
+def _collect_asset_role_refs(obj, canonical_prefixes, found, path=""):
+    if isinstance(obj, dict):
+        for k, v in obj.items():
+            new_path = f"{path}.{k}" if path else k
+            if k == "assetRole" and isinstance(v, str):
+                found.append((new_path, v))
+            elif k == "assetRoles" and isinstance(v, list):
+                for i, item in enumerate(v):
+                    if isinstance(item, str):
+                        found.append((f"{new_path}[{i}]", item))
+            elif k == "const" and isinstance(v, str) and any(v.startswith(p) for p in canonical_prefixes):
+                found.append((new_path, v))
+            else:
+                _collect_asset_role_refs(v, canonical_prefixes, found, new_path)
+    elif isinstance(obj, list):
+        for i, item in enumerate(obj):
+            _collect_asset_role_refs(item, canonical_prefixes, found, f"{path}[{i}]")
+
+
+def check_asset_role_closure():
+    registry = load_json("tokens", "llm", "asset-roles.json")
+    canonical = set(registry["roles"].keys())
+    canonical_prefixes = {r.split(".")[0] + "." for r in canonical}
+
+    bad = []
+    checked = 0
+    for dirname in ("primitives", "components", "sections"):
+        d = os.path.join(REPO_ROOT, dirname)
+        for fname in sorted(os.listdir(d)):
+            if not fname.endswith(".json"):
+                continue
+            with open(os.path.join(d, fname), encoding="utf-8") as f:
+                data = json.load(f)
+            found = []
+            _collect_asset_role_refs(data, canonical_prefixes, found)
+            for field_path, value in found:
+                checked += 1
+                if value not in canonical:
+                    bad.append((f"{dirname}/{fname}", field_path, value))
+
+    if bad:
+        for fpath, field_path, value in bad:
+            fail(f"asset-role closure: {fpath} field {field_path!r} references {value!r}, not a real key in tokens/llm/asset-roles.json")
+    else:
+        ok(f"asset-role closure: {checked} assetRole/assetRoles/const references checked, all resolve to real keys in tokens/llm/asset-roles.json")
+
+
+# ---------- 6. Token catalog / policy validity ----------
+def check_token_catalog_and_policy():
+    catalog = load_json("tokens", "llm", "token-catalog.json")
+    policy = load_json("tokens", "llm", "token-policy.json")
+
+    # Category keys in token-policy.json's `enforcement` block must be real keys
+    # in token-catalog.json's `categories` block (MASTER-GUIDE.md 3.21: a policy's
+    # category names must match the real catalog's keys, not a convenient label).
+    catalog_categories = set(catalog.get("categories", {}).keys())
+    policy_categories = set(policy.get("enforcement", {}).keys())
+    unknown_policy_categories = policy_categories - catalog_categories
+    if unknown_policy_categories:
+        fail(f"token-policy.json enforcement block references categories not in token-catalog.json: {sorted(unknown_policy_categories)}")
+    else:
+        ok(f"token-policy.json enforcement categories ({sorted(policy_categories)}) all match real token-catalog.json category keys")
+
+    # Every enforcement claim of "enforced" must correspond to something
+    # semantic_validate.py actually checks. This design-repo's schema has no
+    # per-node style/token-override field at all (documented in
+    # token-policy.json's own `overrides` block), so color/fontSize/spacing
+    # CANNOT be enforced against a PageSpec instance — there is no field to
+    # enforce them against. Only claims about fields that genuinely exist in
+    # the schema (motion) may say "enforced".
+    validator_path = os.path.join(REPO_ROOT, "schema", "semantic_validate.py")
+    with open(validator_path, encoding="utf-8") as f:
+        validator_source = f.read()
+
+    schema_path = os.path.join(REPO_ROOT, "schema", "pagespec.schema.json")
+    with open(schema_path, encoding="utf-8") as f:
+        schema_source = f.read()
+
+    # A category can only be truthfully "enforced" if either (a) the PageSpec
+    # schema defines a field for it to be enforced against, or (b) the
+    # validator's own source contains logic referencing that category by name.
+    # This repo's overrides.rawValueRestrictions explicitly states no
+    # per-instance style/token-override field exists, so color/fontSize/spacing
+    # have nothing to enforce against a PageSpec instance.
+    no_override_field = "no raw-value override field exists" in json.dumps(policy.get("overrides", {}))
+    for category, claim in policy.get("enforcement", {}).items():
+        if not claim.startswith("enforced"):
+            continue
+        has_schema_field = category in schema_source
+        has_validator_logic = category in validator_source
+        if no_override_field and category in ("color", "fontSize", "spacing") and not has_validator_logic:
+            fail(
+                f"token-policy.json claims enforcement.{category} is 'enforced', but semantic_validate.py has no "
+                f"logic referencing {category!r} and this schema defines no per-node style/token-override field "
+                f"for a generated PageSpec to violate — this claim does not describe anything the validator "
+                f"actually checks (token-policy.json's own overrides.rawValueRestrictions confirms no such field exists)"
+            )
+        elif has_validator_logic or has_schema_field:
+            ok(f"token-policy.json enforcement.{category} claim is backed by real validator/schema logic")
+
+
+# ---------- 7. Absolute path leak check ----------
 ABS_PATH_PATTERN = "/" + "Users/"  # split to avoid this very file matching its own literal
 
 
@@ -202,7 +311,7 @@ def check_no_absolute_paths():
         ok(f"no absolute {ABS_PATH_PATTERN} paths found anywhere in design-repo/ (excluding this checker's own source)")
 
 
-# ---------- 6. Entry points self-containment ----------
+# ---------- 8. Entry points self-containment ----------
 def check_entry_points_self_contained():
     manifest = load_json("registry.manifest.json")
     entry_points = manifest.get("entryPoints", [])
@@ -236,6 +345,8 @@ def main():
     check_allowlist_parity()
     check_citation_validity()
     check_manifest_counts()
+    check_asset_role_closure()
+    check_token_catalog_and_policy()
     check_no_absolute_paths()
     check_entry_points_self_contained()
     check_adversarial_suite()
